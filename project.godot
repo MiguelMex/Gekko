@@ -23,6 +23,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Gekko"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/YATI/plugin.cfg")
+
 [input]
 
 right={
