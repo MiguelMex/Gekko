@@ -391,7 +391,6 @@ func handle_animation(frames: Array, tile_id: int) -> void:
 
 
 func handle_objectgroup(object_group: Dictionary, current_tile: TileData, tile_id: int):
-
 	# v1.2:
 	_object_groups_counter += 1
 	register_object_group(_object_groups_counter, object_group)
@@ -554,7 +553,6 @@ func handle_objectgroup(object_group: Dictionary, current_tile: TileData, tile_i
 				current_tile.set_collision_polygon_one_way(phys, polygon_index, val.to_lower() == "true")
 			elif name.to_lower() == "one_way_margin" and type == "int":
 				current_tile.set_collision_polygon_one_way_margin(phys, polygon_index, int(val))
-
 
 func transpose_coords(x: float, y: float):
 	if _tileset_orientation == "isometric":
