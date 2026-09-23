@@ -13,4 +13,23 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="physics_layer_0" type="int" value="0"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="9">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="10">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16.1875" height="16.125"/>
+  </objectgroup>
+ </tile>
 </tileset>
