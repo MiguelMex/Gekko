@@ -3,61 +3,62 @@ using System;
 
 public partial class Jugador : CharacterBody2D
 {
-	/**
-	[Export] cumple la función de mostrar un valor del script en el motor grafico de GODOT
-	Speed es la velocidad a la que se moverá el jugador
-	*/
-	[Export] public float Speed = 300.0f;
+    [Export] public float Speed = 300.0f;
+    [Export] public float JumpVelocity = -400.0f;
 
-	/**
-	La velocidad con la que el jugador salta
-	*/
-	[Export]
-	public float JumpVelocity = -400.0f;
+    // NUEVO: Variable para guardar la posición de reaparición actual
+    private Vector2 _respawnPosition;
 
-	/**
-	Metodo de Godot que se ejecuta durante cada frame, sirve para manejar las fisicas
-	delta: el tiempo que ah pasado desde el último frame, necesario sii trabajamos con aceleración  o para manter consistencia en tiempos incluso si el rendimiento es malo
-	*/
-	public override void _PhysicsProcess(double delta)
-	{
-		//La velocidad con la que se está movindo el jugador en cada frame
-		Vector2 velocity = Velocity;
+    public override void _Ready()
+    {
+        // NUEVO: Al iniciar el juego, guardamos su posición inicial como el primer respawn por defecto
+        _respawnPosition = GlobalPosition;
+    }
 
-		// Añadir la gravedad
-		/**
-		IsOnFloor revisa si el nodo se encuentra en una superficie horizontal o si está flotando
-		*/
-		if (!IsOnFloor())
-		{
-			velocity += GetGravity() * (float)delta;
-		}
+    public override void _PhysicsProcess(double delta)
+    {
+        Vector2 velocity = Velocity;
 
-		// Manejar el salto.
-		if (Input.IsActionJustPressed("jump") && IsOnFloor())
-		{
-			velocity.Y = JumpVelocity;
-		}
+        if (!IsOnFloor())
+        {
+            velocity += GetGravity() * (float)delta;
+        }
 
-		/**
-		Detecta el imput enviado por el jugador, se definen en el motor grafico
-		Solo se está usando izquierda y derecha así que no hay necesidad de asignar las otras dos
-		*/
-		Vector2 direction = Input.GetVector("left", "right","void", "void");
-		//Detecta si hubo algun input
-		if (direction != Vector2.Zero && IsOnFloor())
-		{
-			//Cambio en la velocidad del jugador
-			velocity.X = direction.X * Speed;
-		}
-		else
-		{
-			//Que frene en seco si no hay input
-			velocity.X = 0;
-		}
+        if (Input.IsActionJustPressed("jump") && IsOnFloor())
+        {
+            velocity.Y = JumpVelocity;
+        }
 
-		//Se asigna el cambio de velocidad
-		Velocity = velocity;
-		MoveAndSlide();
-	}
+        Vector2 direction = Input.GetVector("left", "right", "void", "void");
+        if (direction != Vector2.Zero && IsOnFloor())
+        {
+            velocity.X = direction.X * Speed;
+        }
+        else
+        {
+            velocity.X = 0;
+        }
+
+        Velocity = velocity;
+        MoveAndSlide();
+    }
+
+    // NUEVO: Método público para actualizar el checkpoint
+    public void ActualizarCheckpoint(Vector2 nuevaPosicion)
+    {
+        _respawnPosition = nuevaPosicion;
+        GD.Print("¡Checkpoint actualizado!");
+    }
+
+    // NUEVO: Método para "morir" y regresar al último checkpoint
+    public void Morir()
+    {
+        // Regresamos al jugador a la posición guardada
+        GlobalPosition = _respawnPosition;
+        
+        // Opcional pero recomendado: Frenar su velocidad para que no siga cayendo con inercia
+        Velocity = Vector2.Zero;
+        
+        GD.Print("El jugador ha muerto y reaparecido.");
+    }
 }
