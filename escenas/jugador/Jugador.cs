@@ -31,6 +31,7 @@ public partial class Jugador : CharacterBody2D
 
 	public void _play_walk_animation(String direction)
 	{
+		if(!sprite.SpriteFrames.HasAnimation("left") || sprite.SpriteFrames.HasAnimation("left")) return;
 		switch (direction)
 		{
 			case "left":
