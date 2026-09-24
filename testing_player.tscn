@@ -19,4 +19,5 @@ shape = SubResource("RectangleShape2D_p66os")
 texture = SubResource("PlaceholderTexture2D_vays5")
 
 [node name="jugador" parent="." unique_id=674495634 instance=ExtResource("1_kwflf")]
-position = Vector2(528, 431)
+position = Vector2(528, 398)
+JumpVelocity = -500.0
