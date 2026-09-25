@@ -14,6 +14,8 @@ public partial class Jugador : CharacterBody2D
     private int _lastTapDirection = 0;
     private bool _isSprinting = false;
 
+    private int _consecutiveJump = 0;
+
 	/**
 	La velocidad con la que el jugador salta
 	*/
@@ -55,7 +57,8 @@ public partial class Jugador : CharacterBody2D
             _sprite.FlipH = false;
         }
 
-        if(IsOnFloor()) _sprite.Play(sprinting ? "run" : "walk");
+        if(IsOnFloor()) _sprite.Play("run");
+        if(sprinting) _sprite.SpeedScale = 2;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -67,14 +70,18 @@ public partial class Jugador : CharacterBody2D
             velocity += GetGravity() * (float)delta;
             _sprite.Stop();
             _sprite.Play("fall");
+        } else
+        {
+            _consecutiveJump = 0;
         }
 
 		// Manejar el salto.
-		if (Input.IsActionJustPressed("jump") && IsOnFloor())
+		if (Input.IsActionJustPressed("jump") && _consecutiveJump < 2)
 		{
             _sprite.Play("jump");
 			velocity.Y = JumpVelocity;
             _timeIdle = 0;
+            _consecutiveJump ++;
 		}
 
 		/**
@@ -118,6 +125,7 @@ public partial class Jugador : CharacterBody2D
 			velocity.X = 0;
             _timeIdle += delta;
             _isSprinting = false;
+            _sprite.SpeedScale = 1;
 		}
 
         Velocity = velocity;
