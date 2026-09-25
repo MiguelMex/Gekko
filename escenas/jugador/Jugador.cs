@@ -3,16 +3,59 @@ using System;
 
 public partial class Jugador : CharacterBody2D
 {
-    [Export] public float Speed = 300.0f;
-    [Export] public float JumpVelocity = -400.0f;
+	/**
+	[Export] cumple la función de mostrar un valor del script en el motor grafico de GODOT
+	Speed es la velocidad a la que se moverá el jugador
+	*/
+	[Export] public float Speed = 300.0f;
+    [Export] public float SprintMultiplier = 2.0f;
+    [Export] public double DoubleTapWindow = 0.3; //Segundos para considerar el doble input
+    private double _timeSinceLastPress = 999.0;
+    private int _lastTapDirection = 0;
+    private bool _isSprinting = false;
+
+	/**
+	La velocidad con la que el jugador salta
+	*/
+	[Export]
+	public float JumpVelocity = -400.0f;
 
     // NUEVO: Variable para guardar la posición de reaparición actual
     private Vector2 _respawnPosition;
+    AnimatedSprite2D _sprite;
+    double _timeIdle;
 
     public override void _Ready()
     {
         // NUEVO: Al iniciar el juego, guardamos su posición inicial como el primer respawn por defecto
         _respawnPosition = GlobalPosition;
+        _sprite = GetNode<AnimatedSprite2D>("sprite");
+        _sprite.Play("idle");
+    }
+
+    public void _playerIsIdle()
+    {
+        GD.Print("Time idle is: "+_timeIdle);
+        if(_timeIdle > 10)
+        {
+            _sprite.Play("tongue");
+        } else
+        {
+            _sprite.Play("idle");
+        }
+
+    }
+
+    public void _animateWalk(float direction, bool sprinting)
+    {
+        if(direction < 0){
+            _sprite.FlipH = true;
+        } else if (direction > 0)
+        {
+            _sprite.FlipH = false;
+        }
+
+        if(IsOnFloor()) _sprite.Play(sprinting ? "run" : "walk");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -22,22 +65,60 @@ public partial class Jugador : CharacterBody2D
         if (!IsOnFloor())
         {
             velocity += GetGravity() * (float)delta;
+            _sprite.Stop();
+            _sprite.Play("fall");
         }
 
-        if (Input.IsActionJustPressed("jump") && IsOnFloor())
-        {
-            velocity.Y = JumpVelocity;
-        }
+		// Manejar el salto.
+		if (Input.IsActionJustPressed("jump") && IsOnFloor())
+		{
+            _sprite.Play("jump");
+			velocity.Y = JumpVelocity;
+            _timeIdle = 0;
+		}
 
-        Vector2 direction = Input.GetVector("left", "right", "void", "void");
-        if (direction != Vector2.Zero && IsOnFloor())
+		/**
+		Detecta el imput enviado por el jugador, se definen en el motor grafico
+		Solo se está usando izquierda y derecha así que no hay necesidad de asignar las otras dos
+		*/
+        float facing = Input.GetAxis("left","right");
+		Vector2 direction = new Vector2(facing, 0);
+        //Deteccción de doble input
+        if(Input.IsActionJustPressed("left") || Input.IsActionJustPressed("right"))
         {
-            velocity.X = direction.X * Speed;
+            int pressDir = Input.IsActionJustPressed("left") ? -1 : 1;
+
+            //Misma dirección y dentro de la ventana del tiempo
+            if(_timeSinceLastPress <= DoubleTapWindow && pressDir == _lastTapDirection)
+            {
+                _isSprinting = true;
+                GD.Print("¡Sprint activado!");
+            } else
+            {
+                _isSprinting = false;
+                GD.Print("No hay sprint");
+            }
+
+            _lastTapDirection = pressDir;
+            _timeSinceLastPress = 0;
         }
-        else
-        {
-            velocity.X = 0;
-        }
+        _timeSinceLastPress += delta;
+		//Detecta si hubo algun input
+		if (direction != Vector2.Zero)
+		{
+            float currentSpeed = _isSprinting ? Speed * SprintMultiplier : Speed;
+			//Cambio en la velocidad del jugador
+			velocity.X = direction.X * currentSpeed;
+            _animateWalk(facing, _isSprinting);
+            _timeIdle = 0;
+		}
+		else
+		{
+			//Que frene en seco si no hay input
+			velocity.X = 0;
+            _timeIdle += delta;
+            _isSprinting = false;
+		}
 
         Velocity = velocity;
         MoveAndSlide();
