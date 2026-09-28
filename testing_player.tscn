@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cyx0gj4l6kdlf"]
 
 [ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="1_kwflf"]
+[ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="2_bcnh3"]
+[ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="3_bcnh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
 size = Vector2(1151, 70)
@@ -20,3 +22,13 @@ texture = SubResource("PlaceholderTexture2D_vays5")
 
 [node name="jugador" parent="." unique_id=674495634 instance=ExtResource("1_kwflf")]
 position = Vector2(528, 431)
+
+[node name="KillZone" parent="." unique_id=1668862344 instance=ExtResource("2_bcnh3")]
+
+[node name="Checkpoint" parent="." unique_id=1931067568 instance=ExtResource("3_bcnh3")]
+position = Vector2(-58, -90)
+
+[node name="Checkpoint2" parent="." unique_id=1608820332 instance=ExtResource("3_bcnh3")]
+position = Vector2(763, 2)
+
+[connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
