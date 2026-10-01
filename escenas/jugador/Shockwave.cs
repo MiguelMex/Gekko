@@ -35,6 +35,7 @@ public partial class Shockwave : Area2D
 		float scaleFactor = radious / baseRadious;
 		sprite.Scale = Vector2.One * scaleFactor;
 	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -43,6 +44,27 @@ public partial class Shockwave : Area2D
 		this.sprite.Play("explosion");
 
 		sprite.AnimationFinished += () => QueueFree();
+	}
+
+	public void _pushPlayer(Node2D body)
+	{
+		//Se calcula la fuerza
+		if(body is not CharacterBody2D character) return;
+
+		float facing = 1f; //por defecto a la derecha
+		if(character is Jugador jugador)
+		{
+			var sprite = jugador.GetNodeOrNull<AnimatedSprite2D>("sprite");
+			if(sprite != null && sprite.FlipH) facing = -1f;
+		}
+
+		Vector2 pushDirection = new Vector2(facing, 0);
+
+		float force = damage * 50f;
+		if (character is Jugador j)
+		{
+			j._applyKnockback(pushDirection, force);
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

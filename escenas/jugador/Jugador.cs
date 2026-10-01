@@ -41,6 +41,17 @@ public partial class Jugador : CharacterBody2D
     AnimatedSprite2D _sprite;
     double _timeIdle;
 
+    //TODO: Haz que la velocidad se manteenga sin importar la dirección en la que se mueve el jugador
+    //TODO: Que el jugador salga impulsado hacia adelante tras una explosión
+    //TODO: Que el jugador se deslize hacia adelante si sale disparado mientras se agacha
+
+    public float facing;
+    private float _knockbackTime = 0f;
+    [Export]
+    public float knockbackDuration = 0.25f;
+
+    public bool is_crouching = false;
+
     public override void _Ready()
     {
         // NUEVO: Al iniciar el juego, guardamos su posición inicial como el primer respawn por defecto
@@ -62,11 +73,22 @@ public partial class Jugador : CharacterBody2D
 
     }
 
-    public void _animateWalk(float direction, bool sprinting)
+    public void _manageCruch()
     {
-        if(direction < 0){
+        if (is_crouching)
+        {
+            _sprite.Play("crouch");
+        } else
+        {
+            _sprite.Play("stand_up");
+        }
+    }
+
+    public void _animateWalk(bool sprinting)
+    {
+        if(facing < 0){
             _sprite.FlipH = true;
-        } else if (direction > 0)
+        } else if (facing > 0)
         {
             _sprite.FlipH = false;
         }
@@ -98,11 +120,31 @@ public partial class Jugador : CharacterBody2D
             _consecutiveJump ++;
 		}
 
+        if (Input.IsActionPressed("down") && IsOnFloor())
+        {
+            is_crouching = true;
+            _manageCruch();
+        }
+        if(Input.IsActionJustReleased("down") && is_crouching)
+        {
+            is_crouching = false;
+            _manageCruch();
+        }
+
+        //No se detecta ningún input horizontal durante el knocback
+        if(_knockbackTime > 0)
+        {
+            _knockbackTime -= (float)delta;
+            Velocity = velocity;
+            MoveAndSlide();
+            return;
+        }
+
 		/**
 		Detecta el imput enviado por el jugador, se definen en el motor grafico
 		Solo se está usando izquierda y derecha así que no hay necesidad de asignar las otras dos
 		*/
-        float facing = Input.GetAxis("left","right");
+        facing = Input.GetAxis("left","right");
 		Vector2 direction = new Vector2(facing, 0);
         //Deteccción de doble input
         if(Input.IsActionJustPressed("left") || Input.IsActionJustPressed("right"))
@@ -131,22 +173,31 @@ public partial class Jugador : CharacterBody2D
             float currentSpeed = _isSprinting ? Speed * SprintMultiplier : Speed;
 			//Cambio en la velocidad del jugador
 			velocity.X = direction.X * currentSpeed * speedStored;
-            _animateWalk(facing, _isSprinting);
+            _animateWalk(_isSprinting);
             _timeIdle = 0;
 		}
 		else
 		{
 			//Que frene en seco si no hay input
-            speedStored = 1;
+            //speedStored = 1;
 			velocity.X = 0;
             _timeIdle += delta;
             _isSprinting = false;
 		}
 
-        //GD.Print("Velocidad acumulada: "+speedStored);
+        GD.Print("Velocidad acumulada: "+speedStored);
         Velocity = velocity;
         MoveAndSlide();
         _detectHorizontalCollision(direction);
+    }
+
+    public void _applyKnockback(Vector2 direction, float force)
+    {
+        Velocity =  new Vector2(
+            direction.X * force,
+            -force * 0.5f
+        );
+        _knockbackTime = knockbackDuration;
     }
 
     //Metodo para detectar colisiones con paredes
@@ -165,12 +216,11 @@ public partial class Jugador : CharacterBody2D
         //Si el jugador se mueve a la derecha (x>0) y la pared empuja a la izquiera (normal.X<0), chocan de frene
         if(Mathf.Sign(normal.X) == -Math.Sign(inputDirection.X))
         {
-            GD.Print("Choque");
             //Calculo del daño y area de la onda expansiva
             var radious = 50 * speedStored;
             var damage  = 2 * speedStored;
             GD.Print("Daño: "+damage+", radio: "+radious);
-            if (shockwave != null && speedStored >= 2)
+            if (shockwave != null && speedStored >= 1)
             {
                 var wave = shockwave.Instantiate<Shockwave>();
                 GetParent().AddChild(wave);

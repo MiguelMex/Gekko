@@ -134,3 +134,5 @@ shape = SubResource("CircleShape2D_7uj1w")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206405988]
 sprite_frames = SubResource("SpriteFrames_7uj1w")
 animation = &"explosion"
+
+[connection signal="body_entered" from="." to="." method="_pushPlayer"]

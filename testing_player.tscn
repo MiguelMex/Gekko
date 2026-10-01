@@ -29,6 +29,7 @@ texture = SubResource("PlaceholderTexture2D_vays5")
 
 [node name="jugador" parent="." unique_id=674495634 groups=["jugador"] instance=ExtResource("1_kwflf")]
 position = Vector2(-1125, 392)
+JumpVelocity = -600.0
 
 [node name="KillZone" parent="." unique_id=1668862344 instance=ExtResource("2_bcnh3")]
 
