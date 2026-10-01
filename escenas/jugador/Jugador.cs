@@ -41,8 +41,6 @@ public partial class Jugador : CharacterBody2D
     AnimatedSprite2D _sprite;
     double _timeIdle;
 
-    //TODO: Haz que la velocidad se manteenga sin importar la dirección en la que se mueve el jugador
-    //TODO: Que el jugador salga impulsado hacia adelante tras una explosión
     //TODO: Que el jugador se deslize hacia adelante si sale disparado mientras se agacha
 
     public float facing;
@@ -167,7 +165,7 @@ public partial class Jugador : CharacterBody2D
         }
         _timeSinceLastPress += delta;
 		//Detecta si hubo algun input
-		if (direction != Vector2.Zero)
+		if (direction != Vector2.Zero && !is_crouching)
 		{
             speedStored = Mathf.Min(speedStored + speedGrowRate, maxSpeedStored);
             float currentSpeed = _isSprinting ? Speed * SprintMultiplier : Speed;
@@ -188,6 +186,17 @@ public partial class Jugador : CharacterBody2D
         GD.Print("Velocidad acumulada: "+speedStored);
         Velocity = velocity;
         MoveAndSlide();
+        var radious = 50 * speedStored;
+        var damage  = 2 * speedStored;
+        GD.Print("Daño: "+damage+", radio: "+radious);
+        // if (shockwave != null && speedStored >= 2)
+        // {
+        //     var wave = shockwave.Instantiate<Shockwave>();
+        //     GetParent().AddChild(wave);
+        //     wave.GlobalPosition = GlobalPosition;
+        //     wave._setAttributes(radious, damage);
+        //     speedStored = 1;
+        // }
         _detectHorizontalCollision(direction);
     }
 

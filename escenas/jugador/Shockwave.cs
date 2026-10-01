@@ -60,7 +60,7 @@ public partial class Shockwave : Area2D
 
 		Vector2 pushDirection = new Vector2(facing, 0);
 
-		float force = damage * 50f;
+		float force = damage * 500f;
 		if (character is Jugador j)
 		{
 			j._applyKnockback(pushDirection, force);

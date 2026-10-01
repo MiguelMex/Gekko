@@ -243,9 +243,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0vbv5")
 }],
-"loop": 0,
+"loop": 2,
 "name": &"crouch",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -455,13 +455,12 @@ size = Vector2(246.5, 349.4375)
 
 [node name="jugador" type="CharacterBody2D" unique_id=674495634]
 script = ExtResource("1_omvyu")
+JumpVelocity = -800.0
 shockwave = ExtResource("2_26844")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1530838266]
 sprite_frames = SubResource("SpriteFrames_7uj1w")
 animation = &"crouch"
-frame = 4
-frame_progress = 1.0
 speed_scale = 2.0
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=1264944243]
