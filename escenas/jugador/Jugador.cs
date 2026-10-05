@@ -28,7 +28,7 @@ public partial class Jugador : CharacterBody2D
     // NUEVO: Variable para guardar la posición de reaparición actual
     private Vector2 _respawnPosition;
 
-    //Velocidad acumulada
+    //Valores para la hailidad de velocidad acumulada
     [Export]
     public float speedGrowRate = 0.01f;
     [Export]
@@ -40,8 +40,6 @@ public partial class Jugador : CharacterBody2D
 
     AnimatedSprite2D _sprite;
     double _timeIdle;
-
-    //TODO: Que el jugador se deslize hacia adelante si sale disparado mientras se agacha
 
     public float facing;
     private float _knockbackTime = 0f;
@@ -71,6 +69,7 @@ public partial class Jugador : CharacterBody2D
 
     }
 
+    //Maneja la animación de agacharse del personaje
     public void _manageCruch()
     {
         if (is_crouching)
@@ -82,6 +81,7 @@ public partial class Jugador : CharacterBody2D
         }
     }
 
+    //Maneja la animación de cmainata
     public void _animateWalk(bool sprinting)
     {
         if(facing < 0){
@@ -93,6 +93,21 @@ public partial class Jugador : CharacterBody2D
 
         if(IsOnFloor()) _sprite.Play("run");
         _sprite.SpeedScale = sprinting ? 2 : 1;
+    }
+
+    //Metodo de prueba para probar las mecanicas que se activan tras una explosión de velocidad
+    public void _testExplosion()
+    {
+        var radious = 50 * 4;
+        var damage  = 2 * 4;
+        GD.Print("Daño: "+damage+", radio: "+radious);
+        if (shockwave != null)
+        {
+            var wave = shockwave.Instantiate<Shockwave>();
+            GetParent().AddChild(wave);
+            wave.GlobalPosition = GlobalPosition;
+            wave._setAttributes(radious, damage);
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -118,10 +133,12 @@ public partial class Jugador : CharacterBody2D
             _consecutiveJump ++;
 		}
 
+        //Solo se agacha si está en el suelo y se mantiene la tecla presionada
         if (Input.IsActionPressed("down") && IsOnFloor())
         {
             is_crouching = true;
             _manageCruch();
+            //_testExplosion();
         }
         if(Input.IsActionJustReleased("down") && is_crouching)
         {
@@ -164,7 +181,7 @@ public partial class Jugador : CharacterBody2D
             _timeSinceLastPress = 0;
         }
         _timeSinceLastPress += delta;
-		//Detecta si hubo algun input
+		//Detecta si hubo algun input, no puede caminar mientras está agachado
 		if (direction != Vector2.Zero && !is_crouching)
 		{
             speedStored = Mathf.Min(speedStored + speedGrowRate, maxSpeedStored);
@@ -186,26 +203,28 @@ public partial class Jugador : CharacterBody2D
         GD.Print("Velocidad acumulada: "+speedStored);
         Velocity = velocity;
         MoveAndSlide();
-        var radious = 50 * speedStored;
-        var damage  = 2 * speedStored;
-        GD.Print("Daño: "+damage+", radio: "+radious);
-        // if (shockwave != null && speedStored >= 2)
-        // {
-        //     var wave = shockwave.Instantiate<Shockwave>();
-        //     GetParent().AddChild(wave);
-        //     wave.GlobalPosition = GlobalPosition;
-        //     wave._setAttributes(radious, damage);
-        //     speedStored = 1;
-        // }
+        //Detecta si hubo una colisión en este frame
         _detectHorizontalCollision(direction);
     }
 
+    //Aplica el knockback de una explosión
     public void _applyKnockback(Vector2 direction, float force)
     {
-        Velocity =  new Vector2(
-            direction.X * force,
-            -force * 0.5f
-        );
+        //Si se está agachando no hay movimiento vertical
+        if (is_crouching)
+        {
+            Velocity = new Vector2(
+                direction.X * force,
+                Velocity.Y
+            );
+        }else
+        {
+            Velocity =  new Vector2(
+                direction.X * force,
+                -force * 0.5f
+            );    
+        }
+        
         _knockbackTime = knockbackDuration;
     }
 
