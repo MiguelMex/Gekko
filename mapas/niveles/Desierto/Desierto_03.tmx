@@ -1,21 +1,21 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="192" height="72" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#192c3b" nextlayerid="3" nextobjectid="37">
  <properties>
-  <property name="title" value="TRAVESIA FINAL" />
-  <property name="sequence_index" value="3" type="int" />
-  <property name="world_x" value="6144" type="int" />
-  <property name="world_y" value="0" type="int" />
-  <property name="entry_floor_y" value="480" type="int" />
-  <property name="exit_floor_y" value="352" type="int" />
-  <property name="next_map" value="" />
-  <property name="previous_map" value="Desierto_02_Cavernas_y_ascenso.tmx" />
-  <property name="status" value="geometry_checked_pending_ingame_playtest" />
-  <property name="spikes_present" value="false" type="bool" />
-  <property name="sections" value="4" type="int" />
-  <property name="design_actor_width_px" value="24" type="int" />
-  <property name="design_actor_height_px" value="32" type="int" />
+  <property name="design_actor_height_px" type="int" value="32"/>
+  <property name="design_actor_width_px" type="int" value="24"/>
+  <property name="entry_floor_y" type="int" value="480"/>
+  <property name="exit_floor_y" type="int" value="352"/>
+  <property name="next_map" value=""/>
+  <property name="previous_map" value="Desierto_02_Cavernas_y_ascenso.tmx"/>
+  <property name="sections" type="int" value="4"/>
+  <property name="sequence_index" type="int" value="3"/>
+  <property name="spikes_present" type="bool" value="false"/>
+  <property name="status" value="geometry_checked_pending_ingame_playtest"/>
+  <property name="title" value="TRAVESIA FINAL"/>
+  <property name="world_x" type="int" value="6144"/>
+  <property name="world_y" type="int" value="0"/>
  </properties>
- <tileset firstgid="1" source="../../tilesets/Desierto.tsx" />
+ <tileset firstgid="1" source="../../tilesets/Desierto.tsx"/>
  <layer id="1" name="Terreno" width="192" height="72">
   <data encoding="csv">
 58,58,58,58,58,58,58,58,58,58,58,58,34,34,34,34,34,34,34,34,58,58,58,58,58,58,58,58,34,34,34,34,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,34,34,34,34,34,34,34,34,58,58,58,58,58,58,58,58,34,34,34,34,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,58,58,58,58,34,34,34,34,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,34,34,34,34,34,34,34,34,58,58,58,58,34,34,34,34,34,34,34,34,34,34,34,34,58,58,58,58,58,58,58,58,58,58,58,58,
@@ -92,26 +92,26 @@
 58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58
 </data>
  </layer>
- <objectgroup id="2" name="Inicio_y_fin" visible="1" color="#5ce3b5">
+ <objectgroup color="#5ce3b5" id="2" name="Inicio_y_fin" visible="0">
   <properties>
-   <property name="design_only" value="true" type="bool" />
+   <property name="design_only" type="bool" value="true"/>
   </properties>
   <object id="1" name="Inicio" type="Spawn" x="48" y="480">
    <properties>
-    <property name="facing" value="right" />
-    <property name="anchor" value="feet_center" />
+    <property name="anchor" value="feet_center"/>
+    <property name="facing" value="right"/>
    </properties>
-   <point />
+   <point/>
   </object>
   <object id="3" name="Fin" type="Connection" x="3072" y="352">
    <properties>
-    <property name="opening_top_y" value="208" type="int" />
-    <property name="opening_height" value="144" type="int" />
-    <property name="side" value="right" />
-    <property name="next_map" value="" />
-    <property name="completes_sequence" value="true" type="bool" />
+    <property name="completes_sequence" type="bool" value="true"/>
+    <property name="next_map" value=""/>
+    <property name="opening_height" type="int" value="144"/>
+    <property name="opening_top_y" type="int" value="208"/>
+    <property name="side" value="right"/>
    </properties>
-   <point />
+   <point/>
   </object>
  </objectgroup>
 </map>
