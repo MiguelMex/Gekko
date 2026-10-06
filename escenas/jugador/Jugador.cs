@@ -50,6 +50,9 @@ public partial class Jugador : CharacterBody2D
 
     public override void _Ready()
     {
+        //Permite escuchar inputs aunque el juego este pausado
+        ProcessMode = ProcessModeEnum.Always;
+
         // NUEVO: Al iniciar el juego, guardamos su posición inicial como el primer respawn por defecto
         _respawnPosition = GlobalPosition;
         _sprite = GetNode<AnimatedSprite2D>("sprite");
@@ -110,8 +113,38 @@ public partial class Jugador : CharacterBody2D
         }
     }
 
+    //Metodo que maneja la pausa
+    public void _ManagePause()
+    {
+        if (GetTree().Paused)
+        {
+            //Despausar
+            GetTree().Paused = false;
+            _sprite.Play();
+        } else
+        {
+            //Pausar
+            GetTree().Paused = true;
+            _sprite.Pause();
+            //Aqui se llamaría al menú de pausa
+        }
+        GD.Print("Pauses: "+(GetTree().Paused ? "ON" : "OFF"));
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        //Si se detecta unna pausa se detiene toda la escena
+        if (@event.IsActionPressed("pause"))
+        {
+            _ManagePause();
+        }
+    }
+
     public override void _PhysicsProcess(double delta)
     {
+        //No avanza si el juego está pausado
+        if(GetTree().Paused) return;
+
         Vector2 velocity = Velocity;
 
         if (!IsOnFloor())

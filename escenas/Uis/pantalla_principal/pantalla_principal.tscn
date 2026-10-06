@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cdld5flu7cudh"]
+
+[ext_resource type="Script" uid="uid://b14miqhcm2w0p" path="res://escenas/Uis/pantalla_principal/PantallaPrincipal.cs" id="1_ctx4s"]
+[ext_resource type="Texture2D" uid="uid://dix3h1j8b1c1g" path="res://recursos/sprites/Ui/gecko_icon.png" id="2_ctx4s"]
+[ext_resource type="PackedScene" uid="uid://bf62xwp4bl87k" path="res://escenas/Uis/botones_de_ui/icon_button.tscn" id="2_vvrr3"]
+
+[sub_resource type="Theme" id="Theme_vvrr3"]
+
+[node name="Control" type="Control" unique_id=810293146]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_vvrr3")
+script = ExtResource("1_ctx4s")
+
+[node name="Texture" type="TextureRect" parent="." unique_id=1618709343]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Texture" unique_id=436573773]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VContainer" type="VBoxContainer" parent="Texture/CenterContainer" unique_id=1979891684]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+alignment = 1
+
+[node name="BtnNuevaPartida" parent="Texture/CenterContainer/VContainer" unique_id=362939709 instance=ExtResource("2_vvrr3")]
+layout_mode = 2
+IconRight = ExtResource("2_ctx4s")
+IconLeft = ExtResource("2_ctx4s")
+TextButton = "Nueva partida"
+
+[node name="BtnCargar" parent="Texture/CenterContainer/VContainer" unique_id=1021530779 instance=ExtResource("2_vvrr3")]
+layout_mode = 2
+IconRight = ExtResource("2_ctx4s")
+IconLeft = ExtResource("2_ctx4s")
+TextButton = "Cargar partida"
+
+[node name="BtnAjustes" parent="Texture/CenterContainer/VContainer" unique_id=1603405442 instance=ExtResource("2_vvrr3")]
+layout_mode = 2
+IconRight = ExtResource("2_ctx4s")
+IconLeft = ExtResource("2_ctx4s")
+TextButton = "Configuración"
+
+[node name="BtnSalir" parent="Texture/CenterContainer/VContainer" unique_id=1118432101 instance=ExtResource("2_vvrr3")]
+layout_mode = 2
+IconRight = ExtResource("2_ctx4s")
+IconLeft = ExtResource("2_ctx4s")
+TextButton = "Salir"

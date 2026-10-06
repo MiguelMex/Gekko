@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bf62xwp4bl87k"]
+
+[ext_resource type="Script" uid="uid://d0p1g34allpe5" path="res://escenas/Uis/botones_de_ui/IconButton.cs" id="1_75b4e"]
+[ext_resource type="Texture2D" uid="uid://dix3h1j8b1c1g" path="res://recursos/sprites/Ui/gecko_icon.png" id="1_y3v81"]
+
+[node name="Container" type="MarginContainer" unique_id=362939709]
+custom_minimum_size = Vector2(300, 40)
+anchors_preset = -1
+anchor_left = 0.38802084
+anchor_top = 0.3904321
+anchor_right = 0.6484375
+anchor_bottom = 0.5308642
+offset_left = 29.0
+offset_right = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_75b4e")
+marginValue = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="." unique_id=269910041]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Contenido" type="HBoxContainer" parent="Button" unique_id=217410116]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IconoIzquierdo" type="TextureRect" parent="Button/Contenido" unique_id=2053748439]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_y3v81")
+expand_mode = 3
+
+[node name="Texto" type="Label" parent="Button/Contenido" unique_id=958095445]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Nueva Partida"
+
+[node name="IconoDerecho" type="TextureRect" parent="Button/Contenido" unique_id=587978241]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("1_y3v81")
+expand_mode = 3
