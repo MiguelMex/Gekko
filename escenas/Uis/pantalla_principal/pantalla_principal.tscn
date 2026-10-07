@@ -3,8 +3,15 @@
 [ext_resource type="Script" uid="uid://b14miqhcm2w0p" path="res://escenas/Uis/pantalla_principal/PantallaPrincipal.cs" id="1_ctx4s"]
 [ext_resource type="Texture2D" uid="uid://dix3h1j8b1c1g" path="res://recursos/sprites/Ui/gecko_icon.png" id="2_ctx4s"]
 [ext_resource type="PackedScene" uid="uid://bf62xwp4bl87k" path="res://escenas/Uis/botones_de_ui/icon_button.tscn" id="2_vvrr3"]
+[ext_resource type="FontFile" uid="uid://p5hk5rpi1vwn" path="res://recursos/fonts/Saiyan-Sans.ttf" id="5_g5r51"]
+[ext_resource type="Texture2D" uid="uid://cewryjadyospt" path="res://recursos/icons/caret-arrow-up.png" id="6_5an4i"]
+[ext_resource type="Texture2D" uid="uid://fus32l7eh4n2" path="res://recursos/icons/down.png" id="7_m856h"]
 
 [sub_resource type="Theme" id="Theme_vvrr3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_twtmw"]
+font = ExtResource("5_g5r51")
+font_size = 200
 
 [node name="Control" type="Control" unique_id=810293146]
 layout_mode = 3
@@ -24,41 +31,84 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="Texture" unique_id=436573773]
-custom_minimum_size = Vector2(100, 200)
+[node name="Container" type="VBoxContainer" parent="Texture" unique_id=744486576]
+propagate_maximum_size = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.0546875
+anchor_top = 0.41512346
+anchor_right = 0.31510437
+anchor_bottom = 0.98919755
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VContainer" type="VBoxContainer" parent="Texture/CenterContainer" unique_id=1979891684]
-custom_minimum_size = Vector2(200, 300)
+[node name="UpButton" type="Button" parent="Texture/Container" unique_id=423370320]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+size_flags_vertical = 0
+icon = ExtResource("6_5an4i")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="BtnContainer" type="VBoxContainer" parent="Texture/Container" unique_id=1948265872]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="BtnNuevaPartida" parent="Texture/CenterContainer/VContainer" unique_id=362939709 instance=ExtResource("2_vvrr3")]
+[node name="BtnNuevaPartida" parent="Texture/Container/BtnContainer" unique_id=362939709 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
+idButon = "nueva"
 IconRight = ExtResource("2_ctx4s")
 IconLeft = ExtResource("2_ctx4s")
 TextButton = "Nueva partida"
 
-[node name="BtnCargar" parent="Texture/CenterContainer/VContainer" unique_id=1021530779 instance=ExtResource("2_vvrr3")]
+[node name="BtnCargar" parent="Texture/Container/BtnContainer" unique_id=1643340552 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
+idButon = "cargar"
 IconRight = ExtResource("2_ctx4s")
 IconLeft = ExtResource("2_ctx4s")
 TextButton = "Cargar partida"
 
-[node name="BtnAjustes" parent="Texture/CenterContainer/VContainer" unique_id=1603405442 instance=ExtResource("2_vvrr3")]
+[node name="BtnAjustes" parent="Texture/Container/BtnContainer" unique_id=1750045797 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
+idButon = "ajustes"
 IconRight = ExtResource("2_ctx4s")
 IconLeft = ExtResource("2_ctx4s")
 TextButton = "Configuración"
 
-[node name="BtnSalir" parent="Texture/CenterContainer/VContainer" unique_id=1118432101 instance=ExtResource("2_vvrr3")]
+[node name="BtnSalir" parent="Texture/Container/BtnContainer" unique_id=889143784 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
+idButon = "salir"
 IconRight = ExtResource("2_ctx4s")
 IconLeft = ExtResource("2_ctx4s")
 TextButton = "Salir"
+
+[node name="DownButton" type="Button" parent="Texture/Container" unique_id=77282978]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 8
+icon = ExtResource("7_m856h")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Title" type="Label" parent="Texture" unique_id=283634332]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036458332
+anchor_top = 0.10493827
+anchor_right = 0.40538195
+anchor_bottom = 0.41358024
+size_flags_horizontal = 4
+text = "Gekko"
+label_settings = SubResource("LabelSettings_twtmw")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Texture/Container/UpButton" to="." method="_pastButton"]
+[connection signal="pressed" from="Texture/Container/DownButton" to="." method="_nextButton"]
