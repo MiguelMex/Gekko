@@ -377,7 +377,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7uj1w"]
-size = Vector2(246.5, 318.875)
+size = Vector2(104, 318.875)
 
 [node name="jugador" type="CharacterBody2D" unique_id=674495634]
 script = ExtResource("1_omvyu")
@@ -390,7 +390,7 @@ frame_progress = 1.0
 speed_scale = 2.0
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=1264944243]
-position = Vector2(1, 13)
+position = Vector2(-3, 13)
 shape = SubResource("RectangleShape2D_7uj1w")
 
 [connection signal="animation_finished" from="sprite" to="." method="_playerIsIdle"]

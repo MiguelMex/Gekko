@@ -2,33 +2,42 @@
 
 [ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="1_kwflf"]
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="2_bcnh3"]
+[ext_resource type="PackedScene" uid="uid://liuxwp3xkejw" path="res://mapas/niveles/03_bajo_la_piramide.tmx" id="2_m6qx8"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="3_bcnh3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
-size = Vector2(1151, 70)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vays5"]
 
 [node name="testing_player" type="Node2D" unique_id=971696388]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2010657371]
+[node name="Checkpoint2" parent="." unique_id=1608820332 instance=ExtResource("3_bcnh3")]
+position = Vector2(328, 83)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1003542367]
-position = Vector2(576.5, 615)
-shape = SubResource("RectangleShape2D_p66os")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1064382814]
-texture = SubResource("PlaceholderTexture2D_vays5")
+[node name="03_bajo_la_piramide" parent="." unique_id=1473012878 instance=ExtResource("2_m6qx8")]
+position = Vector2(-2497, -6299.0005)
+scale = Vector2(7, 7)
 
 [node name="jugador" parent="." unique_id=674495634 instance=ExtResource("1_kwflf")]
 position = Vector2(528, 431)
 
+[node name="Camera2D" type="Camera2D" parent="jugador" unique_id=1697871042]
+zoom = Vector2(0.5, 0.5)
+limit_left = -2497
+limit_top = -6299
+limit_right = 3775
+limit_bottom = 1770
+position_smoothing_enabled = true
+
+[node name="wallcheck" type="RayCast2D" parent="jugador" unique_id=1352380865]
+position = Vector2(0, 150)
+target_position = Vector2(135, 0)
+
+[node name="stepcheck" type="RayCast2D" parent="jugador" unique_id=1857426298]
+position = Vector2(0, 110)
+target_position = Vector2(135, 0)
+
 [node name="KillZone" parent="." unique_id=1668862344 instance=ExtResource("2_bcnh3")]
+position = Vector2(-1828, -1266)
+scale = Vector2(4, 4)
 
 [node name="Checkpoint" parent="." unique_id=1931067568 instance=ExtResource("3_bcnh3")]
-position = Vector2(-58, -90)
-
-[node name="Checkpoint2" parent="." unique_id=1608820332 instance=ExtResource("3_bcnh3")]
-position = Vector2(763, 2)
+position = Vector2(2698, -411)
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
