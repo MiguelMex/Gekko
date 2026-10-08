@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://bf62xwp4bl87k"]
 
 [ext_resource type="Script" uid="uid://d0p1g34allpe5" path="res://escenas/Uis/botones_de_ui/IconButton.cs" id="1_75b4e"]
-[ext_resource type="Texture2D" uid="uid://dix3h1j8b1c1g" path="res://recursos/sprites/Ui/gecko_icon.png" id="1_y3v81"]
+[ext_resource type="FontFile" uid="uid://4sl6hq0nj4ba" path="res://recursos/fonts/PixeloidSans.ttf" id="3_vgk6j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m856h"]
+font = ExtResource("3_vgk6j")
+font_size = 30
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.6666667)
+shadow_offset = Vector2(1, 5)
 
 [node name="Container" type="MarginContainer" unique_id=362939709]
 custom_minimum_size = Vector2(300, 40)
@@ -25,6 +32,7 @@ custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+flat = true
 
 [node name="Contenido" type="HBoxContainer" parent="Button" unique_id=217410116]
 custom_minimum_size = Vector2(300, 40)
@@ -38,16 +46,15 @@ grow_vertical = 2
 [node name="IconoIzquierdo" type="TextureRect" parent="Button/Contenido" unique_id=2053748439]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("1_y3v81")
 expand_mode = 3
 
 [node name="Texto" type="Label" parent="Button/Contenido" unique_id=958095445]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Nueva Partida"
+label_settings = SubResource("LabelSettings_m856h")
 
 [node name="IconoDerecho" type="TextureRect" parent="Button/Contenido" unique_id=587978241]
 layout_mode = 2
 size_flags_horizontal = 8
-texture = ExtResource("1_y3v81")
 expand_mode = 3

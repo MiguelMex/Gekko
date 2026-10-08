@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ccry7o3rlwela"]
+
+[ext_resource type="Texture2D" uid="uid://8l3xyogvqrh3" path="res://icon.svg" id="1_nc7hx"]
+[ext_resource type="FontFile" uid="uid://4sl6hq0nj4ba" path="res://recursos/fonts/PixeloidSans.ttf" id="2_plnsn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7uj1w"]
+font = ExtResource("2_plnsn")
+font_size = 20
+
+[node name="FileToLoad" type="Control" unique_id=536589035]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 3
+anchor_left = 0.33506945
+anchor_top = 0.31790122
+anchor_right = 0.6258681
+anchor_bottom = 0.7006173
+offset_bottom = -3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="." unique_id=858310154]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1157226545]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07462686
+anchor_top = 0.10080645
+anchor_right = 0.92537314
+anchor_bottom = 0.71370965
+texture = ExtResource("1_nc7hx")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=752020527]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08656716
+anchor_top = 0.8104839
+anchor_right = 0.9283582
+anchor_bottom = 0.91129035
+text = "Fecha en que se guardó"
+label_settings = SubResource("LabelSettings_7uj1w")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

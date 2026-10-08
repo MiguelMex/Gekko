@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://co4ijuuka38ed"]
+
+[ext_resource type="FontFile" uid="uid://d1gaganrmd5t" path="res://recursos/fonts/m5x7.ttf" id="1_lrc8a"]
+[ext_resource type="PackedScene" uid="uid://ccry7o3rlwela" path="res://escenas/Uis/cargar_partida/file_to_load.tscn" id="2_ro5a6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7uj1w"]
+font = ExtResource("1_lrc8a")
+font_size = 50
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.6666667)
+shadow_offset = Vector2(1, 5)
+
+[node name="LoadFile" type="Control" unique_id=1850528706]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=896384483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="TextureRect" parent="." unique_id=796448168]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Background" unique_id=1596329335]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39626735
+anchor_top = 0.063271604
+anchor_right = 0.60199654
+anchor_bottom = 0.12654321
+offset_left = 62.5
+offset_right = -62.5
+offset_bottom = -18.0
+grow_horizontal = 2
+text = "Cargar Partida"
+label_settings = SubResource("LabelSettings_7uj1w")
+metadata/_edit_use_anchors_ = true
+
+[node name="Container" type="VBoxContainer" parent="Background" unique_id=604014734]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13715278
+anchor_top = 0.18981482
+anchor_right = 0.8506944
+anchor_bottom = 0.89506173
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="FileToLoad" parent="Background/Container" unique_id=536589035 instance=ExtResource("2_ro5a6")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="FileToLoad2" parent="Background/Container" unique_id=30006443 instance=ExtResource("2_ro5a6")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="FileToLoad3" parent="Background/Container" unique_id=1226050994 instance=ExtResource("2_ro5a6")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

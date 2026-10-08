@@ -1,17 +1,32 @@
 [gd_scene format=3 uid="uid://cdld5flu7cudh"]
 
 [ext_resource type="Script" uid="uid://b14miqhcm2w0p" path="res://escenas/Uis/pantalla_principal/PantallaPrincipal.cs" id="1_ctx4s"]
-[ext_resource type="Texture2D" uid="uid://dix3h1j8b1c1g" path="res://recursos/sprites/Ui/gecko_icon.png" id="2_ctx4s"]
+[ext_resource type="Texture2D" uid="uid://c45opq4a3ncpv" path="res://recursos/images/bk2.jpeg" id="2_5an4i"]
 [ext_resource type="PackedScene" uid="uid://bf62xwp4bl87k" path="res://escenas/Uis/botones_de_ui/icon_button.tscn" id="2_vvrr3"]
-[ext_resource type="FontFile" uid="uid://p5hk5rpi1vwn" path="res://recursos/fonts/Saiyan-Sans.ttf" id="5_g5r51"]
-[ext_resource type="Texture2D" uid="uid://cewryjadyospt" path="res://recursos/icons/caret-arrow-up.png" id="6_5an4i"]
-[ext_resource type="Texture2D" uid="uid://fus32l7eh4n2" path="res://recursos/icons/down.png" id="7_m856h"]
+[ext_resource type="Texture2D" uid="uid://l6htlh71umx3" path="res://recursos/icons/gecko_arrows_dark-removebg-preview2.png" id="3_hk7w2"]
+[ext_resource type="Texture2D" uid="uid://dysjuhc77rwxh" path="res://recursos/icons/gecko_arrows_dark-removebg-preview.png" id="5_5an4i"]
+[ext_resource type="Texture2D" uid="uid://1v4jseukxp57" path="res://recursos/icons/WhatsApp_Image_2026-10-07_at_12.45.50_PM-removebg-preview.png" id="7_m856h"]
+[ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="7_pfd6t"]
+[ext_resource type="FontFile" uid="uid://4sl6hq0nj4ba" path="res://recursos/fonts/PixeloidSans.ttf" id="8_pfd6t"]
 
 [sub_resource type="Theme" id="Theme_vvrr3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_twtmw"]
-font = ExtResource("5_g5r51")
+font = ExtResource("7_pfd6t")
 font_size = 200
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 50
+shadow_color = Color(0, 0, 0, 0.6666667)
+shadow_offset = Vector2(1, 30)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7uj1w"]
+line_spacing = 5.0
+font = ExtResource("8_pfd6t")
+font_size = 20
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.6666667)
+shadow_offset = Vector2(1, 5)
 
 [node name="Control" type="Control" unique_id=810293146]
 layout_mode = 3
@@ -30,15 +45,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_5an4i")
 
 [node name="Container" type="VBoxContainer" parent="Texture" unique_id=744486576]
 propagate_maximum_size = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0546875
-anchor_top = 0.41512346
-anchor_right = 0.31510437
-anchor_bottom = 0.98919755
+anchor_left = 0.2777778
+anchor_top = 0.4611425
+anchor_right = 0.53819466
+anchor_bottom = 1.0352167
+offset_top = 0.17965698
+offset_bottom = 0.17980957
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 2
@@ -48,7 +66,7 @@ metadata/_edit_use_anchors_ = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_vertical = 0
-icon = ExtResource("6_5an4i")
+icon = ExtResource("3_hk7w2")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -64,36 +82,28 @@ alignment = 1
 [node name="BtnNuevaPartida" parent="Texture/Container/BtnContainer" unique_id=362939709 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
 idButon = "nueva"
-IconRight = ExtResource("2_ctx4s")
-IconLeft = ExtResource("2_ctx4s")
 TextButton = "Nueva partida"
 
 [node name="BtnCargar" parent="Texture/Container/BtnContainer" unique_id=1643340552 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
 idButon = "cargar"
-IconRight = ExtResource("2_ctx4s")
-IconLeft = ExtResource("2_ctx4s")
 TextButton = "Cargar partida"
 
 [node name="BtnAjustes" parent="Texture/Container/BtnContainer" unique_id=1750045797 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
 idButon = "ajustes"
-IconRight = ExtResource("2_ctx4s")
-IconLeft = ExtResource("2_ctx4s")
 TextButton = "Configuración"
 
 [node name="BtnSalir" parent="Texture/Container/BtnContainer" unique_id=889143784 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
 idButon = "salir"
-IconRight = ExtResource("2_ctx4s")
-IconLeft = ExtResource("2_ctx4s")
 TextButton = "Salir"
 
 [node name="DownButton" type="Button" parent="Texture/Container" unique_id=77282978]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_vertical = 8
-icon = ExtResource("7_m856h")
+icon = ExtResource("5_5an4i")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -101,13 +111,55 @@ expand_icon = true
 [node name="Title" type="Label" parent="Texture" unique_id=283634332]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.036458332
-anchor_top = 0.10493827
-anchor_right = 0.40538195
-anchor_bottom = 0.41358024
+anchor_left = 0.044270832
+anchor_top = 0.050925925
+anchor_right = 0.6805556
+anchor_bottom = 0.42901236
 size_flags_horizontal = 4
 text = "Gekko"
 label_settings = SubResource("LabelSettings_twtmw")
+metadata/_edit_use_anchors_ = true
+
+[node name="Instrucciones" type="Control" parent="Texture" unique_id=300440427]
+layout_mode = 1
+anchor_left = 0.025173612
+anchor_top = 0.89660496
+anchor_right = 0.9722222
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="HBoxContainer" parent="Texture/Instrucciones" unique_id=1681055621]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Instruction_1" type="HBoxContainer" parent="Texture/Instrucciones/Container" unique_id=1300183274]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Texture/Instrucciones/Container/Instruction_1" unique_id=73340680]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+texture = ExtResource("7_m856h")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Texture/Instrucciones/Container/Instruction_1" unique_id=211234516]
+layout_mode = 2
+text = "Aceptar"
+label_settings = SubResource("LabelSettings_7uj1w")
+
+[node name="ColorRect" type="ColorRect" parent="Texture" unique_id=506133216]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.026041666
+anchor_top = 0.8765432
+anchor_right = 0.9678819
+anchor_bottom = 0.8888889
+offset_right = 5.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Texture/Container/UpButton" to="." method="_pastButton"]

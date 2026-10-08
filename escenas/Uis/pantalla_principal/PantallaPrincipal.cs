@@ -11,6 +11,7 @@ public partial class PantallaPrincipal : Control
 	private IconButton BtnNuevaPartida;
 	private IconButton BtnSalir;
 	private IconButton BtnAjustes;
+	private Button upButton;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,6 +29,10 @@ public partial class PantallaPrincipal : Control
 		//Recoger todos los botones
 		var contenedor = GetNode<VBoxContainer>("Texture/Container/BtnContainer");
 
+		//Ocultar al inicio
+		// upButton = GetNode<Button>("Texture/Container/UpButton");
+		// upButton.Visible = false;
+
 		foreach (var button in contenedor.GetChildren())
 		{
 			if(button is IconButton iconButon)
@@ -44,13 +49,16 @@ public partial class PantallaPrincipal : Control
 
 	private void _ShowButton(int index)
 	{
-		if(index < 0) return;
-		for(int i = 0; i < _botones.Count; i++)
+		var botonIndex = index;
+		if(index >= _botones.Count) botonIndex = 0;
+		if(index < 0) botonIndex = _botones.Count - 1;
+
+		for (int i = 0;  i < _botones.Count; i++)
 		{
-			_botones[i].Visible = (i == index);
+			_botones[i].Visible = (i == botonIndex);
 		}
 
-		_actualIndex = index;
+		_actualIndex = botonIndex;
 	}
 
 	private void _OnButtonPressed(IconButton button)
@@ -62,7 +70,7 @@ public partial class PantallaPrincipal : Control
 				_goToScene("res://03_bajo_la_piramide.tscn");
 				break;
 			case "cargar":
-				//TODO: Ir al menu de carga
+				_goToScene("res://escenas/Uis/cargar_partida/load_file.tscn");
 				break;
 			case "ajustes":
 				//TODO: Ir al menu de configuracoón
@@ -84,14 +92,14 @@ public partial class PantallaPrincipal : Control
 
 	private void _nextButton()
 	{
-		int next = (_actualIndex + 1) % _botones.Count;
+		int next = _actualIndex + 1;
 		_ShowButton(next);
 		GetViewport().SetInputAsHandled();
 	}
 
 	private void _pastButton()
 	{
-		int previous = (_actualIndex - 1) % _botones.Count;
+		int previous = _actualIndex - 1;
 		_ShowButton(previous);
 		GetViewport().SetInputAsHandled();
 	}
