@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://liuxwp3xkejw" path="res://mapas/niveles/03_bajo_la_piramide.tmx" id="1_7krpu"]
 [ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="2_3emfi"]
+[ext_resource type="Script" uid="uid://b05aqr5nt6nm3" path="res://BajoLaPiramide.cs" id="2_c1j5e"]
 
 [node name="03_bajo_la_piramide" unique_id=1889738909 instance=ExtResource("1_7krpu")]
+script = ExtResource("2_c1j5e")
 
 [node name="jugador" parent="." index="9" unique_id=674495634 instance=ExtResource("2_3emfi")]
 position = Vector2(425, 967)

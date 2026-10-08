@@ -61,7 +61,7 @@ public partial class Jugador : CharacterBody2D
 
     public void _playerIsIdle()
     {
-        GD.Print("Time idle is: "+_timeIdle);
+        //GD.Print("Time idle is: "+_timeIdle);
         if(_timeIdle > 10)
         {
             _sprite.Play("tongue");
@@ -103,7 +103,7 @@ public partial class Jugador : CharacterBody2D
     {
         var radious = 50 * 4;
         var damage  = 2 * 4;
-        GD.Print("Daño: "+damage+", radio: "+radious);
+        //GD.Print("Daño: "+damage+", radio: "+radious);
         if (shockwave != null)
         {
             var wave = shockwave.Instantiate<Shockwave>();
@@ -128,7 +128,7 @@ public partial class Jugador : CharacterBody2D
             _sprite.Pause();
             //Aqui se llamaría al menú de pausa
         }
-        GD.Print("Pauses: "+(GetTree().Paused ? "ON" : "OFF"));
+        //GD.Print("Pauses: "+(GetTree().Paused ? "ON" : "OFF"));
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -203,11 +203,11 @@ public partial class Jugador : CharacterBody2D
             if(_timeSinceLastPress <= DoubleTapWindow && pressDir == _lastTapDirection)
             {
                 _isSprinting = true;
-                GD.Print("¡Sprint activado!");
+                //GD.Print("¡Sprint activado!");
             } else
             {
                 _isSprinting = false;
-                GD.Print("No hay sprint");
+                //GD.Print("No hay sprint");
             }
 
             _lastTapDirection = pressDir;
@@ -233,7 +233,7 @@ public partial class Jugador : CharacterBody2D
             _isSprinting = false;
 		}
 
-        GD.Print("Velocidad acumulada: "+speedStored);
+        //GD.Print("Velocidad acumulada: "+speedStored);
         Velocity = velocity;
         MoveAndSlide();
         //Detecta si hubo una colisión en este frame
@@ -280,7 +280,7 @@ public partial class Jugador : CharacterBody2D
             //Calculo del daño y area de la onda expansiva
             var radious = 50 * speedStored;
             var damage  = 2 * speedStored;
-            GD.Print("Daño: "+damage+", radio: "+radious);
+            //GD.Print("Daño: "+damage+", radio: "+radious);
             if (shockwave != null && speedStored >= 1)
             {
                 var wave = shockwave.Instantiate<Shockwave>();
