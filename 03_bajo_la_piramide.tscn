@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dsypvpq5avkyn"]
+
+[ext_resource type="PackedScene" uid="uid://liuxwp3xkejw" path="res://mapas/niveles/03_bajo_la_piramide.tmx" id="1_7krpu"]
+[ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="2_3emfi"]
+
+[node name="03_bajo_la_piramide" unique_id=1889738909 instance=ExtResource("1_7krpu")]
+
+[node name="jugador" parent="." index="9" unique_id=674495634 instance=ExtResource("2_3emfi")]
+position = Vector2(425, 967)
+scale = Vector2(0.1, 0.1)

@@ -25,6 +25,8 @@ public partial class Jugador : CharacterBody2D
 	private bool _isSprinting = false;
 
 	private int _consecutiveJump = 0;
+    private Vector2 previousPosition;
+
 
 	/**
 	La velocidad con la que el jugador salta
@@ -32,10 +34,21 @@ public partial class Jugador : CharacterBody2D
 	[Export]
 	public float JumpVelocity = -400.0f;
 
-	// NUEVO: Variable para guardar la posición de reaparición actual
-	private Vector2 _respawnPosition;
-	AnimatedSprite2D _sprite;
-	double _timeIdle;
+    // NUEVO: Variable para guardar la posición de reaparición actual
+    private Vector2 _respawnPosition;
+
+    //Velocidad acumulada
+    [Export]
+    public float speedGrowRate = 0.01f;
+    [Export]
+    public float maxSpeedStored = 4.0f;
+    [Export]
+    public float speedStored = 1;
+    [Export]
+    public PackedScene shockwave;
+
+    AnimatedSprite2D _sprite;
+    double _timeIdle;
 
 	public override void _Ready()
 	{
@@ -71,9 +84,9 @@ public partial class Jugador : CharacterBody2D
 			_sprite.FlipH = false;
 		}
 
-		if(IsOnFloor()) _sprite.Play("run");
-		if(sprinting) _sprite.SpeedScale = 2;
-	}
+        if(IsOnFloor()) _sprite.Play("run");
+        _sprite.SpeedScale = sprinting ? 2 : 1;
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -127,31 +140,59 @@ public partial class Jugador : CharacterBody2D
 		//Detecta si hubo algun input
 		if (direction != Vector2.Zero)
 		{
-			float currentSpeed = _isSprinting ? Speed * SprintMultiplier : Speed;
+            speedStored = Mathf.Min(speedStored + speedGrowRate, maxSpeedStored);
+            float currentSpeed = _isSprinting ? Speed * SprintMultiplier : Speed;
 			//Cambio en la velocidad del jugador
-			velocity.X = direction.X * currentSpeed;
-			_animateWalk(facing, _isSprinting);
-			_timeIdle = 0;
+			velocity.X = direction.X * currentSpeed * speedStored;
+            _animateWalk(facing, _isSprinting);
+            _timeIdle = 0;
 		}
 		else
 		{
 			//Que frene en seco si no hay input
+            speedStored = 1;
 			velocity.X = 0;
-			_timeIdle += delta;
-			_isSprinting = false;
-			_sprite.SpeedScale = 1;
+            _timeIdle += delta;
+            _isSprinting = false;
 		}
 
-		Velocity = velocity;
-		
-		
-		UpdateRays();
-		TryStepUp();
-		
-		MoveAndSlide();
-		
-		
-	}
+        //GD.Print("Velocidad acumulada: "+speedStored);
+        Velocity = velocity;
+        MoveAndSlide();
+        _detectHorizontalCollision(direction);
+    }
+
+    //Metodo para detectar colisiones con paredes
+    public void _detectHorizontalCollision(Vector2 inputDirection)
+    {
+        if(inputDirection.X == 0) return;
+
+        if(!IsOnWall()) return;
+
+        var collision = GetLastSlideCollision();
+        if(collision == null) return;
+
+        Vector2 normal = collision.GetNormal();
+
+        //La normal apunta en direccion a la pared
+        //Si el jugador se mueve a la derecha (x>0) y la pared empuja a la izquiera (normal.X<0), chocan de frene
+        if(Mathf.Sign(normal.X) == -Math.Sign(inputDirection.X))
+        {
+            GD.Print("Choque");
+            //Calculo del daño y area de la onda expansiva
+            var radious = 50 * speedStored;
+            var damage  = 2 * speedStored;
+            GD.Print("Daño: "+damage+", radio: "+radious);
+            if (shockwave != null && speedStored >= 2)
+            {
+                var wave = shockwave.Instantiate<Shockwave>();
+                GetParent().AddChild(wave);
+                wave.GlobalPosition = GlobalPosition;
+                wave._setAttributes(radious, damage);
+            }
+            speedStored = 1;
+        }
+    }
 
 	// NUEVO: Método público para actualizar el checkpoint
 	public void ActualizarCheckpoint(Vector2 nuevaPosicion)
