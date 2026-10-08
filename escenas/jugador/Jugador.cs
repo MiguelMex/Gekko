@@ -9,15 +9,24 @@ public partial class Jugador : CharacterBody2D
 	Speed es la velocidad a la que se moverá el jugador
 	*/
 	[Export] public float Speed = 300.0f;
-    [Export] public float SprintMultiplier = 2.0f;
-    [Export] public double DoubleTapWindow = 0.3; //Segundos para considerar el doble input
-    private double _timeSinceLastPress = 999.0;
-    private int _lastTapDirection = 0;
-    private bool _isSprinting = false;
+	[Export] public float SprintMultiplier = 2.0f;
+	[Export] public double DoubleTapWindow = 0.3; //Segundos para considerar el doble input
+	
+	
+	[Export] public float StepUpHeight = 50f;   // antes 8f
+	private const float RayReach = 135f; 
+	private RayCast2D _wallCheck;
+	private RayCast2D _stepCheck;
+	
+	
+	
+	private double _timeSinceLastPress = 999.0;
+	private int _lastTapDirection = 0;
+	private bool _isSprinting = false;
 
+	private int _consecutiveJump = 0;
     private Vector2 previousPosition;
 
-    private int _consecutiveJump = 0;
 
 	/**
 	La velocidad con la que el jugador salta
@@ -50,13 +59,13 @@ public partial class Jugador : CharacterBody2D
 
     public override void _Ready()
     {
-        //Permite escuchar inputs aunque el juego este pausado
-        ProcessMode = ProcessModeEnum.Always;
-
         // NUEVO: Al iniciar el juego, guardamos su posición inicial como el primer respawn por defecto
         _respawnPosition = GlobalPosition;
         _sprite = GetNode<AnimatedSprite2D>("sprite");
         _sprite.Play("idle");
+
+        _wallCheck = GetNode<RayCast2D>("wallcheck");
+		_stepCheck = GetNode<RayCast2D>("stepcheck");
     }
 
     public void _playerIsIdle()
@@ -70,7 +79,7 @@ public partial class Jugador : CharacterBody2D
             _sprite.Play("idle");
         }
 
-    }
+	}
 
     //Maneja la animación de agacharse del personaje
     public void _manageCruch()
@@ -147,20 +156,20 @@ public partial class Jugador : CharacterBody2D
 
         Vector2 velocity = Velocity;
 
-        if (!IsOnFloor())
-        {
-            velocity += GetGravity() * (float)delta;
-            _sprite.Stop();
-            _sprite.Play("fall");
-        } else
-        {
-            _consecutiveJump = 0;
-        }
+		if (!IsOnFloor())
+		{
+			velocity += GetGravity() * (float)delta;
+			_sprite.Stop();
+			_sprite.Play("fall");
+		} else
+		{
+			_consecutiveJump = 0;
+		}
 
 		// Manejar el salto.
 		if (Input.IsActionJustPressed("jump") && _consecutiveJump < 2)
 		{
-            _sprite.Play("jump");
+			_sprite.Play("jump");
 			velocity.Y = JumpVelocity;
             _timeIdle = 0;
             _consecutiveJump ++;
@@ -194,10 +203,10 @@ public partial class Jugador : CharacterBody2D
 		*/
         facing = Input.GetAxis("left","right");
 		Vector2 direction = new Vector2(facing, 0);
-        //Deteccción de doble input
-        if(Input.IsActionJustPressed("left") || Input.IsActionJustPressed("right"))
-        {
-            int pressDir = Input.IsActionJustPressed("left") ? -1 : 1;
+		//Deteccción de doble input
+		if(Input.IsActionJustPressed("left") || Input.IsActionJustPressed("right"))
+		{
+			int pressDir = Input.IsActionJustPressed("left") ? -1 : 1;
 
             //Misma dirección y dentro de la ventana del tiempo
             if(_timeSinceLastPress <= DoubleTapWindow && pressDir == _lastTapDirection)
@@ -292,22 +301,48 @@ public partial class Jugador : CharacterBody2D
         }
     }
 
-    // NUEVO: Método público para actualizar el checkpoint
-    public void ActualizarCheckpoint(Vector2 nuevaPosicion)
-    {
-        _respawnPosition = nuevaPosicion;
-        GD.Print("¡Checkpoint actualizado!");
-    }
+	// NUEVO: Método público para actualizar el checkpoint
+	public void ActualizarCheckpoint(Vector2 nuevaPosicion)
+	{
+		_respawnPosition = nuevaPosicion;
+		GD.Print("¡Checkpoint actualizado!");
+	}
 
-    // NUEVO: Método para "morir" y regresar al último checkpoint
-    public void Morir()
-    {
-        // Regresamos al jugador a la posición guardada
-        GlobalPosition = _respawnPosition;
-        
-        // Opcional pero recomendado: Frenar su velocidad para que no siga cayendo con inercia
-        Velocity = Vector2.Zero;
-        
-        GD.Print("El jugador ha muerto y reaparecido.");
-    }
+	// NUEVO: Método para "morir" y regresar al último checkpoint
+	public void Morir()
+	{
+		// Regresamos al jugador a la posición guardada
+		GlobalPosition = _respawnPosition;
+		
+		// Opcional pero recomendado: Frenar su velocidad para que no siga cayendo con inercia
+		Velocity = Vector2.Zero;
+		
+		GD.Print("El jugador ha muerto y reaparecido.");
+	}
+	
+	
+	
+	private void UpdateRays()
+{
+	if (Velocity.X == 0) return;
+	float dir = Mathf.Sign(Velocity.X);
+	_wallCheck.TargetPosition = new Vector2(RayReach * dir, 0);
+	_stepCheck.TargetPosition = new Vector2(RayReach * dir, 0);
+
+	// Aplica el cambio de dirección de inmediato, sin esperar al siguiente frame
+	_wallCheck.ForceRaycastUpdate();
+	_stepCheck.ForceRaycastUpdate();
+	
+}
+
+private void TryStepUp()
+{
+	if (Velocity.X != 0 && IsOnFloor() && Velocity.Y >= 0
+		&& _wallCheck.IsColliding() && !_stepCheck.IsColliding())
+	{
+		GlobalPosition += new Vector2(0, -StepUpHeight);
+	}
+	
+}
+	
 }

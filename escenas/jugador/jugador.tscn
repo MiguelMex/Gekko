@@ -451,7 +451,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7uj1w"]
-size = Vector2(246.5, 349.4375)
+size = Vector2(104, 318.875)
 
 [node name="jugador" type="CharacterBody2D" unique_id=674495634]
 script = ExtResource("1_omvyu")
@@ -464,7 +464,7 @@ animation = &"crouch"
 speed_scale = 2.0
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=1264944243]
-position = Vector2(1, 45.28125)
+position = Vector2(-3, 13)
 shape = SubResource("RectangleShape2D_7uj1w")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=243649418]

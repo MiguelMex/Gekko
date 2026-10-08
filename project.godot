@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Gekko"
+run/main_scene="uid://cyx0gj4l6kdlf"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MenuPausa="*uid://d33rgdupu5qww"
 
 [display]
 
@@ -83,3 +88,4 @@ accept_ui={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
