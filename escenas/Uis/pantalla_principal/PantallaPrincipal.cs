@@ -67,7 +67,7 @@ public partial class PantallaPrincipal : Control
 		switch(id)
 		{
 			case "nueva":
-				_goToScene("res://03_bajo_la_piramide.tscn");
+				_goToScene("res://testing_player.tscn");
 				break;
 			case "cargar":
 				_goToScene("res://escenas/Uis/cargar_partida/load_file.tscn");

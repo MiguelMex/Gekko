@@ -4,12 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dv2mddjms343r" path="res://mapas/niveles/Desierto/Desierto_vacio.tmx" id="1_m6qx8"]
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="2_bcnh3"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="3_bcnh3"]
-[ext_resource type="Script" uid="uid://bh7xvf6tyw1ce" path="res://Barrera.cs" id="4_m6qx8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uj1w"]
-size = Vector2(277, 373)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p66os"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
 resource_local_to_scene = true
@@ -23,24 +17,29 @@ size = Vector2(6902, 70)
 position = Vector2(9, 7)
 scale = Vector2(6, 6)
 
-[node name="Checkpoint2" parent="." unique_id=1608820332 instance=ExtResource("3_bcnh3")]
-position = Vector2(328, 83)
-
 [node name="jugador" parent="." unique_id=674495634 groups=["jugador"] instance=ExtResource("1_kwflf")]
-position = Vector2(-1125, 392)
+position = Vector2(215, 2630)
 JumpVelocity = -600.0
 
 [node name="Camera2D2" type="Camera2D" parent="jugador" unique_id=1697871042]
 zoom = Vector2(0.5, 0.5)
-limit_left = -2497
-limit_top = -6299
-limit_right = 3775
-limit_bottom = 1770
+limit_left = -2766
+limit_top = -1586
+limit_right = 3506
+limit_bottom = 6483
 position_smoothing_enabled = true
 
 [node name="wallcheck" type="RayCast2D" parent="jugador" unique_id=1352380865]
 position = Vector2(0, 150)
 target_position = Vector2(135, 0)
+
+[node name="stepcheck" type="RayCast2D" parent="jugador" unique_id=1857426298]
+position = Vector2(0, 110)
+target_position = Vector2(135, 0)
+
+[node name="Camera2D" type="Camera2D" parent="jugador" unique_id=729409668]
+zoom = Vector2(0.3, 0.3)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2010657371]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1003542367]
@@ -51,46 +50,10 @@ shape = SubResource("RectangleShape2D_p66os")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1064382814]
 texture = SubResource("PlaceholderTexture2D_vays5")
 
-[node name="stepcheck" type="RayCast2D" parent="jugador" unique_id=1857426298]
-position = Vector2(0, 110)
-target_position = Vector2(135, 0)
-[node name="jugador" parent="." unique_id=674495634 instance=ExtResource("1_kwflf")]
-position = Vector2(215, 2630)
-
-[node name="Camera2D" type="Camera2D" parent="jugador" unique_id=729409668]
-zoom = Vector2(0.3, 0.3)
-
 [node name="KillZone" parent="." unique_id=1668862344 instance=ExtResource("2_bcnh3")]
-position = Vector2(-1828, -1266)
-scale = Vector2(4, 4)
+position = Vector2(859, 3087)
 
 [node name="Checkpoint" parent="." unique_id=1931067568 instance=ExtResource("3_bcnh3")]
 position = Vector2(-129, 2237)
-
-[node name="barrera" type="StaticBody2D" parent="." unique_id=205315067 groups=["barrera"]]
-script = ExtResource("4_m6qx8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="barrera" unique_id=816629210]
-position = Vector2(4852, 398)
-shape = SubResource("RectangleShape2D_7uj1w")
-
-[node name="Sprite2D" type="Sprite2D" parent="barrera" unique_id=802889867]
-texture = SubResource("PlaceholderTexture2D_p66os")
-
-[node name="StaticBody2D#CollisionShape2D" type="CollisionShape2D" parent="barrera" unique_id=1003542367]
-position = Vector2(1543, 615)
-shape = SubResource("RectangleShape2D_p66os")
-
-[node name="StaticBody2D#Sprite2D" type="Sprite2D" parent="barrera" unique_id=1064382814]
-texture = SubResource("PlaceholderTexture2D_vays5")
-
-[node name="barrera2" type="StaticBody2D" parent="." unique_id=731106081]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="barrera2" unique_id=1186210981]
-position = Vector2(2788, 1831)
-shape = SubResource("RectangleShape2D_7uj1w")
-
-[node name="Sprite2D" type="Sprite2D" parent="barrera2" unique_id=772790279]
-texture = SubResource("PlaceholderTexture2D_p66os")
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]

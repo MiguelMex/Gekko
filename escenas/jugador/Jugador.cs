@@ -141,14 +141,13 @@ public partial class Jugador : CharacterBody2D
         if (GetTree().Paused)
         {
             //Despausar
-            GetTree().Paused = false;
-            _sprite.Play();
+            //GetTree().Paused = false;
+            _sprite.Pause();
         } else
         {
             //Pausar
-            GetTree().Paused = true;
-            _sprite.Pause();
-            //Aqui se llamaría al menú de pausa
+            //GetTree().Paused = true;
+            _sprite.Play();
         }
         //GD.Print("Pauses: "+(GetTree().Paused ? "ON" : "OFF"));
     }
@@ -166,6 +165,7 @@ public partial class Jugador : CharacterBody2D
     {
         //No avanza si el juego está pausado
         if(GetTree().Paused) return;
+        _ManagePause();
 
         Vector2 velocity = Velocity;
 
