@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2gyxenchave"
-path="res://.godot/imported/tileset_prueba_16x16.png-832d29b3235f6d913845dac0404a8e37.ctex"
+uid="uid://dvh0vtip3vutn"
+path="res://.godot/imported/peligros.png-cecaa72c7a004444cd61ee0825fac25a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mapas/tilesets/tileset_prueba_16x16.png"
-dest_files=["res://.godot/imported/tileset_prueba_16x16.png-832d29b3235f6d913845dac0404a8e37.ctex"]
+source_file="res://mapas/tilesets/peligros.png"
+dest_files=["res://.godot/imported/peligros.png-cecaa72c7a004444cd61ee0825fac25a.ctex"]
 
 [params]
 

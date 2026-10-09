@@ -57,16 +57,29 @@ public partial class Jugador : CharacterBody2D
 
     public bool is_crouching = false;
 
-    public override void _Ready()
-    {
-        // NUEVO: Al iniciar el juego, guardamos su posición inicial como el primer respawn por defecto
-        _respawnPosition = GlobalPosition;
-        _sprite = GetNode<AnimatedSprite2D>("sprite");
-        _sprite.Play("idle");
+	public override void _Ready()
+	{
+		// NUEVO: Al iniciar el juego, guardamos su posición inicial como el primer respawn por defecto
+		_respawnPosition = GlobalPosition;
+		_sprite = GetNode<AnimatedSprite2D>("sprite");
+		_sprite.Play("idle");
 
         _wallCheck = GetNode<RayCast2D>("wallcheck");
 		_stepCheck = GetNode<RayCast2D>("stepcheck");
-    }
+		
+		// Conectamos la señal que detecta cuando el jugador toca un peligro
+		GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
+	}
+	
+		private void OnPeligroDetectado(Node2D body)
+	{
+		// Verificamos si el objeto detectado es una capa de tiles
+		if (body is TileMapLayer)
+		{
+			// Reutilizamos el método de muerte que ya tenía el jugador
+			Morir();
+		}
+	}
 
     public void _playerIsIdle()
     {
@@ -156,6 +169,15 @@ public partial class Jugador : CharacterBody2D
 
         Vector2 velocity = Velocity;
 
+		if (!IsOnFloor())
+		{
+			velocity += GetGravity() * (float)delta;
+			_sprite.Stop();
+			_sprite.Play("fall");
+		} else
+		{
+			_consecutiveJump = 0;
+		}
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;

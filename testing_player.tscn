@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cyx0gj4l6kdlf"]
 
 [ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="1_kwflf"]
+[ext_resource type="PackedScene" uid="uid://dv2mddjms343r" path="res://mapas/niveles/Desierto/Desierto_vacio.tmx" id="1_m6qx8"]
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="2_bcnh3"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="3_bcnh3"]
 [ext_resource type="Script" uid="uid://bh7xvf6tyw1ce" path="res://Barrera.cs" id="4_m6qx8"]
@@ -17,6 +18,10 @@ size = Vector2(6902, 70)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vays5"]
 
 [node name="testing_player" type="Node2D" unique_id=971696388]
+
+[node name="Desierto_vacio" parent="." unique_id=1459244353 instance=ExtResource("1_m6qx8")]
+position = Vector2(9, 7)
+scale = Vector2(6, 6)
 
 [node name="Checkpoint2" parent="." unique_id=1608820332 instance=ExtResource("3_bcnh3")]
 position = Vector2(328, 83)
@@ -36,17 +41,31 @@ position_smoothing_enabled = true
 [node name="wallcheck" type="RayCast2D" parent="jugador" unique_id=1352380865]
 position = Vector2(0, 150)
 target_position = Vector2(135, 0)
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2010657371]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1003542367]
+visible = false
+position = Vector2(576.5, 615)
+shape = SubResource("RectangleShape2D_p66os")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1064382814]
+texture = SubResource("PlaceholderTexture2D_vays5")
 
 [node name="stepcheck" type="RayCast2D" parent="jugador" unique_id=1857426298]
 position = Vector2(0, 110)
 target_position = Vector2(135, 0)
+[node name="jugador" parent="." unique_id=674495634 instance=ExtResource("1_kwflf")]
+position = Vector2(215, 2630)
+
+[node name="Camera2D" type="Camera2D" parent="jugador" unique_id=729409668]
+zoom = Vector2(0.3, 0.3)
 
 [node name="KillZone" parent="." unique_id=1668862344 instance=ExtResource("2_bcnh3")]
 position = Vector2(-1828, -1266)
 scale = Vector2(4, 4)
 
 [node name="Checkpoint" parent="." unique_id=1931067568 instance=ExtResource("3_bcnh3")]
-position = Vector2(2698, -411)
+position = Vector2(-129, 2237)
 
 [node name="barrera" type="StaticBody2D" parent="." unique_id=205315067 groups=["barrera"]]
 script = ExtResource("4_m6qx8")
@@ -68,7 +87,7 @@ texture = SubResource("PlaceholderTexture2D_vays5")
 [node name="barrera2" type="StaticBody2D" parent="." unique_id=731106081]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="barrera2" unique_id=1186210981]
-position = Vector2(-1778, 380)
+position = Vector2(2788, 1831)
 shape = SubResource("RectangleShape2D_7uj1w")
 
 [node name="Sprite2D" type="Sprite2D" parent="barrera2" unique_id=772790279]

@@ -50,7 +50,6 @@ public partial class SaveManager : Node
 
         // Recuperamos los datos desde el JSON
         var data = JsonSerializer.Deserialize<GameData>(jsonString);
-        GD.Print("Partida encontrada");
         return data;
     }
 }
