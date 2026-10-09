@@ -33,6 +33,11 @@ public partial class Checkpoint : Area2D
             _isActivated = true;
             jugador.ActualizarCheckpoint(GlobalPosition);
 
+            // AQUÍ DISPARAMOS EL GUARDADO AUTOMÁTICO AL TOCAR LA BANDERA
+            SaveManager.SaveGame(GlobalPosition, level: 1, hasKey: false); 
+            // (Aquí puedes pasar las variables reales de tu juego: posición, nivel actual, objetos, etc.)
+    
+
             if (_animSprite != null)
             {
                 // Iluminamos por completo al 100% de opacidad
