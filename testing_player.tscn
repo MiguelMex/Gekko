@@ -20,12 +20,13 @@ scale = Vector2(6, 6)
 [node name="jugador" parent="." unique_id=674495634 groups=["jugador"] instance=ExtResource("1_kwflf")]
 position = Vector2(215, 2630)
 JumpVelocity = -600.0
+shockwave = null
 
 [node name="Camera2D2" type="Camera2D" parent="jugador" unique_id=1697871042]
 zoom = Vector2(0.5, 0.5)
 limit_left = -2766
-limit_top = -1586
-limit_right = 3506
+limit_top = 94
+limit_right = 36830
 limit_bottom = 6483
 position_smoothing_enabled = true
 

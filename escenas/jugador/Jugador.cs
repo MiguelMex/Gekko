@@ -58,18 +58,32 @@ public partial class Jugador : CharacterBody2D
     public bool is_crouching = false;
 
 	public override void _Ready()
-	{
-		// NUEVO: Al iniciar el juego, guardamos su posición inicial como el primer respawn por defecto
-		_respawnPosition = GlobalPosition;
-		_sprite = GetNode<AnimatedSprite2D>("sprite");
-		_sprite.Play("idle");
+{
+    // 1. PRIMERO VERIFICAMOS SI VENIMOS DE CARGAR UNA PARTIDA GUARDADA
+    if (SaveManager.CurrentGameData != null)
+    {
+        // Movemos al jugador a la posición exacta del archivo JSON
+        GlobalPosition = new Vector2(SaveManager.CurrentGameData.PlayerPosX, SaveManager.CurrentGameData.PlayerPosY);
+        
+        // Limpiamos la variable temporal para que las muertes futuras usen los checkpoints normales de la sesión
+        SaveManager.CurrentGameData = null; 
+        
+        GD.Print("¡Jugador posicionado en la partida cargada!");
+    }
 
-        _wallCheck = GetNode<RayCast2D>("wallcheck");
-		_stepCheck = GetNode<RayCast2D>("stepcheck");
-		
-		// Conectamos la señal que detecta cuando el jugador toca un peligro
-		GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
-	}
+    // 2. DESPUÉS ASIGNAMOS EL RESPAWN (Si cargó partida, tomará la posición cargada; si es nueva partida, tomará la del mapa)
+    _respawnPosition = GlobalPosition;
+
+    // 3. RESTO DE TUS INICIALIZACIONES
+    _sprite = GetNode<AnimatedSprite2D>("sprite");
+    _sprite.Play("idle");
+
+    _wallCheck = GetNode<RayCast2D>("wallcheck");
+    _stepCheck = GetNode<RayCast2D>("stepcheck");
+    
+    // Conectamos la señal que detecta cuando el jugador toca un peligro
+    GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
+}
 	
 		private void OnPeligroDetectado(Node2D body)
 	{
