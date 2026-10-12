@@ -8,10 +8,8 @@
 font = ExtResource("2_plnsn")
 font_size = 20
 
-[node name="FileToLoad" type="Control" unique_id=536589035]
+[node name="FileToLoad" type="Button" unique_id=237689731]
 custom_minimum_size = Vector2(300, 200)
-layout_mode = 3
-anchors_preset = 0
 offset_right = 300.0
 offset_bottom = 200.0
 script = ExtResource("1_plnsn")

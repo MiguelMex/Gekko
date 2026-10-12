@@ -19,13 +19,17 @@ public partial class LoadFile : Control
             GD.Print("No hay partidas guardadas para mostrar.");
             return;
         }
-        
+
         if (FileToLoadScene == null) return;
 
         // Instanciamos el botón/tarjeta de la partida guardada
+        // Dentro de tu LoadFile.cs, cuando instancias el slot:
         var slot = FileToLoadScene.Instantiate<FileToLoad>();
         container.AddChild(slot);
-        slot.GetNode<Label>("Label").Text = "Partida guardada (Nivel " + gameData.CurrentLevel + ")";
+
+        // Le pasamos los datos leídos del JSON al slot individual
+        slot.ConfigurarSlot(gameData);
+        //slot.GetNode<Label>("Label").Text = "Partida guardada (Nivel " + gameData.CurrentLevel + ")";
         slot.SizeFlagsVertical = SizeFlags.ShrinkCenter;
         slot.SizeFlagsHorizontal = SizeFlags.ShrinkCenter;
 
@@ -35,18 +39,17 @@ public partial class LoadFile : Control
     }
 
     private void CargarPartidaSeleccionada()
-{
-    if (gameData != null)
     {
-        GD.Print("Cargando posición X: " + gameData.PlayerPosX + ", Y: " + gameData.PlayerPosY);
-        
-        // Guardamos temporalmente los datos cargados para que el Jugador los lea al iniciar
-        SaveManager.CurrentGameData = gameData; 
-    }
+        if (gameData != null)
+        {
+            // Imprimimos en consola para verificar que los datos se leyeron bien del JSON
+            GD.Print("Cargando posición X: " + gameData.PlayerPosX + ", Y: " + gameData.PlayerPosY);
+        }
 
-    LoadingScreen.targetScenePath = "res://testing_player.tscn";
-    GetTree().ChangeSceneToFile("res://escenas/Uis/loading_screen/loading_screen.tscn");
-}
+        // Redirigimos al nivel de juego usando tu pantalla de carga
+        LoadingScreen.targetScenePath = "res://testing_player.tscn";
+        GetTree().ChangeSceneToFile("res://escenas/Uis/loading_screen/loading_screen.tscn");
+    }
 
     public override void _Process(double delta)
     {

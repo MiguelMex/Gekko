@@ -64,6 +64,9 @@ scale = Vector2(12.409955, 1.3867831)
 [node name="Checkpoint" parent="." unique_id=1931067568 instance=ExtResource("3_bcnh3")]
 position = Vector2(-129, 2237)
 
+[node name="Checkpoint2" parent="." unique_id=122014204 instance=ExtResource("3_bcnh3")]
+position = Vector2(1692, 2427)
+
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío2" to="jugador" method="_on_kill_zone_body_entered"]
