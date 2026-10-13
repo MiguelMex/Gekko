@@ -451,14 +451,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7uj1w"]
-size = Vector2(212, 344)
+size = Vector2(133, 344)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeas4"]
 size = Vector2(23.5, 161)
 
 [node name="jugador" type="CharacterBody2D" unique_id=674495634]
 script = ExtResource("1_omvyu")
-JumpVelocity = -800.0
 shockwave = ExtResource("2_26844")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1530838266]
@@ -467,7 +466,7 @@ animation = &"crouch"
 speed_scale = 2.0
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=1264944243]
-position = Vector2(17, 47)
+position = Vector2(19.5, 47)
 shape = SubResource("RectangleShape2D_7uj1w")
 
 [node name="DetectorPeligros" type="Area2D" parent="." unique_id=83040781]

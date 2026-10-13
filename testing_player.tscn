@@ -19,7 +19,8 @@ scale = Vector2(6, 6)
 
 [node name="jugador" parent="." unique_id=674495634 groups=["jugador"] instance=ExtResource("1_kwflf")]
 position = Vector2(215, 2630)
-JumpVelocity = -600.0
+Speed = 400.0
+JumpVelocity = -1500.0
 
 [node name="Camera2D2" type="Camera2D" parent="jugador" unique_id=1697871042]
 zoom = Vector2(0.5, 0.5)
