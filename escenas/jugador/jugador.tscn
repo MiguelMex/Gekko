@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bbceqo16m3ncn" path="res://escenas/jugador/Jugador.cs" id="1_omvyu"]
 [ext_resource type="Texture2D" uid="uid://cm2v818t8e1j5" path="res://recursos/sprites/jugador/idle2.png" id="2_8cmsc"]
-[ext_resource type="PackedScene" uid="uid://dxkoxe7iun0o" path="res://escenas/jugador/shockwave.tscn" id="2_26844"]
 [ext_resource type="Texture2D" uid="uid://ctnvj4n612qkc" path="res://recursos/sprites/jugador/jump2.png" id="3_qsk7m"]
 [ext_resource type="Texture2D" uid="uid://dt8arikbsnj4g" path="res://recursos/sprites/jugador/walk.png" id="4_3don6"]
 [ext_resource type="Texture2D" uid="uid://crvof7r3nmu32" path="res://recursos/sprites/jugador/left.png" id="4_jkpmm"]
@@ -454,11 +453,10 @@ animations = [{
 size = Vector2(133, 344)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeas4"]
-size = Vector2(23.5, 161)
+size = Vector2(55, 249)
 
 [node name="jugador" type="CharacterBody2D" unique_id=674495634]
 script = ExtResource("1_omvyu")
-shockwave = ExtResource("2_26844")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1530838266]
 sprite_frames = SubResource("SpriteFrames_7uj1w")
@@ -475,7 +473,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorPeligros" unique_id=1710168465]
-position = Vector2(-1.75, 4.5)
+position = Vector2(-1, 14.5)
 shape = SubResource("RectangleShape2D_eeas4")
 
 [connection signal="animation_finished" from="sprite" to="." method="_playerIsIdle"]
