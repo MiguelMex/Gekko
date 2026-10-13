@@ -8,7 +8,7 @@ public partial class Jugador : CharacterBody2D
 	[Export] cumple la función de mostrar un valor del script en el motor grafico de GODOT
 	Speed es la velocidad a la que se moverá el jugador
 	*/
-	[Export] public float Speed = 400.0f;
+	[Export] public float Speed = 300.0f;
 	[Export] public float SprintMultiplier = 2.0f;
 	[Export] public double DoubleTapWindow = 0.3; //Segundos para considerar el doble input
 	
@@ -32,7 +32,7 @@ public partial class Jugador : CharacterBody2D
 	La velocidad con la que el jugador salta
 	*/
 	[Export]
-	public float JumpVelocity = -1500.0f;
+	public float JumpVelocity = -400.0f;
 
     // NUEVO: Variable para guardar la posición de reaparición actual
     private Vector2 _respawnPosition;
@@ -58,18 +58,32 @@ public partial class Jugador : CharacterBody2D
     public bool is_crouching = false;
 
 	public override void _Ready()
-	{
-		// NUEVO: Al iniciar el juego, guardamos su posición inicial como el primer respawn por defecto
-		_respawnPosition = GlobalPosition;
-		_sprite = GetNode<AnimatedSprite2D>("sprite");
-		_sprite.Play("idle");
+{
+    // 1. PRIMERO VERIFICAMOS SI VENIMOS DE CARGAR UNA PARTIDA GUARDADA
+    if (SaveManager.CurrentGameData != null)
+    {
+        // Movemos al jugador a la posición exacta del archivo JSON
+        GlobalPosition = new Vector2(SaveManager.CurrentGameData.PlayerPosX, SaveManager.CurrentGameData.PlayerPosY);
+        
+        // Limpiamos la variable temporal para que las muertes futuras usen los checkpoints normales de la sesión
+        SaveManager.CurrentGameData = null; 
+        
+        GD.Print("¡Jugador posicionado en la partida cargada!");
+    }
 
-        // _wallCheck = GetNode<RayCast2D>("wallcheck");
-		// _stepCheck = GetNode<RayCast2D>("stepcheck");
-		
-		// Conectamos la señal que detecta cuando el jugador toca un peligro
-		GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
-	}
+    // 2. DESPUÉS ASIGNAMOS EL RESPAWN (Si cargó partida, tomará la posición cargada; si es nueva partida, tomará la del mapa)
+    _respawnPosition = GlobalPosition;
+
+    // 3. RESTO DE TUS INICIALIZACIONES
+    _sprite = GetNode<AnimatedSprite2D>("sprite");
+    _sprite.Play("idle");
+
+    _wallCheck = GetNode<RayCast2D>("wallcheck");
+    _stepCheck = GetNode<RayCast2D>("stepcheck");
+    
+    // Conectamos la señal que detecta cuando el jugador toca un peligro
+    GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
+}
 	
 		private void OnPeligroDetectado(Node2D body)
 	{
@@ -267,18 +281,6 @@ public partial class Jugador : CharacterBody2D
         //GD.Print("Velocidad acumulada: "+speedStored);
         Velocity = velocity;
         MoveAndSlide();
-		// Start the challenge platform only when standing on its top surface.
-		if (IsOnFloor())
-		{
-			for (int i = 0; i < GetSlideCollisionCount(); i++)
-			{
-				var contacto = GetSlideCollision(i);
-				if (contacto.GetNormal().Dot(UpDirection) >= Mathf.Cos(FloorMaxAngle)
-					&& contacto.GetCollider() is Node plataforma
-					&& plataforma.HasMethod("activar_por_jugador"))
-					plataforma.Call("activar_por_jugador");
-			}
-		}
         //Detecta si hubo una colisión en este frame
         _detectHorizontalCollision(direction);
     }

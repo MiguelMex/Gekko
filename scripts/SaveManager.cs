@@ -4,6 +4,7 @@ using System.IO;
 
 public partial class SaveManager : Node
 {
+    public static SaveManager.GameData CurrentGameData { get; set; }
     private const string SavePath = "user://savegame.json";
 
     // Estructura de los datos que quieres guardar
