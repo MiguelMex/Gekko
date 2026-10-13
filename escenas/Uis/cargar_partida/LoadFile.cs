@@ -20,7 +20,8 @@ public partial class LoadFile : Control
 
 		var slot = FileToLoadScene.Instantiate<FileToLoad>();
 		container.AddChild(slot);
-		slot.GetNode<Label>("Label").Text = "Partida guardada";
+		//slot.GetNode<Label>("Label").Text = "Partida guardada";
+		slot.setGameData(gameData);
 		slot.SizeFlagsVertical = SizeFlags.ShrinkCenter;
 		slot.SizeFlagsHorizontal = SizeFlags.ShrinkCenter;
 	}
