@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Gekko"
-run/main_scene="uid://cyx0gj4l6kdlf"
+run/main_scene="uid://cdld5flu7cudh"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+run/default_gravity=2000.0
 
 [autoload]
 

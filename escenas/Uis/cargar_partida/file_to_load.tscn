@@ -15,7 +15,7 @@ offset_bottom = 200.0
 script = ExtResource("1_plnsn")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="." unique_id=858310154]
+[node name="Panel" type="Button" parent="." unique_id=1090818078]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

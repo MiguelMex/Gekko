@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7jkv2gybjirh"
-path="res://.godot/imported/mecanismos.png-8096288ea22173725c3aebdaaad92fe4.ctex"
+path="res://.godot/imported/mecanismos.png-6f3dbccffb41def3b7a2d20c9b54f84f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mapas/tilesets/mecanismos.png"
-dest_files=["res://.godot/imported/mecanismos.png-8096288ea22173725c3aebdaaad92fe4.ctex"]
+source_file="res://mapas/tilesets copy/mecanismos.png"
+dest_files=["res://.godot/imported/mecanismos.png-6f3dbccffb41def3b7a2d20c9b54f84f.ctex"]
 
 [params]
 
