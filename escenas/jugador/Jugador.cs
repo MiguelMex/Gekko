@@ -144,6 +144,18 @@ public partial class Jugador : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+		// Start the challenge platform only when standing on its top surface.
+		if (IsOnFloor())
+		{
+			for (int i = 0; i < GetSlideCollisionCount(); i++)
+			{
+				var contacto = GetSlideCollision(i);
+				if (contacto.GetNormal().Dot(UpDirection) >= Mathf.Cos(FloorMaxAngle)
+					&& contacto.GetCollider() is Node plataforma
+					&& plataforma.HasMethod("activar_por_jugador"))
+					plataforma.Call("activar_por_jugador");
+			}
+		}
 	}
 
 	// NUEVO: Método público para actualizar el checkpoint
@@ -156,6 +168,9 @@ public partial class Jugador : CharacterBody2D
 	// NUEVO: Método para "morir" y regresar al último checkpoint
 	public void Morir()
 	{
+		// Death can occur during a physics query; reset platforms after it finishes.
+		GetTree().CallGroupFlags((uint)SceneTree.GroupCallFlags.Deferred,
+			"plataformas_reiniciables", "reiniciar");
 		// Regresamos al jugador a la posición guardada
 		GlobalPosition = _respawnPosition;
 		

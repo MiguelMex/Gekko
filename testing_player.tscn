@@ -35,6 +35,13 @@ zoom = Vector2(0.3, 0.3)
 [node name="KillZone" parent="." unique_id=1668862344 instance=ExtResource("2_bcnh3")]
 position = Vector2(849, 3094)
 
+[node name="KillZoneVacío" parent="." unique_id=680351805 instance=ExtResource("2_bcnh3")]
+position = Vector2(2835, 3558)
+
+[node name="KillZoneVacío2" parent="." unique_id=815351681 instance=ExtResource("2_bcnh3")]
+position = Vector2(18588, 2237)
+scale = Vector2(12.409955, 1.3867831)
+
 [node name="Checkpoint" parent="." unique_id=1931067568 instance=ExtResource("3_bcnh3")]
 position = Vector2(-129, 2237)
 
@@ -42,3 +49,5 @@ position = Vector2(-129, 2237)
 position = Vector2(2788, 1831)
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
+[connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]
+[connection signal="body_entered" from="KillZoneVacío2" to="jugador" method="_on_kill_zone_body_entered"]
