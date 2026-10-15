@@ -8,7 +8,7 @@ public partial class Jugador : CharacterBody2D
 	[Export] cumple la función de mostrar un valor del script en el motor grafico de GODOT
 	Speed es la velocidad a la que se moverá el jugador
 	*/
-	[Export] public float Speed = 300.0f;
+	[Export] public float Speed = 400.0f;
 	[Export] public float SprintMultiplier = 2.0f;
 	[Export] public double DoubleTapWindow = 0.3; //Segundos para considerar el doble input
 	
@@ -32,7 +32,7 @@ public partial class Jugador : CharacterBody2D
 	La velocidad con la que el jugador salta
 	*/
 	[Export]
-	public float JumpVelocity = -400.0f;
+	public float JumpVelocity = -1500.0f;
 
     // NUEVO: Variable para guardar la posición de reaparición actual
     private Vector2 _respawnPosition;
