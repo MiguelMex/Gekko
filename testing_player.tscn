@@ -18,17 +18,7 @@ position = Vector2(9, 7)
 scale = Vector2(6, 6)
 
 [node name="jugador" parent="." unique_id=674495634 groups=["jugador"] instance=ExtResource("1_kwflf")]
-position = Vector2(215, 2630)
-JumpVelocity = -600.0
-shockwave = null
-
-[node name="Camera2D2" type="Camera2D" parent="jugador" unique_id=1697871042]
-zoom = Vector2(0.5, 0.5)
-limit_left = -2766
-limit_top = 94
-limit_right = 36830
-limit_bottom = 6483
-position_smoothing_enabled = true
+position = Vector2(427, 2630)
 
 [node name="wallcheck" type="RayCast2D" parent="jugador" unique_id=1352380865]
 position = Vector2(0, 150)
@@ -65,7 +55,7 @@ scale = Vector2(12.409955, 1.3867831)
 position = Vector2(-13, 2249)
 
 [node name="Checkpoint2" parent="." unique_id=122014204 instance=ExtResource("3_bcnh3")]
-position = Vector2(1692, 2427)
+position = Vector2(2915, 1888)
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]
