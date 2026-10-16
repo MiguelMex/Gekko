@@ -8,11 +8,10 @@
 font = ExtResource("2_plnsn")
 font_size = 20
 
-[node name="FileToLoad" type="Button" unique_id=885722363]
+[node name="FileToLoad" type="Button" unique_id=237689731]
 custom_minimum_size = Vector2(300, 200)
-anchors_preset = -1
-anchor_right = 0.26041666
-anchor_bottom = 0.30864197
+offset_right = 300.0
+offset_bottom = 200.0
 script = ExtResource("1_plnsn")
 metadata/_edit_use_anchors_ = true
 

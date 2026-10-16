@@ -6,7 +6,35 @@
 [ext_resource type="Texture2D" uid="uid://c1rpouvx2hi2y" path="res://recursos/imagenes/pausaprueba.png" id="3_m783r"]
 [ext_resource type="Texture2D" uid="uid://xpytfh3wfxnu" path="res://recursos/imagenes/sombreroprueba.png" id="4_8a6k2"]
 [ext_resource type="FontFile" uid="uid://dc201i72yumq2" path="res://recursos/Tipografias/m5x7.ttf" id="6_8a6k2"]
+[ext_resource type="Texture2D" uid="uid://bnjeml3lj0ohl" path="res://recursos/imagenes/botonalseleccionarprueba.png" id="7_3x75b"]
 [ext_resource type="Texture2D" uid="uid://d4fk1invs7k21" path="res://recursos/imagenes/marcosbotonprueba.png" id="7_tgnrs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3x75b"]
+texture = ExtResource("7_3x75b")
+texture_margin_left = 50.0
+texture_margin_top = 20.0
+texture_margin_right = 50.0
+texture_margin_bottom = 20.0
+expand_margin_left = 90.0
+expand_margin_top = 20.0
+expand_margin_right = 90.0
+expand_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7mw4r"]
+content_margin_left = 60.0
+content_margin_top = 20.0
+content_margin_right = 60.0
+content_margin_bottom = 15.0
+texture = ExtResource("7_3x75b")
+texture_margin_left = 50.0
+texture_margin_top = 20.0
+texture_margin_right = 50.0
+texture_margin_bottom = 20.0
+expand_margin_left = 60.0
+expand_margin_top = 20.0
+expand_margin_right = 60.0
+expand_margin_bottom = 30.0
+axis_stretch_horizontal = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tgnrs"]
 texture = ExtResource("7_tgnrs")
@@ -22,6 +50,8 @@ expand_margin_bottom = 30.0
 [sub_resource type="Theme" id="Theme_1npbf"]
 default_font_size = 37
 Button/fonts/font = ExtResource("6_8a6k2")
+Button/styles/focus = SubResource("StyleBoxTexture_3x75b")
+Button/styles/hover = SubResource("StyleBoxTexture_7mw4r")
 Button/styles/normal = SubResource("StyleBoxTexture_tgnrs")
 
 [node name="MenuPausa" type="CanvasLayer" unique_id=380459512]
