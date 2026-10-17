@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c0kmr1jk6hnyi"]
+
+[ext_resource type="Script" uid="uid://bwagfcdqal15s" path="res://escenas/enemigos/Aguila.cs" id="1_script"]
+[ext_resource type="SpriteFrames" path="res://recursos/sprites/enemigo_aguila/aguila_animaciones.tres" id="2_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(80, 191)
+
+[node name="Aguila" type="CharacterBody2D" unique_id=1228802677]
+script = ExtResource("1_script")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1425937692]
+position = Vector2(0, -118)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("2_frames")
+animation = &"patrulla"
+
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=292292637]
+position = Vector2(19, -95.5)
+scale = Vector2(1.1646242, 1)
+shape = SubResource("RectangleShape2D_body")
