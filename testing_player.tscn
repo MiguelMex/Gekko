@@ -14,7 +14,7 @@ size = Vector2(6902, 70)
 [node name="testing_player" type="Node2D" unique_id=971696388]
 
 [node name="Desierto_vacio" parent="." unique_id=1459244353 instance=ExtResource("1_m6qx8")]
-position = Vector2(9, 7)
+position = Vector2(44, -3)
 scale = Vector2(6, 6)
 
 [node name="jugador" parent="." unique_id=674495634 groups=["jugador"] instance=ExtResource("1_kwflf")]

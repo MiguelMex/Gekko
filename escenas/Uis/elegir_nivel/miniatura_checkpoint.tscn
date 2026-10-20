@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bdmjotr886628"]
+
+[ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="1_0w4pv"]
+[ext_resource type="Script" uid="uid://kxma06eb21g6" path="res://escenas/Uis/elegir_nivel/MiniaturaCheckpoint.cs" id="1_obcq6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7uj1w"]
+font = ExtResource("1_0w4pv")
+font_size = 30
+
+[node name="Miniatura_checkpoint" type="Control" unique_id=34347455]
+custom_minimum_size = Vector2(600, 50)
+custom_maximum_size = Vector2(600, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_obcq6")
+
+[node name="Button" type="Button" parent="." unique_id=1290646364]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Label" type="Label" parent="Button" unique_id=152111208]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 8.0
+offset_right = 519.0
+offset_bottom = 45.0
+text = "Checkpoint placeholder"
+label_settings = SubResource("LabelSettings_7uj1w")
+
+[connection signal="pressed" from="Button" to="." method="_goToCheckpoint"]

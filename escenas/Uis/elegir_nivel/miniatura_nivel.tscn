@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://d1rswxdirwub6"]
+
+[ext_resource type="Script" uid="uid://bpves6ru5y1d5" path="res://escenas/Uis/elegir_nivel/MiniaturaNivel.cs" id="1_87ok4"]
+[ext_resource type="Texture2D" uid="uid://uku8lvyd8sdf" path="res://escenas/Uis/elegir_nivel/level_placeholder.webp" id="1_i5kch"]
+[ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="2_87ok4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7uj1w"]
+font = ExtResource("2_87ok4")
+font_size = 25
+
+[node name="Miniatura_nivel" type="Control" unique_id=524441535]
+custom_minimum_size = Vector2(350, 250)
+custom_maximum_size = Vector2(350, 250)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_87ok4")
+
+[node name="Background" type="Button" parent="." unique_id=1222332668]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="Background" unique_id=83824294]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -133.0
+offset_top = -43.0
+offset_right = 187.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Nombre del nivel"
+label_settings = SubResource("LabelSettings_7uj1w")
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1408398975]
+layout_mode = 0
+offset_left = 37.000015
+offset_top = 16.0
+offset_right = 837.0
+offset_bottom = 516.0
+scale = Vector2(0.35338977, 0.36532456)
+texture = ExtResource("1_i5kch")
+
+[connection signal="pressed" from="Background" to="." method="_goToLevel"]

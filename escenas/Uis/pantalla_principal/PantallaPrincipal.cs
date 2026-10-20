@@ -11,6 +11,7 @@ public partial class PantallaPrincipal : Control
 	private IconButton BtnNuevaPartida;
 	private IconButton BtnSalir;
 	private IconButton BtnAjustes;
+	private IconButton BtnNiveles;
 	private Button upButton;
 
 	// Called when the node enters the scene tree for the first time.
@@ -19,6 +20,7 @@ public partial class PantallaPrincipal : Control
 		BtnNuevaPartida = GetNode<IconButton>("Texture/Container/BtnContainer/BtnNuevaPartida");
 		BtnCargar = GetNode<IconButton>("Texture/Container/BtnContainer/BtnCargar");
 		BtnAjustes = GetNode<IconButton>("Texture/Container/BtnContainer/BtnAjustes");
+		BtnNiveles = GetNode<IconButton>("Texture/Container/BtnNiveles/BtnNiveles");
 		BtnSalir = GetNode<IconButton>("Texture/Container/BtnContainer/BtnSalir");
 
 		// BtnNuevaPartida.ButtonPressed += _OnButtonPressed;
@@ -74,6 +76,9 @@ public partial class PantallaPrincipal : Control
 				break;
 			case "ajustes":
 				//TODO: Ir al menu de configuracoón
+				break;
+			case "niveles":
+				_goToScene("res://escenas/Uis/elegir_nivel/elegir_nivel.tscn");
 				break;
 			case "salir":
 				GetTree().Quit();
