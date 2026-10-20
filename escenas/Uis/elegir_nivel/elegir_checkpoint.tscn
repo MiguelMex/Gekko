@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://duw6p6j2u35n5"]
 
 [ext_resource type="Texture2D" uid="uid://uku8lvyd8sdf" path="res://escenas/Uis/elegir_nivel/level_placeholder.webp" id="1_14vme"]
+[ext_resource type="Script" uid="uid://bxtufkaxsqne6" path="res://escenas/Uis/elegir_nivel/ElegirCheckpoint.cs" id="1_xl4sd"]
 [ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="2_vkp4u"]
 [ext_resource type="PackedScene" uid="uid://bdmjotr886628" path="res://escenas/Uis/elegir_nivel/miniatura_checkpoint.tscn" id="2_xl4sd"]
 
@@ -17,6 +18,8 @@ offset_top = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xl4sd")
+packedCheckpoint = ExtResource("2_xl4sd")
 
 [node name="Background" type="Panel" parent="." unique_id=1224542080]
 layout_mode = 1
@@ -35,7 +38,7 @@ offset_bottom = 501.0
 scale = Vector2(0.6258643, 1.2470162)
 texture = ExtResource("1_14vme")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background" unique_id=868885540]
+[node name="Container" type="VBoxContainer" parent="Background" unique_id=868885540]
 custom_minimum_size = Vector2(600, 400)
 layout_mode = 0
 offset_left = 517.0
@@ -43,18 +46,6 @@ offset_top = 192.0
 offset_right = 1117.0
 offset_bottom = 592.0
 theme_override_constants/separation = 10
-
-[node name="Miniatura_checkpoint" parent="Background/VBoxContainer" unique_id=34347455 instance=ExtResource("2_xl4sd")]
-layout_mode = 2
-
-[node name="Miniatura_checkpoint2" parent="Background/VBoxContainer" unique_id=231275905 instance=ExtResource("2_xl4sd")]
-layout_mode = 2
-
-[node name="Miniatura_checkpoint3" parent="Background/VBoxContainer" unique_id=1530977859 instance=ExtResource("2_xl4sd")]
-layout_mode = 2
-
-[node name="Miniatura_checkpoint4" parent="Background/VBoxContainer" unique_id=1383728403 instance=ExtResource("2_xl4sd")]
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Background" unique_id=1823107285]
 layout_mode = 0

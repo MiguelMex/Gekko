@@ -69,6 +69,11 @@ public partial class Jugador : CharacterBody2D
         SaveManager.CurrentGameData = null; 
         
         GD.Print("¡Jugador posicionado en la partida cargada!");
+    } 
+    else if (LoadingScreen.targetPlayerSpawnPosition.HasValue)
+    {
+        GlobalPosition = LoadingScreen.targetPlayerSpawnPosition.Value;
+        LoadingScreen.targetPlayerSpawnPosition = null;
     }
 
     // 2. DESPUÉS ASIGNAMOS EL RESPAWN (Si cargó partida, tomará la posición cargada; si es nueva partida, tomará la del mapa)

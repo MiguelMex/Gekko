@@ -10,6 +10,10 @@ public partial class LoadingScreen : Control
 	private Godot.Collections.Array progress = new();
 	private ProgressBar _progressBar;
 
+	public static string targetLevelPath;
+	public static string sceneToLoadName;
+	public static Vector2? targetPlayerSpawnPosition;
+
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

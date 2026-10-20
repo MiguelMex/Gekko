@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dp05a882ehd83"]
 
 [ext_resource type="PackedScene" uid="uid://d1rswxdirwub6" path="res://escenas/Uis/elegir_nivel/miniatura_nivel.tscn" id="1_7usrw"]
+[ext_resource type="Script" uid="uid://bkaed5n1ofon3" path="res://escenas/Uis/elegir_nivel/ElegirNivel.cs" id="1_41tcs"]
 [ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="1_erani"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7uj1w"]
@@ -16,6 +17,8 @@ offset_left = 1.0
 offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_41tcs")
+packedLevel = ExtResource("1_7usrw")
 
 [node name="Fondo" type="Panel" parent="." unique_id=1494303178]
 layout_mode = 1
@@ -43,24 +46,6 @@ grow_vertical = 2
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 3
-
-[node name="Miniatura_nivel" parent="Fondo/Container" unique_id=524441535 instance=ExtResource("1_7usrw")]
-layout_mode = 2
-
-[node name="Miniatura_nivel2" parent="Fondo/Container" unique_id=2124856687 instance=ExtResource("1_7usrw")]
-layout_mode = 2
-
-[node name="Miniatura_nivel3" parent="Fondo/Container" unique_id=2057759310 instance=ExtResource("1_7usrw")]
-layout_mode = 2
-
-[node name="Miniatura_nivel4" parent="Fondo/Container" unique_id=1458403452 instance=ExtResource("1_7usrw")]
-layout_mode = 2
-
-[node name="Miniatura_nivel5" parent="Fondo/Container" unique_id=727537555 instance=ExtResource("1_7usrw")]
-layout_mode = 2
-
-[node name="Miniatura_nivel6" parent="Fondo/Container" unique_id=896939836 instance=ExtResource("1_7usrw")]
-layout_mode = 2
 
 [node name="Label" type="Label" parent="Fondo" unique_id=1526683909]
 layout_mode = 1
