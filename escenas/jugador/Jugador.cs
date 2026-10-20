@@ -11,9 +11,11 @@ public partial class Jugador : CharacterBody2D
 	[Export] public float Speed = 300.0f;
 	[Export] public float SprintMultiplier = 2.0f;
 	[Export] public double DoubleTapWindow = 0.3; //Segundos para considerar el doble input
+	[Export] public float DuracionInvulnerabilidadRespawn = 1.5f;
 	private double _timeSinceLastPress = 999.0;
 	private int _lastTapDirection = 0;
 	private bool _isSprinting = false;
+	private float _tiempoInvulnerable;
 
 	private int _consecutiveJump = 0;
 
@@ -41,10 +43,9 @@ public partial class Jugador : CharacterBody2D
 	
 		private void OnPeligroDetectado(Node2D body)
 	{
-		// Verificamos si el objeto detectado es una capa de tiles
+		// Conserva el alcance amplio del detector para los peligros del terreno.
 		if (body is TileMapLayer)
 		{
-			// Reutilizamos el método de muerte que ya tenía el jugador
 			Morir();
 		}
 	}
@@ -77,6 +78,7 @@ public partial class Jugador : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		_tiempoInvulnerable = Mathf.Max(0.0f, _tiempoInvulnerable - (float)delta);
 		Vector2 velocity = Velocity;
 
 		if (!IsOnFloor())
@@ -168,6 +170,13 @@ public partial class Jugador : CharacterBody2D
 	// NUEVO: Método para "morir" y regresar al último checkpoint
 	public void Morir()
 	{
+		// Evita muertes repetidas al reaparecer sobre un enemigo o peligro,
+		// especialmente si el checkpoint queda junto a un águila.
+		if (_tiempoInvulnerable > 0.0f)
+			return;
+
+		_tiempoInvulnerable = DuracionInvulnerabilidadRespawn;
+
 		// Death can occur during a physics query; reset platforms after it finishes.
 		GetTree().CallGroupFlags((uint)SceneTree.GroupCallFlags.Deferred,
 			"plataformas_reiniciables", "reiniciar");

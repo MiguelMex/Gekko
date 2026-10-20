@@ -36,9 +36,16 @@ public partial class Aguila : CharacterBody2D
     public override void _Ready()
     {
         _sprite = GetNode<AnimatedSprite2D>("sprite");
+        GetNode<Area2D>("DamageArea").BodyEntered += OnDamageAreaBodyEntered;
         _posicionInicial = GlobalPosition;
         _sprite.Play("patrulla");
         BuscarJugador();
+    }
+
+    private void OnDamageAreaBodyEntered(Node2D body)
+    {
+        if (body is Jugador jugador)
+            jugador.Morir();
     }
 
     public override void _PhysicsProcess(double delta)
