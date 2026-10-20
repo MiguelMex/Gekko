@@ -34,7 +34,19 @@ position = Vector2(5724, 192)
 zoom = Vector2(0.3, 0.3)
 
 [node name="Aguila" parent="." unique_id=189950966 instance=ExtResource("4_aguila")]
-position = Vector2(4993, 368)
+position = Vector2(1023.9999, 2889.0002)
+scale = Vector2(1.2203987, 1.2879132)
+
+[node name="Aguila2" parent="." unique_id=1228802677 instance=ExtResource("4_aguila")]
+position = Vector2(4966.9995, 377)
+scale = Vector2(1.2203987, 1.2879132)
+
+[node name="Aguila3" parent="." unique_id=654509536 instance=ExtResource("4_aguila")]
+position = Vector2(15380.999, 2023)
+scale = Vector2(1.2203987, 1.2879132)
+
+[node name="Aguila4" parent="." unique_id=223378779 instance=ExtResource("4_aguila")]
+position = Vector2(27405.998, 2396)
 scale = Vector2(1.2203987, 1.2879132)
 
 [node name="KillZone" parent="." unique_id=1668862344 instance=ExtResource("2_bcnh3")]
@@ -51,7 +63,16 @@ scale = Vector2(12.409955, 1.3867831)
 position = Vector2(-129, 2237)
 
 [node name="Checkpoint2" parent="." unique_id=1608820332 instance=ExtResource("3_bcnh3")]
-position = Vector2(2961, 1850)
+position = Vector2(5325, 2145)
+
+[node name="Checkpoint3" parent="." unique_id=2062339508 instance=ExtResource("3_bcnh3")]
+position = Vector2(5850, -174)
+
+[node name="Checkpoint4" parent="." unique_id=1703642695 instance=ExtResource("3_bcnh3")]
+position = Vector2(17890, 1460)
+
+[node name="Checkpoint5" parent="." unique_id=212515931 instance=ExtResource("3_bcnh3")]
+position = Vector2(36324, 618)
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]
