@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://iulhxmqntovk" path="res://recursos/sprites/enemigo_aguila/aguila_animaciones.tres" id="2_frames"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(80, 191)
+size = Vector2(60.10523, 191)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_damage"]
 size = Vector2(96, 207)
@@ -20,14 +20,14 @@ sprite_frames = ExtResource("2_frames")
 animation = &"patrulla"
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=292292637]
-position = Vector2(19, -95.5)
+position = Vector2(18, -95.5)
 scale = Vector2(1.1646242, 1)
 shape = SubResource("RectangleShape2D_body")
 
-[node name="AreaDaño" type="Area2D" parent="." unique_id=1927562811]
+[node name="DamageArea" type="Area2D" parent="." unique_id=1927562811]
 position = Vector2(19, -95.5)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDaño" unique_id=1149938417]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1149938417]
 scale = Vector2(1.1646242, 1)
 shape = SubResource("RectangleShape2D_damage")
