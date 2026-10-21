@@ -8,6 +8,26 @@
 [ext_resource type="Texture2D" uid="uid://bks3e2d75rkr1" path="res://recursos/sprites/jugador/tongue.png" id="5_vkjxu"]
 [ext_resource type="Texture2D" uid="uid://dgvm1q1kg1p52" path="res://recursos/sprites/jugador/sprint.png" id="5_xlrr1"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f517"]
+atlas = ExtResource("3_qsk7m")
+region = Rect2(0, 0, 418, 451)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_macmf"]
+atlas = ExtResource("3_qsk7m")
+region = Rect2(418, 0, 418, 451)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk04x"]
+atlas = ExtResource("5_vkjxu")
+region = Rect2(812, 0, 406, 466)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb8st"]
+atlas = ExtResource("5_vkjxu")
+region = Rect2(406, 0, 406, 466)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vbv5"]
+atlas = ExtResource("5_vkjxu")
+region = Rect2(0, 0, 406, 466)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_eufxw"]
 atlas = ExtResource("3_qsk7m")
 region = Rect2(0, 470, 418, 470)
@@ -140,6 +160,22 @@ region = Rect2(640, 338, 320, 329)
 atlas = ExtResource("5_xlrr1")
 region = Rect2(960, 338, 320, 329)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_d04vp"]
+atlas = ExtResource("5_vkjxu")
+region = Rect2(406, 0, 406, 466)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pki18"]
+atlas = ExtResource("5_vkjxu")
+region = Rect2(812, 0, 406, 466)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddpx4"]
+atlas = ExtResource("3_qsk7m")
+region = Rect2(418, 0, 418, 452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jffbf"]
+atlas = ExtResource("3_qsk7m")
+region = Rect2(0, 0, 418, 452)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_5udu8"]
 atlas = ExtResource("5_vkjxu")
 region = Rect2(0, 0, 418, 470)
@@ -190,6 +226,26 @@ region = Rect2(1254, 456, 418, 456)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7uj1w"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f517")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_macmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk04x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qb8st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vbv5")
+}],
+"loop": 2,
+"name": &"crouch",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eufxw")
@@ -319,6 +375,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_d04vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pki18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddpx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jffbf")
+}],
+"loop": 0,
+"name": &"stand_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0ug0u")
 }, {
 "duration": 1.0,
@@ -377,23 +450,30 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7uj1w"]
-size = Vector2(67, 194)
+size = Vector2(90, 344)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeas4"]
-size = Vector2(58, 161)
+size = Vector2(55, 249)
 
 [node name="jugador" type="CharacterBody2D" unique_id=674495634 groups=["player"]]
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_omvyu")
+
+[node name="wallcheck" type="RayCast2D" parent="." unique_id=1352380865]
+position = Vector2(0, 150)
+target_position = Vector2(135, 0)
+
+[node name="stepcheck" type="RayCast2D" parent="." unique_id=1857426298]
+position = Vector2(0, 110)
+target_position = Vector2(135, 0)
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1530838266]
 sprite_frames = SubResource("SpriteFrames_7uj1w")
-animation = &"run"
-frame = 7
-frame_progress = 1.0
+animation = &"crouch"
 speed_scale = 2.0
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=1264944243]
-position = Vector2(13.5, 41)
+position = Vector2(15, 47)
 shape = SubResource("RectangleShape2D_7uj1w")
 
 [node name="DetectorPeligros" type="Area2D" parent="." unique_id=83040781]
@@ -402,7 +482,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorPeligros" unique_id=1710168465]
-position = Vector2(-0.5, 4.5)
+position = Vector2(-1, 14.5)
 shape = SubResource("RectangleShape2D_eeas4")
 
 [connection signal="animation_finished" from="sprite" to="." method="_playerIsIdle"]

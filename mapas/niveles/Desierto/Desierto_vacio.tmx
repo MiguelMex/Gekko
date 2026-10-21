@@ -16,7 +16,7 @@
   <property name="world_x" type="int" value="0"/>
   <property name="world_y" type="int" value="0"/>
  </properties>
- <tileset firstgid="1" source="../../tilesets/Desierto.tsx"/>
+ <tileset firstgid="1" source="../../tilesets/desierto.tsx"/>
  <tileset firstgid="181" source="../../tilesets/Peligros.tsx"/>
  <layer id="1" name="Terreno" width="384" height="144">
   <data encoding="csv">
