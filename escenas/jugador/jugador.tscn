@@ -455,9 +455,17 @@ size = Vector2(90, 344)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeas4"]
 size = Vector2(55, 249)
 
-[node name="jugador" type="CharacterBody2D" unique_id=674495634]
+[node name="jugador" type="CharacterBody2D" unique_id=674495634 groups=["player"]]
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_omvyu")
+
+[node name="wallcheck" type="RayCast2D" parent="." unique_id=1352380865]
+position = Vector2(0, 150)
+target_position = Vector2(135, 0)
+
+[node name="stepcheck" type="RayCast2D" parent="." unique_id=1857426298]
+position = Vector2(0, 110)
+target_position = Vector2(135, 0)
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1530838266]
 sprite_frames = SubResource("SpriteFrames_7uj1w")

@@ -11,6 +11,7 @@ public partial class Jugador : CharacterBody2D
 	[Export] public float Speed = 400.0f;
 	[Export] public float SprintMultiplier = 2.0f;
 	[Export] public double DoubleTapWindow = 0.3; //Segundos para considerar el doble input
+	[Export] public float DuracionInvulnerabilidadRespawn = 1.5f;
 	
 	
 	[Export] public float StepUpHeight = 50f;   // antes 8f
@@ -23,6 +24,7 @@ public partial class Jugador : CharacterBody2D
 	private double _timeSinceLastPress = 999.0;
 	private int _lastTapDirection = 0;
 	private bool _isSprinting = false;
+	private float _tiempoInvulnerable;
 
 	private int _consecutiveJump = 0;
     private Vector2 previousPosition;
@@ -177,6 +179,8 @@ public partial class Jugador : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
+        _tiempoInvulnerable = Mathf.Max(0.0f, _tiempoInvulnerable - (float)delta);
+
         //No avanza si el juego está pausado
         if(GetTree().Paused) return;
         _ManagePause();
@@ -347,6 +351,12 @@ public partial class Jugador : CharacterBody2D
 	// NUEVO: Método para "morir" y regresar al último checkpoint
 	public void Morir()
 	{
+		// Evita muertes repetidas si reaparece junto al águila o a otro peligro.
+		if (_tiempoInvulnerable > 0.0f)
+			return;
+
+		_tiempoInvulnerable = DuracionInvulnerabilidadRespawn;
+
 		// Death can occur during a physics query; reset platforms after it finishes.
 		GetTree().CallGroupFlags((uint)SceneTree.GroupCallFlags.Deferred,
 			"plataformas_reiniciables", "reiniciar");
