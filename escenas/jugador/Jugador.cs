@@ -3,6 +3,11 @@ using System;
 
 public partial class Jugador : CharacterBody2D
 {
+    // Variable estática para llevar el registro de muertes durante la partida
+    public static int ContadorMuertesTotales = 0;
+
+    // Referencia al Label de la UI (asegúrate de ajustar la ruta si es diferente)
+    private Label _labelMuertes;
 
 	/**
 	[Export] cumple la función de mostrar un valor del script en el motor grafico de GODOT
@@ -85,8 +90,21 @@ public partial class Jugador : CharacterBody2D
     
     // Conectamos la señal que detecta cuando el jugador toca un peligro
     GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
+
+    // Buscamos el Label en la interfaz usando su ruta dentro del CanvasLayer
+        // (Ajusta la ruta exacta dependiendo de cómo nombraste tus nodos en la escena)
+        _labelMuertes = GetNodeOrNull<Label>("%ContadorMuertes");
+        ActualizarTextoMuertes();
+
 }
 	
+    private void ActualizarTextoMuertes()
+    {
+        if (_labelMuertes != null)
+        {
+            _labelMuertes.Text = $"Muertes: {ContadorMuertesTotales}";
+        }
+    }
 		private void OnPeligroDetectado(Node2D body)
 	{
 		// Verificamos si el objeto detectado es una capa de tiles
@@ -366,7 +384,11 @@ public partial class Jugador : CharacterBody2D
 		// Opcional pero recomendado: Frenar su velocidad para que no siga cayendo con inercia
 		Velocity = Vector2.Zero;
 		
-		GD.Print("El jugador ha muerto y reaparecido.");
+		// 1. Incrementamos el contador
+        ContadorMuertesTotales++;
+        ActualizarTextoMuertes();
+
+        GD.Print($"El jugador ha muerto. Muertes totales: {ContadorMuertesTotales}");
 	}
 	
 	

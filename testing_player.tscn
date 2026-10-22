@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="2_bcnh3"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="3_bcnh3"]
 [ext_resource type="PackedScene" uid="uid://c0kmr1jk6hnyi" path="res://escenas/enemigos/aguila.tscn" id="4_aguila"]
+[ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="6_10416"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
 size = Vector2(1151, 70)
@@ -20,7 +21,6 @@ scale = Vector2(6, 6)
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2010657371]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1003542367]
-visible = false
 position = Vector2(576.5, 615)
 shape = SubResource("RectangleShape2D_p66os")
 
@@ -73,6 +73,16 @@ position = Vector2(17890, 1460)
 
 [node name="Checkpoint5" parent="." unique_id=212515931 instance=ExtResource("3_bcnh3")]
 position = Vector2(36324, 618)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=607302208]
+
+[node name="ContadorMuertes" type="Label" parent="CanvasLayer" unique_id=1549392933]
+unique_name_in_owner = true
+offset_right = 165.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("6_10416")
+theme_override_font_sizes/font_size = 24
+text = "Muertes: 0"
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]
