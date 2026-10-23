@@ -7,6 +7,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_7uj1w"]
 font = ExtResource("2_87ok4")
 font_size = 25
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.6666667)
+shadow_offset = Vector2(1, 5)
 
 [node name="Miniatura_nivel" type="Control" unique_id=524441535]
 custom_minimum_size = Vector2(350, 250)
@@ -46,13 +49,14 @@ text = "Nombre del nivel"
 label_settings = SubResource("LabelSettings_7uj1w")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1408398975]
+[node name="Image" type="TextureRect" parent="Background" unique_id=1408398975]
 layout_mode = 0
-offset_left = 37.000015
-offset_top = 16.0
-offset_right = 837.0
-offset_bottom = 516.0
+offset_left = 34.000015
+offset_top = 17.0
+offset_right = 834.0
+offset_bottom = 517.0
 scale = Vector2(0.35338977, 0.36532456)
 texture = ExtResource("1_i5kch")
+expand_mode = 1
 
 [connection signal="pressed" from="Background" to="." method="_goToLevel"]

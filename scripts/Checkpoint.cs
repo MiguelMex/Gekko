@@ -28,14 +28,18 @@ public partial class Checkpoint : Area2D
 
     private void OnBodyEntered(Node2D body)
     {
-        if (body is Jugador jugador && !_isActivated)
+        if (body is Jugador jugador && !_isActivated) 
         {
             _isActivated = true;
             jugador.ActualizarCheckpoint(GlobalPosition);
 
-            // AQUÍ DISPARAMOS EL GUARDADO AUTOMÁTICO AL TOCAR LA BANDERA
-            SaveManager.SaveGame(GlobalPosition, level: 1, hasKey: false); 
-            // (Aquí puedes pasar las variables reales de tu juego: posición, nivel actual, objetos, etc.)
+            //Se asegura de que el nivel no se haya cargado manualmente, si es el caso no guarda de manera automatica
+            if (!LoadingScreen.levelSelected)
+            {
+                // AQUÍ DISPARAMOS EL GUARDADO AUTOMÁTICO AL TOCAR LA BANDERA
+                SaveManager.SaveGame(GlobalPosition, level: 1, hasKey: false); 
+                // (Aquí puedes pasar las variables reales de tu juego: posición, nivel actual, objetos, etc.)
+            }
     
 
             if (_animSprite != null)

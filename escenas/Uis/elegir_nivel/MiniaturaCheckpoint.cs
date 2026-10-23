@@ -9,9 +9,11 @@ public partial class MiniaturaCheckpoint : Control
 
 	public Node levelPath;
 	public string levelScenePath;
+	private Button button;
 	public override void _Ready()
 	{
-		var label = GetNode<Label>("Button/Name");
+		button = GetNode<Button>("Button");
+		button.Text = checkpointName;
 
 	}
 
@@ -25,6 +27,7 @@ public partial class MiniaturaCheckpoint : Control
 
 		LoadingScreen.targetScenePath = levelScenePath;
 		LoadingScreen.targetPlayerSpawnPosition = position;
+		LoadingScreen.levelSelected = true;
 		GetTree().ChangeSceneToFile("res://escenas/Uis/loading_screen/loading_screen.tscn");
 	}
 

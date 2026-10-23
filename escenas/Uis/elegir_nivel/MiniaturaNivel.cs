@@ -6,8 +6,11 @@ public partial class MiniaturaNivel : Control
 	[Export] public string name = "";
 	[Export] public string levelRoute = "";
 
+	[Export] public string imageRoute = "";
+
 	//La etiqueta con el nombre
 	private Label label;
+	private TextureRect textureRect;
 	//La ruta para el nivel que va a cargar
 	//No se usa aquí, se pasa a la seleección de checkpoints
 	private string path;
@@ -18,7 +21,9 @@ public partial class MiniaturaNivel : Control
 		
 		//Cambiar el nombre
 		label.Text = name;
-
+		var texture = GD.Load<Texture2D>(imageRoute);
+		textureRect = GetNode<TextureRect>("Background/Image");
+		textureRect.Texture = texture;
 
 		path = _findLevelScene(levelRoute);
 		if (string.IsNullOrEmpty(path))
@@ -70,6 +75,7 @@ public partial class MiniaturaNivel : Control
 		LoadingScreen.targetScenePath = "res://escenas/Uis/elegir_nivel/elegir_checkpoint.tscn";
 		LoadingScreen.targetLevelPath = path;
 		LoadingScreen.sceneToLoadName = name;
+		LoadingScreen.levelImagePath = imageRoute;
 		GetTree().ChangeSceneToFile("res://escenas/Uis/loading_screen/loading_screen.tscn");
 
 	}

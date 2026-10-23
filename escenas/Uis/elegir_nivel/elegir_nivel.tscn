@@ -3,10 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://d1rswxdirwub6" path="res://escenas/Uis/elegir_nivel/miniatura_nivel.tscn" id="1_7usrw"]
 [ext_resource type="Script" uid="uid://bkaed5n1ofon3" path="res://escenas/Uis/elegir_nivel/ElegirNivel.cs" id="1_41tcs"]
 [ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="1_erani"]
+[ext_resource type="Texture2D" uid="uid://heufx2xh32ph" path="res://recursos/imagenes/Gecko-nivel.png" id="4_0j4hn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41tcs"]
+bg_color = Color(0.11489678, 0.11489683, 0.11489671, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7uj1w"]
 font = ExtResource("1_erani")
-font_size = 30
+font_size = 40
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.6666667)
+shadow_offset = Vector2(1, 7)
 
 [node name="Elegir_nivel" type="Control" unique_id=1882487657]
 layout_mode = 3
@@ -27,25 +34,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_41tcs")
 metadata/_edit_use_anchors_ = true
 
-[node name="Container" type="GridContainer" parent="Fondo" unique_id=559366730]
-custom_minimum_size = Vector2(400, 300)
+[node name="Background" type="TextureRect" parent="Fondo" unique_id=1838851273]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -492.0
-offset_top = -232.0
-offset_right = 508.0
-offset_bottom = 268.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/h_separation = 4
-theme_override_constants/v_separation = 4
-columns = 3
+expand_mode = 1
 
 [node name="Label" type="Label" parent="Fondo" unique_id=1526683909]
 layout_mode = 1
@@ -59,3 +58,34 @@ offset_bottom = 60.0
 grow_horizontal = 2
 text = "Elige un nivel"
 label_settings = SubResource("LabelSettings_7uj1w")
+
+[node name="Image" type="TextureRect" parent="Fondo" unique_id=1888244934]
+modulate = Color(1, 1, 1, 0.39215687)
+layout_mode = 0
+anchor_left = 0.5060764
+anchor_top = -0.10185185
+anchor_right = 1.3237847
+anchor_bottom = 1.029321
+texture = ExtResource("4_0j4hn")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Scroll" type="ScrollContainer" parent="Fondo" unique_id=87378488]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028645834
+anchor_top = 0.13580246
+anchor_right = 0.5364583
+anchor_bottom = 0.9691358
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Container" type="GridContainer" parent="Fondo/Scroll" unique_id=559366730]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 2

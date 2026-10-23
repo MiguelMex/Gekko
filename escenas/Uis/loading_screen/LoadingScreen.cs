@@ -13,6 +13,8 @@ public partial class LoadingScreen : Control
 	public static string targetLevelPath;
 	public static string sceneToLoadName;
 	public static Vector2? targetPlayerSpawnPosition;
+	public static bool levelSelected;
+	public static string levelImagePath;
 
 	
 	// Called when the node enters the scene tree for the first time.

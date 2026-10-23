@@ -4,10 +4,68 @@
 [ext_resource type="Script" uid="uid://bxtufkaxsqne6" path="res://escenas/Uis/elegir_nivel/ElegirCheckpoint.cs" id="1_xl4sd"]
 [ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="2_vkp4u"]
 [ext_resource type="PackedScene" uid="uid://bdmjotr886628" path="res://escenas/Uis/elegir_nivel/miniatura_checkpoint.tscn" id="2_xl4sd"]
+[ext_resource type="FontFile" uid="uid://dc201i72yumq2" path="res://recursos/Tipografias/m5x7.ttf" id="4_p4akx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7uj1w"]
 font = ExtResource("2_vkp4u")
-font_size = 30
+font_size = 40
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.6666667)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_amr2a"]
+load_path = "res://.godot/imported/botonalseleccionarprueba.png-a203be9b0a8fbf8dd25e0e36574aba59.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k3f3s"]
+texture = SubResource("CompressedTexture2D_amr2a")
+texture_margin_left = 50.0
+texture_margin_top = 20.0
+texture_margin_right = 50.0
+texture_margin_bottom = 20.0
+expand_margin_left = 90.0
+expand_margin_top = 20.0
+expand_margin_right = 90.0
+expand_margin_bottom = 30.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p4akx"]
+load_path = "res://.godot/imported/botonalseleccionarprueba.png-a203be9b0a8fbf8dd25e0e36574aba59.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mw7lf"]
+content_margin_left = 60.0
+content_margin_top = 20.0
+content_margin_right = 60.0
+content_margin_bottom = 15.0
+texture = SubResource("CompressedTexture2D_p4akx")
+texture_margin_left = 50.0
+texture_margin_top = 20.0
+texture_margin_right = 50.0
+texture_margin_bottom = 20.0
+expand_margin_left = 60.0
+expand_margin_top = 20.0
+expand_margin_right = 60.0
+expand_margin_bottom = 30.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_spjjw"]
+load_path = "res://.godot/imported/marcosbotonprueba.png-b4afc70fc1be986b3aadbbc8c24fed95.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7sgoo"]
+texture = SubResource("CompressedTexture2D_spjjw")
+texture_margin_left = 50.0
+texture_margin_top = 20.0
+texture_margin_right = 50.0
+texture_margin_bottom = 20.0
+expand_margin_left = 60.0
+expand_margin_top = 20.0
+expand_margin_right = 60.0
+expand_margin_bottom = 30.0
+
+[sub_resource type="Theme" id="Theme_s4cap"]
+default_font_size = 20
+Button/fonts/font = ExtResource("4_p4akx")
+Button/styles/focus = SubResource("StyleBoxTexture_k3f3s")
+Button/styles/hover = SubResource("StyleBoxTexture_mw7lf")
+Button/styles/normal = SubResource("StyleBoxTexture_7sgoo")
 
 [node name="Elegir_checkpoint" type="Control" unique_id=1885080474]
 layout_mode = 3
@@ -29,29 +87,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1930606722]
+[node name="Image" type="TextureRect" parent="Background" unique_id=1930606722]
+modulate = Color(1, 1, 1, 0.39215687)
 layout_mode = 0
 offset_left = 28.999998
 offset_top = 28.0
-offset_right = 738.0
+offset_right = 1753.0159
 offset_bottom = 501.0
 scale = Vector2(0.6258643, 1.2470162)
 texture = ExtResource("1_14vme")
-
-[node name="Container" type="VBoxContainer" parent="Background" unique_id=868885540]
-custom_minimum_size = Vector2(600, 400)
-layout_mode = 0
-offset_left = 517.0
-offset_top = 192.0
-offset_right = 1117.0
-offset_bottom = 592.0
-theme_override_constants/separation = 10
+expand_mode = 1
 
 [node name="Label" type="Label" parent="Background" unique_id=1823107285]
-layout_mode = 0
-offset_left = 507.0
-offset_top = 60.0
-offset_right = 827.0
-offset_bottom = 97.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -211.0
+offset_top = 43.0
+offset_right = 216.0
+offset_bottom = 92.0
+grow_horizontal = 2
 text = "Nombre del nivel"
 label_settings = SubResource("LabelSettings_7uj1w")
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="Background" unique_id=1506274039]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 128.0
+offset_right = 1080.0
+offset_bottom = 599.0
+
+[node name="Container" type="VBoxContainer" parent="Background/Scroll" unique_id=868885540]
+custom_minimum_size = Vector2(900, 450)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = SubResource("Theme_s4cap")
+theme_override_constants/separation = 10

@@ -6,13 +6,21 @@ public partial class ElegirCheckpoint : Control
 {
 	// Called when the node enters the scene tree for the first time.
 	[Export] public PackedScene packedCheckpoint;
+	[Export] public string imageRoute;
 	private Label label;
 	private string _levelPath;
 	private VBoxContainer vBoxContainer;
+	private TextureRect textureRect;
 	public override void _Ready()
 	{
-		vBoxContainer = GetNode<VBoxContainer>("Background/Container");
+		vBoxContainer = GetNode<VBoxContainer>("Background/Scroll/Container");
 		label = GetNode<Label>("Background/Label");
+		textureRect = GetNode<TextureRect>("Background/Image");
+
+		imageRoute = LoadingScreen.levelImagePath;
+
+		var texture = GD.Load<Texture2D>(imageRoute);
+		textureRect.Texture = texture;
 
 		label.Text = LoadingScreen.sceneToLoadName;
 
