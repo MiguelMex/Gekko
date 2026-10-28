@@ -39,11 +39,11 @@ public partial class Jugador : CharacterBody2D
 
     //Valores para la hailidad de velocidad acumulada
     [Export]
-    public float speedGrowRate = 0.01f;
+    public float speedGrowRate = 40f;
     [Export]
-    public float maxSpeedStored = 4.0f;
+    public float maxSpeedStored = 400f;
     [Export]
-    public float speedStored = 1;
+    public float speedStored = 0;
     [Export]
     public PackedScene shockwave;
 
@@ -56,6 +56,9 @@ public partial class Jugador : CharacterBody2D
     public float knockbackDuration = 0.25f;
 
     public bool is_crouching = false;
+
+    //Si la habiidad esta activada
+    private bool _abilityState = false;
 
 	public override void _Ready()
 {
@@ -180,6 +183,13 @@ public partial class Jugador : CharacterBody2D
         }
     }
 
+    //Se activa cuando la tecla esta siendo presionada
+    public void _storeSpeedStatus()
+    {
+        //Establece el estado
+        speedStored *= -1;
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         //No avanza si el juego está pausado
@@ -238,6 +248,26 @@ public partial class Jugador : CharacterBody2D
             return;
         }
 
+        /**
+        Detecta si el boton de abilidad ah sido presionado
+        Con una bandera, detecta uno de tres estados:
+        -No esta acumulando velocidad
+        -Esta acumulando velocidad
+        -Tiene velocidad acumulada y va a liberarla
+        */
+        if (Input.IsActionJustPressed("ability"))
+        {
+            if (_abilityState)
+            {
+                //La habilidad esta activada, esta acumulando velocidad y va a liberarla
+                _createExplosion();
+            } else
+            {
+                //La habilidad no está activada, va a activarla y comenzar a acumular velocidad
+                _abilityState = true;
+            }
+        }
+
 		/**
 		Detecta el imput enviado por el jugador, se definen en el motor grafico
 		Solo se está usando izquierda y derecha así que no hay necesidad de asignar las otras dos
@@ -267,10 +297,17 @@ public partial class Jugador : CharacterBody2D
 		//Detecta si hubo algun input, no puede caminar mientras está agachado
 		if (direction != Vector2.Zero && !is_crouching)
 		{
-            speedStored = Mathf.Min(speedStored + speedGrowRate, maxSpeedStored);
+            //Detecta si esta acumulando velocidad
+            if (_abilityState)
+            {
+                //Solo acumula velocidad si la habilidad esta activada
+                speedStored = Mathf.Min(speedStored + speedGrowRate * (float)delta, maxSpeedStored);
+                GD.Print("Velocidad acumulada: " + speedStored);
+            }
             float currentSpeed = _isSprinting ? Speed * SprintMultiplier : Speed;
 			//Cambio en la velocidad del jugador
-			velocity.X = direction.X * currentSpeed * speedStored;
+            float speedMultiplier = 1f + (speedStored / Speed);
+			velocity.X = direction.X * currentSpeed * speedMultiplier;
             _animateWalk(_isSprinting);
             _timeIdle = 0;
 		}
@@ -327,19 +364,27 @@ public partial class Jugador : CharacterBody2D
         //Si el jugador se mueve a la derecha (x>0) y la pared empuja a la izquiera (normal.X<0), chocan de frene
         if(Mathf.Sign(normal.X) == -Math.Sign(inputDirection.X))
         {
-            //Calculo del daño y area de la onda expansiva
-            var radious = 50 * speedStored;
-            var damage  = 2 * speedStored;
-            //GD.Print("Daño: "+damage+", radio: "+radious);
-            if (shockwave != null && speedStored >= 1)
-            {
-                var wave = shockwave.Instantiate<Shockwave>();
-                GetParent().AddChild(wave);
-                wave.GlobalPosition = GlobalPosition;
-                wave._setAttributes(radious, damage);
-            }
-            speedStored = 1;
+            _createExplosion();
         }
+    }
+
+    //Crea una explosión y resetea la velocidad acumulada
+    private void _createExplosion()
+    {
+        //Calculo del daño y area de la onda expansiva
+        var radious = speedStored / 10;
+        var damage  = speedStored / 10;
+        //GD.Print("Daño: "+damage+", radio: "+radious);
+        if (shockwave != null && speedStored > 0)
+        {
+            GD.Print("Crear explosión");
+            var wave = shockwave.Instantiate<Shockwave>();
+            GetParent().AddChild(wave);
+            wave.GlobalPosition = GlobalPosition;
+            wave._setAttributes(radious, damage);
+        }
+        speedStored = 0;
+        _abilityState = false;
     }
 
 	// NUEVO: Método público para actualizar el checkpoint
