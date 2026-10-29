@@ -39,11 +39,11 @@ public partial class Jugador : CharacterBody2D
 
     //Valores para la hailidad de velocidad acumulada
     [Export]
-    public float speedGrowRate = 40f;
+    public float speedGrowRate = 0.5f;
     [Export]
-    public float maxSpeedStored = 400f;
+    public float maxSpeedStored = 4f;
     [Export]
-    public float speedStored = 0;
+    public float speedStored = 1;
     [Export]
     public PackedScene shockwave;
 
@@ -306,8 +306,7 @@ public partial class Jugador : CharacterBody2D
             }
             float currentSpeed = _isSprinting ? Speed * SprintMultiplier : Speed;
 			//Cambio en la velocidad del jugador
-            float speedMultiplier = 1f + (speedStored / Speed);
-			velocity.X = direction.X * currentSpeed * speedMultiplier;
+			velocity.X = direction.X * currentSpeed * speedStored;
             _animateWalk(_isSprinting);
             _timeIdle = 0;
 		}
@@ -372,10 +371,10 @@ public partial class Jugador : CharacterBody2D
     private void _createExplosion()
     {
         //Calculo del daño y area de la onda expansiva
-        var radious = speedStored / 10;
-        var damage  = speedStored / 10;
+        var radious = speedStored * 2;
+        var damage  = speedStored * 3;
         //GD.Print("Daño: "+damage+", radio: "+radious);
-        if (shockwave != null && speedStored > 0)
+        if (shockwave != null && speedStored > 2)
         {
             GD.Print("Crear explosión");
             var wave = shockwave.Instantiate<Shockwave>();
@@ -383,7 +382,7 @@ public partial class Jugador : CharacterBody2D
             wave.GlobalPosition = GlobalPosition;
             wave._setAttributes(radious, damage);
         }
-        speedStored = 0;
+        speedStored = 1;
         _abilityState = false;
     }
 
@@ -406,6 +405,8 @@ public partial class Jugador : CharacterBody2D
 		// Opcional pero recomendado: Frenar su velocidad para que no siga cayendo con inercia
 		Velocity = Vector2.Zero;
 		
+        speedStored = 1;
+        _abilityState = false;
 		GD.Print("El jugador ha muerto y reaparecido.");
 	}
 	
