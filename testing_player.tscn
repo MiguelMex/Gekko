@@ -84,6 +84,16 @@ theme_override_fonts/font = ExtResource("6_10416")
 theme_override_font_sizes/font_size = 24
 text = "Muertes: 0"
 
+[node name="ContadorVelocidad" type="Label" parent="CanvasLayer" unique_id=1932865808]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_top = 29.0
+offset_right = 77.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("6_10416")
+theme_override_font_sizes/font_size = 24
+text = "Velocidad: 0"
+
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío2" to="jugador" method="_on_kill_zone_body_entered"]

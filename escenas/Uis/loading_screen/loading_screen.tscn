@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://daaskwd4i2yg7"]
 
 [ext_resource type="Script" uid="uid://cefkju02taesn" path="res://escenas/Uis/loading_screen/LoadingScreen.cs" id="1_2kxj0"]
+[ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="2_ork3f"]
 
 [node name="LoadingScreen" type="Control" unique_id=2073744070]
 layout_mode = 3
@@ -10,6 +11,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2kxj0")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=293906674]
+layout_mode = 0
+offset_right = 1146.0
+offset_bottom = 638.0
+color = Color(0.14911404, 0.14911404, 0.14911404, 1)
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1668495802]
 layout_mode = 1
@@ -21,3 +28,16 @@ anchor_bottom = 0.5208333
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=539967663]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.98700005
+anchor_bottom = 0.938
+offset_left = 468.0
+offset_top = 253.0
+offset_right = -374.02405
+offset_bottom = -308.82404
+theme_override_fonts/font = ExtResource("2_ork3f")
+theme_override_font_sizes/font_size = 28
+text = "CARGANDO..."

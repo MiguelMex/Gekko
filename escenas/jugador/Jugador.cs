@@ -6,6 +6,9 @@ public partial class Jugador : CharacterBody2D
     // Variable estática para llevar el registro de muertes durante la partida
     public static int ContadorMuertesTotales = 0;
 
+    //Variable de control de la velocidad acumulada
+    private Label _labelVelocidad; // NUEVO: Referencia para el texto de velocidad
+
     // Referencia al Label de la UI (asegúrate de ajustar la ruta si es diferente)
     private Label _labelMuertes;
 
@@ -96,13 +99,25 @@ public partial class Jugador : CharacterBody2D
         _labelMuertes = GetNodeOrNull<Label>("%ContadorMuertes");
         ActualizarTextoMuertes();
 
-}
+        _labelVelocidad = GetNodeOrNull<Label>("%ContadorVelocidad"); // NUEVO
+
+}   
 	
     private void ActualizarTextoMuertes()
     {
         if (_labelMuertes != null)
         {
             _labelMuertes.Text = $"Muertes: {ContadorMuertesTotales}";
+        }
+    }
+
+    private void ActualizarTextoVelocidad()
+    {
+        if (_labelVelocidad != null)
+        {
+            // Mostramos la velocidad actual redondeada (puedes usar Velocity.X o Velocity.Length())
+            int velocidadActual = Mathf.RoundToInt(Mathf.Abs(Velocity.X));
+            _labelVelocidad.Text = $"Vel: {velocidadActual}";
         }
     }
 		private void OnPeligroDetectado(Node2D body)
@@ -305,6 +320,9 @@ public partial class Jugador : CharacterBody2D
         MoveAndSlide();
         //Detecta si hubo una colisión en este frame
         _detectHorizontalCollision(direction);
+
+        // NUEVO: Actualizar el texto de la velocidad en pantalla cada frame
+        ActualizarTextoVelocidad();
     }
 
     //Aplica el knockback de una explosión
