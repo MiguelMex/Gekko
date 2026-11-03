@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvh0vtip3vutn"
-path="res://.godot/imported/peligros.png-334cc739341763a2cec6ae6c140971a6.ctex"
+uid="uid://de5a328oortbl"
+path="res://.godot/imported/Checkpoint Off.png-ac11c555031ee1465ebf39a2476560f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mapas/tilesets copy/peligros.png"
-dest_files=["res://.godot/imported/peligros.png-334cc739341763a2cec6ae6c140971a6.ctex"]
+source_file="res://recursos/imagenes/Checkpoint Off.png"
+dest_files=["res://.godot/imported/Checkpoint Off.png-ac11c555031ee1465ebf39a2476560f8.ctex"]
 
 [params]
 
