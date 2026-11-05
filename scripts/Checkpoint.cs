@@ -1,59 +1,78 @@
+
 using Godot;
 using System;
 
 public partial class Checkpoint : Area2D
 {
-    private bool _isActivated = false;
-    private AnimatedSprite2D _animSprite; // Cambiamos Sprite2D por AnimatedSprite2D
+	private Sprite2D _banderaOFF;
+	private Sprite2D _banderaON;
+	private AudioStreamPlayer2D _sonidoCheckpoint;
+	private Marker2D _spawnPoint;
 
-    public override void _Ready()
-{
-    // Buscamos el nodo AnimatedSprite2D
-    _animSprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
+	// Efecto de chispitas
+	private AnimatedSprite2D _efecto;
 
-    if (_animSprite != null)
-    {
-        // Ponemos opacidad inicial al 40%
-        Color color = _animSprite.Modulate;
-        color.A = 0.4f; 
-        _animSprite.Modulate = color;
+	private bool _isActivated = false;
 
-        // INICIA LA ANIMACIÓN AUTOMÁTICAMENTE
-        _animSprite.Play("default"); // Asegúrate de que "default" sea el nombre de tu animación en el SpriteFrames
-    }
+	public override void _Ready()
+	{
+		// Referencias a los nodos de la escena.
+		_banderaOFF = GetNode<Sprite2D>("BanderaOFF");
+		_banderaON = GetNode<Sprite2D>("BanderaON");
+		_sonidoCheckpoint = GetNode<AudioStreamPlayer2D>("SonidoCheckpoint");
+		_spawnPoint = GetNode<Marker2D>("SpawnPoint");
 
-    // Conectamos la señal de colisión
-    BodyEntered += OnBodyEntered;
-}
+		// Referencia y configuración del efecto.
+		_efecto = GetNode<AnimatedSprite2D>("Efecto");
+		_efecto.Visible = false;
+		_efecto.AnimationFinished += OnEfectoFinished;
 
-    private void OnBodyEntered(Node2D body)
-    {
-        if (body is Jugador jugador && !_isActivated) 
-        {
-            _isActivated = true;
-            jugador.ActualizarCheckpoint(GlobalPosition);
+		// Estado inicial del checkpoint.
+		_banderaOFF.Visible = true;
+		_banderaON.Visible = false;
 
-            //Se asegura de que el nivel no se haya cargado manualmente, si es el caso no guarda de manera automatica
-            if (!LoadingScreen.levelSelected)
-            {
-                // AQUÍ DISPARAMOS EL GUARDADO AUTOMÁTICO AL TOCAR LA BANDERA
-                SaveManager.SaveGame(GlobalPosition, level: 1, hasKey: false); 
-                // (Aquí puedes pasar las variables reales de tu juego: posición, nivel actual, objetos, etc.)
-            }
-    
+		// Detectar cuando un cuerpo entra en el área.
+		BodyEntered += OnBodyEntered;
+	}
 
-            if (_animSprite != null)
-            {
-                // Iluminamos por completo al 100% de opacidad
-                Color color = _animSprite.Modulate;
-                color.A = 1.0f;
-                _animSprite.Modulate = color;
+	private void OnBodyEntered(Node2D body)
+	{
+		// Solo activar cuando entra el jugador y todavía está apagado.
+		if (body is Jugador jugador && !_isActivated)
+		{
+			_isActivated = true;
 
-                // Opcional: Cambiar a la animación de movimiento si la creaste
-                // _animSprite.Play("activo");
-            }
+			// Reproducir las chispitas una sola vez.
+			_efecto.Visible = true;
+			_efecto.Play("activar");
 
-            GD.Print("¡Checkpoint activado!");
-        }
-    }
+			// Actualizar el punto de reaparición del jugador.
+			jugador.ActualizarCheckpoint(_spawnPoint.GlobalPosition);
+
+			// Cambiar la apariencia de OFF a ON.
+			_banderaOFF.Visible = false;
+			_banderaON.Visible = true;
+
+			// Reproducir el sonido si hay un archivo asignado.
+			if (_sonidoCheckpoint.Stream != null)
+			{
+				_sonidoCheckpoint.Play();
+			}
+
+			// Guardar el progreso del jugador.
+			SaveManager.SaveGame(
+				_spawnPoint.GlobalPosition,
+				level: 1,
+				hasKey: false
+			);
+
+			GD.Print("¡Checkpoint activado!");
+		}
+	}
+
+	// Ocultar las chispitas cuando termina la animación.
+	private void OnEfectoFinished()
+	{
+		_efecto.Visible = false;
+	}
 }

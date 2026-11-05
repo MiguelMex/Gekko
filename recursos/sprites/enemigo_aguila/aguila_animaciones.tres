@@ -1,0 +1,327 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://iulhxmqntovk"]
+
+[ext_resource type="Texture2D" uid="uid://cycum7qva8ef3" path="res://recursos/sprites/enemigo_aguila/aguila_patrulla.png" id="tex_0"]
+[ext_resource type="Texture2D" uid="uid://iwxwv6ku8ynr" path="res://recursos/sprites/enemigo_aguila/aguila_correr.png" id="tex_1"]
+[ext_resource type="Texture2D" uid="uid://bfbd84yyw4t0q" path="res://recursos/sprites/enemigo_aguila/aguila_deteccion.png" id="tex_2"]
+[ext_resource type="Texture2D" uid="uid://d0k0pey3pcb8o" path="res://recursos/sprites/enemigo_aguila/aguila_habilidad.png" id="tex_3"]
+[ext_resource type="Texture2D" uid="uid://bl0o0616i5spd" path="res://recursos/sprites/enemigo_aguila/aguila_congelada.png" id="tex_4"]
+
+[sub_resource type="AtlasTexture" id="congelada_0"]
+atlas = ExtResource("tex_4")
+region = Rect2(0, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="congelada_1"]
+atlas = ExtResource("tex_4")
+region = Rect2(418, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="congelada_2"]
+atlas = ExtResource("tex_4")
+region = Rect2(836, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="congelada_3"]
+atlas = ExtResource("tex_4")
+region = Rect2(1254, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="congelada_4"]
+atlas = ExtResource("tex_4")
+region = Rect2(0, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="congelada_5"]
+atlas = ExtResource("tex_4")
+region = Rect2(418, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="congelada_6"]
+atlas = ExtResource("tex_4")
+region = Rect2(836, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="congelada_7"]
+atlas = ExtResource("tex_4")
+region = Rect2(1254, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="correr_0"]
+atlas = ExtResource("tex_1")
+region = Rect2(0, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="correr_1"]
+atlas = ExtResource("tex_1")
+region = Rect2(418, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="correr_2"]
+atlas = ExtResource("tex_1")
+region = Rect2(836, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="correr_3"]
+atlas = ExtResource("tex_1")
+region = Rect2(1254, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="correr_4"]
+atlas = ExtResource("tex_1")
+region = Rect2(0, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="correr_5"]
+atlas = ExtResource("tex_1")
+region = Rect2(418, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="correr_6"]
+atlas = ExtResource("tex_1")
+region = Rect2(836, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="correr_7"]
+atlas = ExtResource("tex_1")
+region = Rect2(1254, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="deteccion_0"]
+atlas = ExtResource("tex_2")
+region = Rect2(0, 0, 340, 384)
+
+[sub_resource type="AtlasTexture" id="deteccion_1"]
+atlas = ExtResource("tex_2")
+region = Rect2(340, 0, 340, 384)
+
+[sub_resource type="AtlasTexture" id="deteccion_2"]
+atlas = ExtResource("tex_2")
+region = Rect2(680, 0, 340, 384)
+
+[sub_resource type="AtlasTexture" id="deteccion_3"]
+atlas = ExtResource("tex_2")
+region = Rect2(1020, 0, 340, 384)
+
+[sub_resource type="AtlasTexture" id="deteccion_4"]
+atlas = ExtResource("tex_2")
+region = Rect2(0, 384, 340, 384)
+
+[sub_resource type="AtlasTexture" id="deteccion_5"]
+atlas = ExtResource("tex_2")
+region = Rect2(340, 384, 340, 384)
+
+[sub_resource type="AtlasTexture" id="deteccion_6"]
+atlas = ExtResource("tex_2")
+region = Rect2(680, 384, 340, 384)
+
+[sub_resource type="AtlasTexture" id="deteccion_7"]
+atlas = ExtResource("tex_2")
+region = Rect2(1020, 384, 340, 384)
+
+[sub_resource type="AtlasTexture" id="habilidad_0"]
+atlas = ExtResource("tex_3")
+region = Rect2(0, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="habilidad_1"]
+atlas = ExtResource("tex_3")
+region = Rect2(418, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="habilidad_2"]
+atlas = ExtResource("tex_3")
+region = Rect2(836, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="habilidad_3"]
+atlas = ExtResource("tex_3")
+region = Rect2(1254, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="habilidad_4"]
+atlas = ExtResource("tex_3")
+region = Rect2(0, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="habilidad_5"]
+atlas = ExtResource("tex_3")
+region = Rect2(418, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="habilidad_6"]
+atlas = ExtResource("tex_3")
+region = Rect2(836, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="habilidad_7"]
+atlas = ExtResource("tex_3")
+region = Rect2(1254, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="idle_0"]
+atlas = ExtResource("tex_0")
+region = Rect2(0, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="patrulla_0"]
+atlas = ExtResource("tex_0")
+region = Rect2(0, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="patrulla_1"]
+atlas = ExtResource("tex_0")
+region = Rect2(418, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="patrulla_2"]
+atlas = ExtResource("tex_0")
+region = Rect2(836, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="patrulla_3"]
+atlas = ExtResource("tex_0")
+region = Rect2(1254, 0, 418, 470)
+
+[sub_resource type="AtlasTexture" id="patrulla_4"]
+atlas = ExtResource("tex_0")
+region = Rect2(0, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="patrulla_5"]
+atlas = ExtResource("tex_0")
+region = Rect2(418, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="patrulla_6"]
+atlas = ExtResource("tex_0")
+region = Rect2(836, 470, 418, 470)
+
+[sub_resource type="AtlasTexture" id="patrulla_7"]
+atlas = ExtResource("tex_0")
+region = Rect2(1254, 470, 418, 470)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("congelada_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("congelada_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("congelada_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("congelada_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("congelada_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("congelada_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("congelada_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("congelada_7")
+}],
+"loop": 0,
+"name": &"congelada",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("correr_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("correr_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("correr_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("correr_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("correr_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("correr_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("correr_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("correr_7")
+}],
+"loop": 1,
+"name": &"correr",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("deteccion_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("deteccion_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("deteccion_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("deteccion_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("deteccion_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("deteccion_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("deteccion_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("deteccion_7")
+}],
+"loop": 0,
+"name": &"deteccion",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("habilidad_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("habilidad_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("habilidad_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("habilidad_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("habilidad_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("habilidad_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("habilidad_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("habilidad_7")
+}],
+"loop": 1,
+"name": &"habilidad",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("idle_0")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("patrulla_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("patrulla_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("patrulla_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("patrulla_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("patrulla_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("patrulla_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("patrulla_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("patrulla_7")
+}],
+"loop": 1,
+"name": &"patrulla",
+"speed": 8.0
+}]

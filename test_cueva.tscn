@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bbfwtrcmnflh2"]
+
+[ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="1_vnee3"]
+[ext_resource type="PackedScene" uid="uid://c10dssg7gjao" path="res://mapas/niveles/Cueva/cueva_1.tmx" id="2_ksulb"]
+[ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="3_ksulb"]
+[ext_resource type="PackedScene" uid="uid://c0kmr1jk6hnyi" path="res://escenas/enemigos/aguila.tscn" id="4_u80uk"]
+[ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="5_q4hn2"]
+
+[node name="TestCueva" type="Node2D" unique_id=782301856]
+
+[node name="jugador" parent="." unique_id=674495634 instance=ExtResource("1_vnee3")]
+position = Vector2(868.00073, 2159)
+
+[node name="Camera2D" type="Camera2D" parent="jugador" unique_id=1951982545]
+zoom = Vector2(0.3, 0.3)
+
+[node name="cueva_1" parent="." unique_id=260777084 instance=ExtResource("2_ksulb")]
+position = Vector2(9, 7)
+scale = Vector2(6, 6)
+
+[node name="KillZone" parent="." unique_id=1668862344 instance=ExtResource("3_ksulb")]
+position = Vector2(1272, 1654)
+
+[node name="KillZone2" parent="." unique_id=169811104 instance=ExtResource("3_ksulb")]
+position = Vector2(4698, 3789)
+
+[node name="Aguila" parent="." unique_id=1228802677 instance=ExtResource("4_u80uk")]
+position = Vector2(5627.9995, 4431)
+scale = Vector2(1.2203987, 1.2879132)
+
+[node name="Checkpoint" parent="." unique_id=1931067568 instance=ExtResource("5_q4hn2")]
+position = Vector2(411, 1802)
+
+[node name="Checkpoint2" parent="." unique_id=526098151 instance=ExtResource("5_q4hn2")]
+position = Vector2(3390, 842)
+
+[node name="Checkpoint3" parent="." unique_id=2087413630 instance=ExtResource("5_q4hn2")]
+position = Vector2(5738, 1610)
+
+[node name="Checkpoint4" parent="." unique_id=1974298770 instance=ExtResource("5_q4hn2")]
+position = Vector2(7254, 3911)
+
+[node name="Checkpoint5" parent="." unique_id=1075083259 instance=ExtResource("5_q4hn2")]
+position = Vector2(3089, 2949)

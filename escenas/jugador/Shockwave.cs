@@ -34,6 +34,7 @@ public partial class Shockwave : Area2D
 
 		float scaleFactor = radious * baseRadious;
 		sprite.Scale = Vector2.One * scaleFactor;
+		hitbox.Scale = Vector2.One * scaleFactor;
 	}
 
 	// Called when the node enters the scene tree for the first time.

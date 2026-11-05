@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bsdbckh7dub5h"]
+
+[ext_resource type="PackedScene" uid="uid://dv2mddjms343r" path="res://mapas/niveles/Desierto/Desierto_vacio.tmx" id="1_6qvvw"]
+[ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="2_lwvl1"]
+[ext_resource type="PackedScene" uid="uid://v1u2ty7cko3s" path="res://escenas/obstaculos/bloque_rompible.tscn" id="3_lwvl1"]
+
+[node name="Test_habiidad" type="Node2D" unique_id=1849219719]
+
+[node name="Desierto_vacio" parent="." unique_id=706538025 instance=ExtResource("1_6qvvw")]
+scale = Vector2(6, 6)
+
+[node name="jugador" parent="." unique_id=674495634 instance=ExtResource("2_lwvl1")]
+position = Vector2(4265, 207)
+
+[node name="Camera2D" type="Camera2D" parent="jugador" unique_id=171634746]
+position = Vector2(-8.571428, 69.99999)
+
+[node name="bloque_rompible" parent="." unique_id=1852521771 instance=ExtResource("3_lwvl1")]
+position = Vector2(6848, 332)
+"nivelDaño" = 20
+
+[node name="bloque_rompible2" parent="." unique_id=831153004 instance=ExtResource("3_lwvl1")]
+position = Vector2(6848, 238)
+"nivelDaño" = 2
+
+[node name="bloque_rompible3" parent="." unique_id=1410802646 instance=ExtResource("3_lwvl1")]
+position = Vector2(6848, 140)
+"nivelDaño" = 1
