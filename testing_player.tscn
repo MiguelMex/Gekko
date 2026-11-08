@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="2_bcnh3"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="3_bcnh3"]
 [ext_resource type="PackedScene" uid="uid://c0kmr1jk6hnyi" path="res://escenas/enemigos/aguila.tscn" id="4_aguila"]
+[ext_resource type="PackedScene" uid="uid://cx88bbec66q74" path="res://escenas/enemigos/dron.tscn" id="6_10416"]
+[ext_resource type="PackedScene" uid="uid://bh2udlsjhk4s" path="res://escenas/enemigos/gato_bandido.tscn" id="7_vib0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
 size = Vector2(1151, 70)
@@ -28,9 +30,10 @@ shape = SubResource("RectangleShape2D_p66os")
 texture = SubResource("PlaceholderTexture2D_vays5")
 
 [node name="jugador" parent="." unique_id=674495634 instance=ExtResource("1_kwflf")]
-position = Vector2(5724, 192)
+position = Vector2(30198, 957.00006)
 
 [node name="Camera2D" type="Camera2D" parent="jugador" unique_id=729409668]
+visible = false
 zoom = Vector2(0.3, 0.3)
 
 [node name="Aguila" parent="." unique_id=189950966 instance=ExtResource("4_aguila")]
@@ -73,6 +76,14 @@ position = Vector2(17890, 1460)
 
 [node name="Checkpoint5" parent="." unique_id=212515931 instance=ExtResource("3_bcnh3")]
 position = Vector2(36324, 618)
+
+[node name="Dron" parent="." unique_id=336282044 instance=ExtResource("6_10416")]
+position = Vector2(9234, 190.00006)
+scale = Vector2(2.897634, 2.7232912)
+
+[node name="GatoBandido" parent="." unique_id=1698212021 instance=ExtResource("7_vib0k")]
+position = Vector2(21118, 1255)
+scale = Vector2(1.1565553, 1.1988273)
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]

@@ -173,7 +173,7 @@
     <property name="platform_cells" value="75,4;76,4;77,4;78,4"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="0,0 -1.33333,109.333"/>
+   <polyline points="0,0 0,160"/>
   </object>
   <object id="36" x="1329.33" y="248">
    <properties>
@@ -181,7 +181,7 @@
     <property name="platform_cells" value="81,15;82,15;83,15;84,15"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="0,0 0,-110.667"/>
+   <polyline points="0,0 0,-160"/>
   </object>
   <object id="38" x="1425.33" y="70.6667">
    <properties>
@@ -189,7 +189,7 @@
     <property name="platform_cells" value="87,4;88,4;89,4;90,4"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="0,0 0,112"/>
+   <polyline points="0,0 0,160"/>
   </object>
   <object id="39" x="1520" y="245.333">
    <properties>
@@ -197,7 +197,7 @@
     <property name="platform_cells" value="93,15;94,15;95,15;96,15"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="0,0 1.33333,-108"/>
+   <polyline points="0,0 0,-160"/>
   </object>
   <object id="40" x="1617.33" y="70.6667">
    <properties>
@@ -205,7 +205,7 @@
     <property name="platform_cells" value="99,4;100,4;101,4;102,4"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="0,0 -1.33333,114.667"/>
+   <polyline points="0,0 0,160"/>
   </object>
   <object id="41" x="1713.33" y="246.667">
    <properties>
@@ -213,7 +213,7 @@
     <property name="platform_cells" value="105,15;106,15;107,15;108,15"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="0,0 0,-114.667"/>
+   <polyline points="0,0 0,-160"/>
   </object>
   <object id="43" x="2337.33" y="344">
    <properties>
@@ -253,7 +253,7 @@
     <property name="platform_cells" value="330,25;331,25;332,25"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="0,0 -1,-143"/>
+   <polyline points="0,0 -0.9979,-142.9965"/>
   </object>
   <object id="51" x="5385" y="375">
    <properties>
@@ -261,7 +261,7 @@
     <property name="platform_cells" value="335,23;336,23;337,23"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="0,0 80,-173"/>
+   <polyline points="0,0 60.02,-129.80"/>
   </object>
   <object id="52" x="5544" y="311">
    <properties>
@@ -269,7 +269,7 @@
     <property name="platform_cells" value="345,19;346,19;347,19"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="0,0 80,-173"/>
+   <polyline points="0,0 60.02,-129.80"/>
   </object>
   <object id="53" x="5542" y="83">
    <properties>
@@ -277,7 +277,7 @@
     <property name="platform_cells" value="345,10;346,10;347,10"/>
     <property name="platform_speed" type="float" value="48"/>
    </properties>
-   <polyline points="3,86 -77,259"/>
+   <polyline points="3,86 -44.429,188.565"/>
   </object>
   <object id="54" x="3097" y="343">
    <properties>

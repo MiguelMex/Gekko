@@ -4,13 +4,42 @@ extends Node2D
 
 const MOVIMIENTO = preload("res://scripts/PlataformaRecorrido.gd")
 
+var tiempo_sincronizado: float = 0.0
+var _duracion_ida_por_direccion: Dictionary = {}
+
+func _physics_process(delta: float) -> void:
+	tiempo_sincronizado += delta
+
 func _ready() -> void:
 	var terreno := get_node("Terreno") as TileMapLayer
-	for nodo in get_node("RecorridoPlataformas").get_children():
+	var recorridos := get_node("RecorridoPlataformas").get_children()
+	# Share a clock per travel direction so paths of different lengths keep
+	# the same normalized phase. The player-triggered platform stays independent.
+	for nodo in recorridos:
+		if not nodo is Path2D or not nodo.has_meta("platform_cells"):
+			continue
+		if str(nodo.get_meta("platform_mode", "ping_pong")) == "on_board_once":
+			continue
+		var grupo := _grupo_de_direccion(nodo as Path2D)
+		var longitud := (nodo as Path2D).curve.get_baked_length()
+		var velocidad := float(nodo.get_meta("platform_speed", 48.0))
+		if velocidad > 0.0:
+			_duracion_ida_por_direccion[grupo] = maxf(
+				float(_duracion_ida_por_direccion.get(grupo, 0.0)), longitud / velocidad)
+	for nodo in recorridos:
 		if nodo is Path2D and nodo.has_meta("platform_cells"):
 			_crear_plataforma(terreno, nodo)
 	# Commit removed static collisions before the first physics tick.
 	terreno.update_internals()
+
+func _grupo_de_direccion(recorrido: Path2D) -> String:
+	var longitud := recorrido.curve.get_baked_length()
+	if longitud <= 0.0:
+		return "sin_movimiento"
+	var desplazamiento := recorrido.curve.sample_baked(longitud) - recorrido.curve.sample_baked(0.0)
+	if absf(desplazamiento.y) >= absf(desplazamiento.x):
+		return "arriba" if desplazamiento.y < 0.0 else "abajo"
+	return "izquierda" if desplazamiento.x < 0.0 else "derecha"
 
 func _crear_plataforma(terreno: TileMapLayer, recorrido: Path2D) -> void:
 	var celdas: Array[Vector2i] = []
@@ -28,6 +57,10 @@ func _crear_plataforma(terreno: TileMapLayer, recorrido: Path2D) -> void:
 	cuerpo.recorrido = recorrido
 	cuerpo.velocidad = float(recorrido.get_meta("platform_speed", 48.0))
 	cuerpo.solo_ida = str(recorrido.get_meta("platform_mode", "ping_pong")) == "on_board_once"
+	if not cuerpo.solo_ida:
+		var grupo := _grupo_de_direccion(recorrido)
+		cuerpo.reloj_sincronizacion = self
+		cuerpo.duracion_ida_sincronizada = float(_duracion_ida_por_direccion.get(grupo, 0.0))
 	cuerpo.sync_to_physics = false
 	var ancla := terreno.map_to_local(celdas[0])
 	cuerpo.position = terreno.position + ancla

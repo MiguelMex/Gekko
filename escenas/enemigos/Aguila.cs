@@ -8,10 +8,10 @@ public partial class Aguila : CharacterBody2D
     private enum Estado { Patrulla, Persecucion, Regreso }
 
     [ExportGroup("Movimiento")]
-    [Export] public float VelocidadPatrulla { get; set; } = 75.0f;
-    [Export] public float VelocidadPersecucion { get; set; } = 145.0f;
+    [Export] public float VelocidadPatrulla { get; set; } = 100.0f;
+    [Export] public float VelocidadPersecucion { get; set; } = 275.0f;
     [Export] public float DistanciaPatrulla { get; set; } = 230.0f;
-    [Export] public float DistanciaDeteccion { get; set; } = 800.0f;
+    [Export] public float DistanciaDeteccion { get; set; } = 1000.0f;
     [Export] public float DistanciaMaximaPersecucion { get; set; } = 900.0f;
     [Export] public float DistanciaPerdida { get; set; } = 1000.0f;
 
@@ -19,7 +19,7 @@ public partial class Aguila : CharacterBody2D
     [Export] public float DiferenciaVerticalMaxima { get; set; } = 180.0f;
     [Export] public float TiempoSinAlcance { get; set; } = 2.5f;
     [Export] public float TiempoParaPerderVista { get; set; } = 0.65f;
-    [Export] public float VelocidadRegreso { get; set; } = 95.0f;
+    [Export] public float VelocidadRegreso { get; set; } = 125.0f;
 
     [ExportGroup("Colisión")]
     [Export] public float AltoRaycastSuelo { get; set; } = 48.0f;
@@ -45,7 +45,7 @@ public partial class Aguila : CharacterBody2D
     private void OnDamageAreaBodyEntered(Node2D body)
     {
         if (body is Jugador jugador)
-            jugador.Morir();
+            jugador.RecibirDanioEnemigo();
     }
 
     public override void _PhysicsProcess(double delta)

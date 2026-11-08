@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cx88bbec66q74"]
+
+[ext_resource type="Script" uid="uid://b7drnw5s6fk3f" path="res://escenas/enemigos/Dron.cs" id="1_script"]
+[ext_resource type="SpriteFrames" uid="uid://cw2uyxj144b8f" path="res://recursos/sprites/enemigo_dron/dron_animaciones.tres" id="2_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(58, 41)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_explosion"]
+radius = 88.0
+
+[node name="Dron" type="CharacterBody2D" unique_id=336282044]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_script")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=65961125]
+scale = Vector2(0.22, 0.22)
+sprite_frames = ExtResource("2_frames")
+animation = &"volar"
+autoplay = "volar"
+
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=1235351352]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="ExplosionArea" type="Area2D" parent="." unique_id=1173569777]
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea" unique_id=1222726277]
+scale = Vector2(0.7421875, 0.6857143)
+shape = SubResource("CircleShape2D_explosion")

@@ -1,0 +1,163 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cw2uyxj144b8f"]
+
+[ext_resource type="Texture2D" uid="uid://ewghsmjqykvy" path="res://recursos/sprites/enemigo_dron/dronkamikaze.png" id="2_kamikaze"]
+[ext_resource type="Texture2D" uid="uid://dnbaryq6lbatd" path="res://recursos/sprites/enemigo_dron/dronexka.png" id="3_embestida"]
+[ext_resource type="Texture2D" uid="uid://20w51ji8m05b" path="res://recursos/sprites/enemigo_dron/dronexplosion.png" id="4_explosion"]
+
+[sub_resource type="AtlasTexture" id="x_0"]
+atlas = ExtResource("3_embestida")
+region = Rect2(0, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="x_1"]
+atlas = ExtResource("3_embestida")
+region = Rect2(384, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="x_2"]
+atlas = ExtResource("3_embestida")
+region = Rect2(768, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="x_3"]
+atlas = ExtResource("3_embestida")
+region = Rect2(1152, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="e_0"]
+atlas = ExtResource("4_explosion")
+region = Rect2(0, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="e_1"]
+atlas = ExtResource("4_explosion")
+region = Rect2(384, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="e_2"]
+atlas = ExtResource("4_explosion")
+region = Rect2(768, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="e_3"]
+atlas = ExtResource("4_explosion")
+region = Rect2(1152, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="e_4"]
+atlas = ExtResource("4_explosion")
+region = Rect2(0, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="e_5"]
+atlas = ExtResource("4_explosion")
+region = Rect2(384, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="e_6"]
+atlas = ExtResource("4_explosion")
+region = Rect2(768, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="e_7"]
+atlas = ExtResource("4_explosion")
+region = Rect2(1152, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="k_0"]
+atlas = ExtResource("2_kamikaze")
+region = Rect2(0, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="k_1"]
+atlas = ExtResource("2_kamikaze")
+region = Rect2(384, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="k_2"]
+atlas = ExtResource("2_kamikaze")
+region = Rect2(768, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="k_3"]
+atlas = ExtResource("2_kamikaze")
+region = Rect2(1152, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="k_4"]
+atlas = ExtResource("2_kamikaze")
+region = Rect2(0, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="k_5"]
+atlas = ExtResource("2_kamikaze")
+region = Rect2(384, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="k_6"]
+atlas = ExtResource("2_kamikaze")
+region = Rect2(768, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="k_7"]
+atlas = ExtResource("2_kamikaze")
+region = Rect2(1152, 432, 384, 432)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("x_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("x_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("x_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("x_3")
+}],
+"loop": 0,
+"name": &"embestida",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("e_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("e_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("e_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("e_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("e_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("e_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("e_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("e_7")
+}],
+"loop": 0,
+"name": &"explosion",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("k_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("k_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("k_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("k_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("k_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("k_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("k_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("k_7")
+}],
+"loop": 1,
+"name": &"volar",
+"speed": 8.0
+}]
