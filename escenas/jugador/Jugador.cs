@@ -264,6 +264,21 @@ public partial class Jugador : CharacterBody2D
 		// No avanza si el juego está pausado
 		if (GetTree().Paused) return;
 
+		// Activación de la habilidad de velocidad con Z
+		if (Input.IsActionJustPressed("ability"))
+		{
+			if (_abilityState)
+			{
+				// La habilidad está activada: libera la explosión
+				_createExplosion();
+			}
+			else
+			{
+				// Activa la habilidad y comienza a acumular velocidad
+				_abilityState = true;
+			}
+		}
+
 		_tiempoInvulnerable = Mathf.Max(
 			0.0f,
 			_tiempoInvulnerable - (float)delta
