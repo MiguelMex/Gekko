@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7jkv2gybjirh"
-path="res://.godot/imported/mecanismos.png-6f3dbccffb41def3b7a2d20c9b54f84f.ctex"
+uid="uid://c5c03rxiubf6f"
+path="res://.godot/imported/Checkpoint On.png-bd2faa2ba16a1e595eb31fa2f5d170fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mapas/tilesets copy/mecanismos.png"
-dest_files=["res://.godot/imported/mecanismos.png-6f3dbccffb41def3b7a2d20c9b54f84f.ctex"]
+source_file="res://recursos/imagenes/Checkpoint On.png"
+dest_files=["res://.godot/imported/Checkpoint On.png-bd2faa2ba16a1e595eb31fa2f5d170fa.ctex"]
 
 [params]
 

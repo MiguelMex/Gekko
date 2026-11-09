@@ -27,7 +27,7 @@ public partial class Jugador : CharacterBody2D
 	private float _tiempoInvulnerable;
 
 	private int _consecutiveJump = 0;
-    private Vector2 previousPosition;
+	private Vector2 previousPosition;
 
 
 	/**
@@ -36,55 +36,58 @@ public partial class Jugador : CharacterBody2D
 	[Export]
 	public float JumpVelocity = -1500.0f;
 
-    // NUEVO: Variable para guardar la posición de reaparición actual
-    private Vector2 _respawnPosition;
+	// NUEVO: Variable para guardar la posición de reaparición actual
+	private Vector2 _respawnPosition;
 
-    //Valores para la hailidad de velocidad acumulada
-    [Export]
-    public float speedGrowRate = 0.01f;
-    [Export]
-    public float maxSpeedStored = 4.0f;
-    [Export]
-    public float speedStored = 1;
-    [Export]
-    public PackedScene shockwave;
+	//Valores para la hailidad de velocidad acumulada
+	[Export]
+	public float speedGrowRate = 0.01f;
+	[Export]
+	public float maxSpeedStored = 4.0f;
+	[Export]
+	public float speedStored = 1;
+	[Export]
+	public PackedScene shockwave;
 
-    AnimatedSprite2D _sprite;
-    double _timeIdle;
+	AnimatedSprite2D _sprite;
+	double _timeIdle;
 
-    public float facing;
-    private float _knockbackTime = 0f;
-    [Export]
-    public float knockbackDuration = 0.25f;
+	public float facing;
+	private float _knockbackTime = 0f;
+	[Export]
+	public float knockbackDuration = 0.25f;
 
-    public bool is_crouching = false;
+	public bool is_crouching = false;
 
 	public override void _Ready()
 {
-    // 1. PRIMERO VERIFICAMOS SI VENIMOS DE CARGAR UNA PARTIDA GUARDADA
-    if (SaveManager.CurrentGameData != null)
-    {
-        // Movemos al jugador a la posición exacta del archivo JSON
-        GlobalPosition = new Vector2(SaveManager.CurrentGameData.PlayerPosX, SaveManager.CurrentGameData.PlayerPosY);
-        
-        // Limpiamos la variable temporal para que las muertes futuras usen los checkpoints normales de la sesión
-        SaveManager.CurrentGameData = null; 
-        
-        GD.Print("¡Jugador posicionado en la partida cargada!");
-    }
+	//Permite al administrador encontrar al Gekko después de cargar el nuevo mapa
+	AddToGroup("jugador");
+	
+	// 1. PRIMERO VERIFICAMOS SI VENIMOS DE CARGAR UNA PARTIDA GUARDADA
+	if (SaveManager.CurrentGameData != null)
+	{
+		// Movemos al jugador a la posición exacta del archivo JSON
+		GlobalPosition = new Vector2(SaveManager.CurrentGameData.PlayerPosX, SaveManager.CurrentGameData.PlayerPosY);
+		
+		// Limpiamos la variable temporal para que las muertes futuras usen los checkpoints normales de la sesión
+		SaveManager.CurrentGameData = null; 
+		
+		GD.Print("¡Jugador posicionado en la partida cargada!");
+	}
 
-    // 2. DESPUÉS ASIGNAMOS EL RESPAWN (Si cargó partida, tomará la posición cargada; si es nueva partida, tomará la del mapa)
-    _respawnPosition = GlobalPosition;
+	// 2. DESPUÉS ASIGNAMOS EL RESPAWN (Si cargó partida, tomará la posición cargada; si es nueva partida, tomará la del mapa)
+	_respawnPosition = GlobalPosition;
 
-    // 3. RESTO DE TUS INICIALIZACIONES
-    _sprite = GetNode<AnimatedSprite2D>("sprite");
-    _sprite.Play("idle");
+	// 3. RESTO DE TUS INICIALIZACIONES
+	_sprite = GetNode<AnimatedSprite2D>("sprite");
+	_sprite.Play("idle");
 
-    _wallCheck = GetNode<RayCast2D>("wallcheck");
-    _stepCheck = GetNode<RayCast2D>("stepcheck");
-    
-    // Conectamos la señal que detecta cuando el jugador toca un peligro
-    GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
+	_wallCheck = GetNode<RayCast2D>("wallcheck");
+	_stepCheck = GetNode<RayCast2D>("stepcheck");
+	
+	// Conectamos la señal que detecta cuando el jugador toca un peligro
+	GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
 }
 	
 		private void OnPeligroDetectado(Node2D body)
@@ -97,95 +100,95 @@ public partial class Jugador : CharacterBody2D
 		}
 	}
 
-    public void _playerIsIdle()
-    {
-        //GD.Print("Time idle is: "+_timeIdle);
-        if(_timeIdle > 10)
-        {
-            _sprite.Play("tongue");
-        } else
-        {
-            _sprite.Play("idle");
-        }
+	public void _playerIsIdle()
+	{
+		//GD.Print("Time idle is: "+_timeIdle);
+		if(_timeIdle > 10)
+		{
+			_sprite.Play("tongue");
+		} else
+		{
+			_sprite.Play("idle");
+		}
 
 	}
 
-    //Maneja la animación de agacharse del personaje
-    public void _manageCruch()
-    {
-        if (is_crouching)
-        {
-            _sprite.Play("crouch");
-        } else
-        {
-            _sprite.Play("stand_up");
-        }
-    }
+	//Maneja la animación de agacharse del personaje
+	public void _manageCruch()
+	{
+		if (is_crouching)
+		{
+			_sprite.Play("crouch");
+		} else
+		{
+			_sprite.Play("stand_up");
+		}
+	}
 
-    //Maneja la animación de cmainata
-    public void _animateWalk(bool sprinting)
-    {
-        if(facing < 0){
-            _sprite.FlipH = true;
-        } else if (facing > 0)
-        {
-            _sprite.FlipH = false;
-        }
+	//Maneja la animación de cmainata
+	public void _animateWalk(bool sprinting)
+	{
+		if(facing < 0){
+			_sprite.FlipH = true;
+		} else if (facing > 0)
+		{
+			_sprite.FlipH = false;
+		}
 
-        if(IsOnFloor()) _sprite.Play("run");
-        _sprite.SpeedScale = sprinting ? 2 : 1;
-    }
+		if(IsOnFloor()) _sprite.Play("run");
+		_sprite.SpeedScale = sprinting ? 2 : 1;
+	}
 
-    //Metodo de prueba para probar las mecanicas que se activan tras una explosión de velocidad
-    public void _testExplosion()
-    {
-        var radious = 50 * 4;
-        var damage  = 2 * 4;
-        //GD.Print("Daño: "+damage+", radio: "+radious);
-        if (shockwave != null)
-        {
-            var wave = shockwave.Instantiate<Shockwave>();
-            GetParent().AddChild(wave);
-            wave.GlobalPosition = GlobalPosition;
-            wave._setAttributes(radious, damage);
-        }
-    }
+	//Metodo de prueba para probar las mecanicas que se activan tras una explosión de velocidad
+	public void _testExplosion()
+	{
+		var radious = 50 * 4;
+		var damage  = 2 * 4;
+		//GD.Print("Daño: "+damage+", radio: "+radious);
+		if (shockwave != null)
+		{
+			var wave = shockwave.Instantiate<Shockwave>();
+			GetParent().AddChild(wave);
+			wave.GlobalPosition = GlobalPosition;
+			wave._setAttributes(radious, damage);
+		}
+	}
 
-    //Metodo que maneja la pausa
-    public void _ManagePause()
-    {
-        if (GetTree().Paused)
-        {
-            //Despausar
-            //GetTree().Paused = false;
-            _sprite.Pause();
-        } else
-        {
-            //Pausar
-            //GetTree().Paused = true;
-            _sprite.Play();
-        }
-        //GD.Print("Pauses: "+(GetTree().Paused ? "ON" : "OFF"));
-    }
+	//Metodo que maneja la pausa
+	public void _ManagePause()
+	{
+		if (GetTree().Paused)
+		{
+			//Despausar
+			//GetTree().Paused = false;
+			_sprite.Pause();
+		} else
+		{
+			//Pausar
+			//GetTree().Paused = true;
+			_sprite.Play();
+		}
+		//GD.Print("Pauses: "+(GetTree().Paused ? "ON" : "OFF"));
+	}
 
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        //Si se detecta unna pausa se detiene toda la escena
-        if (@event.IsActionPressed("pause"))
-        {
-            _ManagePause();
-        }
-    }
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		//Si se detecta unna pausa se detiene toda la escena
+		if (@event.IsActionPressed("pause"))
+		{
+			_ManagePause();
+		}
+	}
 
-    public override void _PhysicsProcess(double delta)
-    {
-        _tiempoInvulnerable = Mathf.Max(0.0f, _tiempoInvulnerable - (float)delta);
+	public override void _PhysicsProcess(double delta)
+	{
+		_tiempoInvulnerable = Mathf.Max(0.0f, _tiempoInvulnerable - (float)delta);
 
-        //No avanza si el juego está pausado
-        if(GetTree().Paused) return;
-        _ManagePause();
+		//No avanza si el juego está pausado
+		if(GetTree().Paused) return;
+		_ManagePause();
 
-        Vector2 velocity = Velocity;
+		Vector2 velocity = Velocity;
 
 		if (!IsOnFloor())
 		{
@@ -211,135 +214,135 @@ public partial class Jugador : CharacterBody2D
 		{
 			_sprite.Play("jump");
 			velocity.Y = JumpVelocity;
-            _timeIdle = 0;
-            _consecutiveJump ++;
+			_timeIdle = 0;
+			_consecutiveJump ++;
 		}
 
-        //Solo se agacha si está en el suelo y se mantiene la tecla presionada
-        if (Input.IsActionPressed("down") && IsOnFloor())
-        {
-            is_crouching = true;
-            _manageCruch();
-            //_testExplosion();
-        }
-        if(Input.IsActionJustReleased("down") && is_crouching)
-        {
-            is_crouching = false;
-            _manageCruch();
-        }
+		//Solo se agacha si está en el suelo y se mantiene la tecla presionada
+		if (Input.IsActionPressed("down") && IsOnFloor())
+		{
+			is_crouching = true;
+			_manageCruch();
+			//_testExplosion();
+		}
+		if(Input.IsActionJustReleased("down") && is_crouching)
+		{
+			is_crouching = false;
+			_manageCruch();
+		}
 
-        //No se detecta ningún input horizontal durante el knocback
-        if(_knockbackTime > 0)
-        {
-            _knockbackTime -= (float)delta;
-            Velocity = velocity;
-            MoveAndSlide();
-            return;
-        }
+		//No se detecta ningún input horizontal durante el knocback
+		if(_knockbackTime > 0)
+		{
+			_knockbackTime -= (float)delta;
+			Velocity = velocity;
+			MoveAndSlide();
+			return;
+		}
 
 		/**
 		Detecta el imput enviado por el jugador, se definen en el motor grafico
 		Solo se está usando izquierda y derecha así que no hay necesidad de asignar las otras dos
 		*/
-        facing = Input.GetAxis("left","right");
+		facing = Input.GetAxis("left","right");
 		Vector2 direction = new Vector2(facing, 0);
 		//Deteccción de doble input
 		if(Input.IsActionJustPressed("left") || Input.IsActionJustPressed("right"))
 		{
 			int pressDir = Input.IsActionJustPressed("left") ? -1 : 1;
 
-            //Misma dirección y dentro de la ventana del tiempo
-            if(_timeSinceLastPress <= DoubleTapWindow && pressDir == _lastTapDirection)
-            {
-                _isSprinting = true;
-                //GD.Print("¡Sprint activado!");
-            } else
-            {
-                _isSprinting = false;
-                //GD.Print("No hay sprint");
-            }
+			//Misma dirección y dentro de la ventana del tiempo
+			if(_timeSinceLastPress <= DoubleTapWindow && pressDir == _lastTapDirection)
+			{
+				_isSprinting = true;
+				//GD.Print("¡Sprint activado!");
+			} else
+			{
+				_isSprinting = false;
+				//GD.Print("No hay sprint");
+			}
 
-            _lastTapDirection = pressDir;
-            _timeSinceLastPress = 0;
-        }
-        _timeSinceLastPress += delta;
+			_lastTapDirection = pressDir;
+			_timeSinceLastPress = 0;
+		}
+		_timeSinceLastPress += delta;
 		//Detecta si hubo algun input, no puede caminar mientras está agachado
 		if (direction != Vector2.Zero && !is_crouching)
 		{
-            speedStored = Mathf.Min(speedStored + speedGrowRate, maxSpeedStored);
-            float currentSpeed = _isSprinting ? Speed * SprintMultiplier : Speed;
+			speedStored = Mathf.Min(speedStored + speedGrowRate, maxSpeedStored);
+			float currentSpeed = _isSprinting ? Speed * SprintMultiplier : Speed;
 			//Cambio en la velocidad del jugador
 			velocity.X = direction.X * currentSpeed * speedStored;
-            _animateWalk(_isSprinting);
-            _timeIdle = 0;
+			_animateWalk(_isSprinting);
+			_timeIdle = 0;
 		}
 		else
 		{
 			//Que frene en seco si no hay input
-            //speedStored = 1;
+			//speedStored = 1;
 			velocity.X = 0;
-            _timeIdle += delta;
-            _isSprinting = false;
+			_timeIdle += delta;
+			_isSprinting = false;
 		}
 
-        //GD.Print("Velocidad acumulada: "+speedStored);
-        Velocity = velocity;
-        MoveAndSlide();
-        //Detecta si hubo una colisión en este frame
-        _detectHorizontalCollision(direction);
-    }
+		//GD.Print("Velocidad acumulada: "+speedStored);
+		Velocity = velocity;
+		MoveAndSlide();
+		//Detecta si hubo una colisión en este frame
+		_detectHorizontalCollision(direction);
+	}
 
-    //Aplica el knockback de una explosión
-    public void _applyKnockback(Vector2 direction, float force)
-    {
-        //Si se está agachando no hay movimiento vertical
-        if (is_crouching)
-        {
-            Velocity = new Vector2(
-                direction.X * force,
-                Velocity.Y
-            );
-        }else
-        {
-            Velocity =  new Vector2(
-                direction.X * force,
-                -force * 0.5f
-            );    
-        }
-        
-        _knockbackTime = knockbackDuration;
-    }
+	//Aplica el knockback de una explosión
+	public void _applyKnockback(Vector2 direction, float force)
+	{
+		//Si se está agachando no hay movimiento vertical
+		if (is_crouching)
+		{
+			Velocity = new Vector2(
+				direction.X * force,
+				Velocity.Y
+			);
+		}else
+		{
+			Velocity =  new Vector2(
+				direction.X * force,
+				-force * 0.5f
+			);    
+		}
+		
+		_knockbackTime = knockbackDuration;
+	}
 
-    //Metodo para detectar colisiones con paredes
-    public void _detectHorizontalCollision(Vector2 inputDirection)
-    {
-        if(inputDirection.X == 0) return;
+	//Metodo para detectar colisiones con paredes
+	public void _detectHorizontalCollision(Vector2 inputDirection)
+	{
+		if(inputDirection.X == 0) return;
 
-        if(!IsOnWall()) return;
+		if(!IsOnWall()) return;
 
-        var collision = GetLastSlideCollision();
-        if(collision == null) return;
+		var collision = GetLastSlideCollision();
+		if(collision == null) return;
 
-        Vector2 normal = collision.GetNormal();
+		Vector2 normal = collision.GetNormal();
 
-        //La normal apunta en direccion a la pared
-        //Si el jugador se mueve a la derecha (x>0) y la pared empuja a la izquiera (normal.X<0), chocan de frene
-        if(Mathf.Sign(normal.X) == -Math.Sign(inputDirection.X))
-        {
-            //Calculo del daño y area de la onda expansiva
-            var radious = 50 * speedStored;
-            var damage  = 2 * speedStored;
-            //GD.Print("Daño: "+damage+", radio: "+radious);
-            if (shockwave != null && speedStored >= 1)
-            {
-                var wave = shockwave.Instantiate<Shockwave>();
-                GetParent().AddChild(wave);
-                wave.GlobalPosition = GlobalPosition;
-                wave._setAttributes(radious, damage);
-            }
-            speedStored = 1;
-        }
-    }
+		//La normal apunta en direccion a la pared
+		//Si el jugador se mueve a la derecha (x>0) y la pared empuja a la izquiera (normal.X<0), chocan de frene
+		if(Mathf.Sign(normal.X) == -Math.Sign(inputDirection.X))
+		{
+			//Calculo del daño y area de la onda expansiva
+			var radious = 50 * speedStored;
+			var damage  = 2 * speedStored;
+			//GD.Print("Daño: "+damage+", radio: "+radious);
+			if (shockwave != null && speedStored >= 1)
+			{
+				var wave = shockwave.Instantiate<Shockwave>();
+				GetParent().AddChild(wave);
+				wave.GlobalPosition = GlobalPosition;
+				wave._setAttributes(radious, damage);
+			}
+			speedStored = 1;
+		}
+	}
 
 	// NUEVO: Método público para actualizar el checkpoint
 	public void ActualizarCheckpoint(Vector2 nuevaPosicion)
