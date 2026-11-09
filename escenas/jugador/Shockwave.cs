@@ -29,11 +29,12 @@ public partial class Shockwave : Area2D
 
 		if(hitbox.Shape is CircleShape2D circle)
 		{
-			circle.Radius = radious;
+			circle.Radius = radious ;
 		}
 
-		float scaleFactor = radious / baseRadious;
+		float scaleFactor = radious * baseRadious;
 		sprite.Scale = Vector2.One * scaleFactor;
+		hitbox.Scale = Vector2.One * scaleFactor;
 	}
 
 	// Called when the node enters the scene tree for the first time.

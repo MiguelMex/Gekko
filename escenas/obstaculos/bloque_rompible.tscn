@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://v1u2ty7cko3s"]
+
+[ext_resource type="Script" uid="uid://ci6ch3bnm5og2" path="res://escenas/obstaculos/BloqueRompible.cs" id="1_t7yfb"]
+[ext_resource type="Texture2D" uid="uid://dqwcurdmkydwa" path="res://mapas/tilesets/desierto.png" id="2_br6i6"]
+[ext_resource type="Texture2D" uid="uid://c0wk6tan1whyv" path="res://recursos/sprites/effectos/explosion_01.png" id="3_br6i6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uj1w"]
+size = Vector2(16.166668, 15.833334)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
+size = Vector2(31.833336, 16.166668)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nmsm"]
+atlas = ExtResource("2_br6i6")
+region = Rect2(112, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imga7"]
+atlas = ExtResource("2_br6i6")
+region = Rect2(96, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlk6c"]
+atlas = ExtResource("2_br6i6")
+region = Rect2(80, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cjrj"]
+atlas = ExtResource("2_br6i6")
+region = Rect2(64, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqibj"]
+atlas = ExtResource("3_br6i6")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqq7q"]
+atlas = ExtResource("3_br6i6")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxqi2"]
+atlas = ExtResource("3_br6i6")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g41d8"]
+atlas = ExtResource("3_br6i6")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy3nu"]
+atlas = ExtResource("3_br6i6")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggxbb"]
+atlas = ExtResource("3_br6i6")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeo7f"]
+atlas = ExtResource("3_br6i6")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxiux"]
+atlas = ExtResource("3_br6i6")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eidtp"]
+atlas = ExtResource("3_br6i6")
+region = Rect2(768, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7uj1w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nmsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imga7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlk6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cjrj")
+}],
+"loop": 1,
+"name": &"breaking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqibj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqq7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxqi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g41d8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy3nu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggxbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jeo7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxiux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eidtp")
+}],
+"loop": 0,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[node name="bloque_rompible" type="Node2D" unique_id=1852521771]
+scale = Vector2(6, 6)
+script = ExtResource("1_t7yfb")
+
+[node name="hitbox" type="Area2D" parent="." unique_id=884537366]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1678710493]
+position = Vector2(0.083333254, 0.083333254)
+shape = SubResource("RectangleShape2D_7uj1w")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=698594754]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=145803230]
+position = Vector2(-0.25000048, 0.25000024)
+shape = SubResource("RectangleShape2D_p66os")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1394695418]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_7uj1w")
+animation = &"breaking"
+
+[connection signal="area_entered" from="hitbox" to="." method="AreaEntered"]
+[connection signal="body_entered" from="hitbox" to="." method="BodyEntered"]
+[connection signal="animation_finished" from="sprite" to="." method="EliminarNodo"]

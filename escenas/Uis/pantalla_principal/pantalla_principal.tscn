@@ -89,6 +89,11 @@ layout_mode = 2
 idButon = "cargar"
 TextButton = "Cargar partida"
 
+[node name="BtnNiveles" parent="Texture/Container/BtnContainer" unique_id=1068782751 instance=ExtResource("2_vvrr3")]
+layout_mode = 2
+idButon = "niveles"
+TextButton = "Niveles"
+
 [node name="BtnAjustes" parent="Texture/Container/BtnContainer" unique_id=1750045797 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
 idButon = "ajustes"

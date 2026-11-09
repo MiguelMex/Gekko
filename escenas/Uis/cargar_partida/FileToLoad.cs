@@ -35,6 +35,7 @@ public partial class FileToLoad : Button // Cambiamos Control por Button
         }
 
         // 2. Cargamos la escena de juego usando la pantalla de carga
+        LoadingScreen.levelSelected = false;
         LoadingScreen.targetScenePath = "res://testing_player.tscn";
         GetTree().ChangeSceneToFile("res://escenas/Uis/loading_screen/loading_screen.tscn");
     }

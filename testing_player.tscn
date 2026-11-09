@@ -14,7 +14,7 @@ size = Vector2(1151, 70)
 [node name="testing_player" type="Node2D" unique_id=971696388]
 
 [node name="Desierto_vacio" parent="." unique_id=1459244353 instance=ExtResource("1_m6qx8")]
-position = Vector2(9, 7)
+position = Vector2(47, -3)
 scale = Vector2(6, 6)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2010657371]

@@ -11,6 +11,7 @@ public partial class PantallaPrincipal : Control
 	private IconButton BtnNuevaPartida;
 	private IconButton BtnSalir;
 	private IconButton BtnAjustes;
+	private IconButton BtnNiveles;
 	private Button upButton;
 	private MenuAjustes _ajustes;
 
@@ -20,6 +21,7 @@ public partial class PantallaPrincipal : Control
 		BtnNuevaPartida = GetNode<IconButton>("Texture/Container/BtnContainer/BtnNuevaPartida");
 		BtnCargar = GetNode<IconButton>("Texture/Container/BtnContainer/BtnCargar");
 		BtnAjustes = GetNode<IconButton>("Texture/Container/BtnContainer/BtnAjustes");
+		BtnNiveles = GetNode<IconButton>("Texture/Container/BtnNiveles/BtnNiveles");
 		BtnSalir = GetNode<IconButton>("Texture/Container/BtnContainer/BtnSalir");
 		_ajustes = GetNode<MenuAjustes>("/root/MenuAjustes");
 
@@ -76,6 +78,9 @@ public partial class PantallaPrincipal : Control
 				break;
 			case "ajustes":
 				_ajustes.Abrir();
+				break;
+			case "niveles":
+				_goToScene("res://escenas/Uis/elegir_nivel/elegir_nivel.tscn");
 				break;
 			case "salir":
 				GetTree().Quit();
