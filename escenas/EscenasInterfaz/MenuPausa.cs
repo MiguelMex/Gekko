@@ -13,6 +13,8 @@ public partial class MenuPausa : CanvasLayer
 		
 		GetNode<Button>("VBoxContainer/ReiniciarNivelButton").Pressed += OnReiniciarNivel;
 		
+		GetNode<Button>("VBoxContainer/OpcionesButton").Pressed += OnOpciones;
+		
 		// Opción 1: Salir al menú principal
 		GetNode<Button>("VBoxContainer/SalirMenuButton").Pressed += OnSalirAlMenu;
 		
@@ -29,26 +31,36 @@ public partial class MenuPausa : CanvasLayer
 		
 	}
 
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        if (@event.IsActionPressed("pause"))
-        {
-            TogglePause();
-        }
-    }
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event.IsActionPressed("pause"))
+		{
+			TogglePause();
+		}
+	}
 
 	private void TogglePause()
-	{
-		 if (GetTree().CurrentScene.SceneFilePath == "res://escenas/Uis/pantalla_principal/pantalla_principal.tscn")
+{
+	// No permitir pausar mientras los ajustes están abiertos
+	if (GetNode<MenuAjustes>("/root/MenuAjustes").Visible)
 		return;
-		bool nowPaused = !GetTree().Paused;
-		GetTree().Paused = nowPaused;
-		Visible = nowPaused;
-		
 
-		if (nowPaused)
-			_primerBoton.GrabFocus();
-	}
+	if (GetTree().CurrentScene.SceneFilePath == "res://escenas/Uis/pantalla_principal/pantalla_principal.tscn")
+		return;
+
+	if (GetTree().CurrentScene.SceneFilePath == "res://escenas/Uis/loading_screen/loading_screen.tscn")
+		return;
+
+	if (GetTree().CurrentScene.SceneFilePath == "res://escenas/Uis/cargar_partida/load_file.tscn")
+		return;
+
+	bool nowPaused = !GetTree().Paused;
+	GetTree().Paused = nowPaused;
+	Visible = nowPaused;
+
+	if (nowPaused)
+		_primerBoton.GrabFocus();
+}
 
 	private void OnResume()
 	{
@@ -61,6 +73,22 @@ public partial class MenuPausa : CanvasLayer
 	GetTree().Paused = false;   // quitar la pausa antes de recargar
 	Visible = false;            // cerrar el menú
 	GetTree().ReloadCurrentScene();
+}
+
+private async void OnOpciones()
+{
+	var ajustes = GetNode<MenuAjustes>("/root/MenuAjustes");
+
+	ajustes.Abrir();      // primero: así guarda qué botón tenía el foco
+	Visible = false;      // después: oculta el menú de pausa
+
+	await ToSignal(ajustes, MenuAjustes.SignalName.Cerrado);
+
+	if (GetTree().Paused)  // por si el juego se despausó mientras tanto
+	{
+		Visible = true;
+		GetNode<Button>("VBoxContainer/OpcionesButton").GrabFocus();
+	}
 }
 
 	// Método para regresar al menú principal

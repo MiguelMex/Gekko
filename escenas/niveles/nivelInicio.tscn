@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cf6ox0mtbe25w"]
+
+[ext_resource type="PackedScene" uid="uid://dpbjwpk7svcgn" path="res://mapas/niveles/Desierto/Nivel_Inicio.tmx" id="1_6ah27"]
+[ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="2_1yus2"]
+[ext_resource type="PackedScene" uid="uid://c0kmr1jk6hnyi" path="res://escenas/enemigos/aguila.tscn" id="3_xjmy0"]
+[ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="4_tf6ek"]
+[ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="5_eibxt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
+size = Vector2(1151, 70)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vays5"]
+
+[node name="testing_player" type="Node2D" unique_id=971696388]
+
+[node name="Nivel_Inicio" parent="." unique_id=942089326 instance=ExtResource("1_6ah27")]
+position = Vector2(9, 7)
+scale = Vector2(6, 6)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2010657371]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1003542367]
+visible = false
+position = Vector2(576.5, 615)
+shape = SubResource("RectangleShape2D_p66os")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1064382814]
+texture = SubResource("PlaceholderTexture2D_vays5")
+
+[node name="jugador" parent="." unique_id=674495634 instance=ExtResource("2_1yus2")]
+position = Vector2(664.0005, 2616.9998)
+
+[node name="Camera2D" type="Camera2D" parent="jugador" unique_id=729409668]
+zoom = Vector2(0.3, 0.3)
+
+[node name="Aguila" parent="." unique_id=189950966 instance=ExtResource("3_xjmy0")]
+position = Vector2(19151, 3032)
+scale = Vector2(1.2203987, 1.2879132)
+
+[node name="KillZone" parent="." unique_id=1668862344 instance=ExtResource("4_tf6ek")]
+position = Vector2(2882, 8834)
+
+[node name="KillZone2" parent="." unique_id=694604412 instance=ExtResource("4_tf6ek")]
+position = Vector2(4329, 8371)
+
+[node name="KillZoneVacío" parent="." unique_id=680351805 instance=ExtResource("4_tf6ek")]
+position = Vector2(1109, 8801)
+
+[node name="KillZoneVacío2" parent="." unique_id=815351681 instance=ExtResource("4_tf6ek")]
+position = Vector2(23277.002, 9063)
+scale = Vector2(10, 1.118)
+
+[node name="Checkpoint" parent="." unique_id=1931067568 instance=ExtResource("5_eibxt")]
+position = Vector2(199, 2224)
+
+[node name="Checkpoint2" parent="." unique_id=1608820332 instance=ExtResource("5_eibxt")]
+position = Vector2(8658, 6378)
+
+[node name="Checkpoint3" parent="." unique_id=2062339508 instance=ExtResource("5_eibxt")]
+position = Vector2(555, 5665)
+
+[node name="Checkpoint4" parent="." unique_id=1703642695 instance=ExtResource("5_eibxt")]
+position = Vector2(24286, 4098)
+
+[node name="Checkpoint5" parent="." unique_id=212515931 instance=ExtResource("5_eibxt")]
+position = Vector2(36292, 4506)
+
+[connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
+[connection signal="body_entered" from="KillZone2" to="jugador" method="_on_kill_zone_body_entered"]
+[connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]
+[connection signal="body_entered" from="KillZoneVacío2" to="jugador" method="_on_kill_zone_body_entered"]

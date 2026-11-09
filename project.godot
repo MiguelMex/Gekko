@@ -20,6 +20,7 @@ run/default_gravity=2000.0
 
 MenuPausa="*uid://d33rgdupu5qww"
 TransitionManager="*uid://cyj4fg67q0qj7"
+MenuAjustes="*uid://bwf11neik4430"
 
 [display]
 

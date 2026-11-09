@@ -12,6 +12,7 @@ public partial class PantallaPrincipal : Control
 	private IconButton BtnSalir;
 	private IconButton BtnAjustes;
 	private Button upButton;
+	private MenuAjustes _ajustes;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,6 +21,7 @@ public partial class PantallaPrincipal : Control
 		BtnCargar = GetNode<IconButton>("Texture/Container/BtnContainer/BtnCargar");
 		BtnAjustes = GetNode<IconButton>("Texture/Container/BtnContainer/BtnAjustes");
 		BtnSalir = GetNode<IconButton>("Texture/Container/BtnContainer/BtnSalir");
+		_ajustes = GetNode<MenuAjustes>("/root/MenuAjustes");
 
 		// BtnNuevaPartida.ButtonPressed += _OnButtonPressed;
 		// BtnCargar.ButtonPressed += _OnButtonPressed;
@@ -73,7 +75,7 @@ public partial class PantallaPrincipal : Control
 				_goToScene("res://escenas/Uis/cargar_partida/load_file.tscn");
 				break;
 			case "ajustes":
-				//TODO: Ir al menu de configuracoón
+				_ajustes.Abrir();
 				break;
 			case "salir":
 				GetTree().Quit();
@@ -104,8 +106,10 @@ public partial class PantallaPrincipal : Control
 		GetViewport().SetInputAsHandled();
 	}
 
-    public override void _UnhandledInput(InputEvent @event)
-    {
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (_ajustes.Visible) return;   // los ajustes tienen el control
+	
 		if (@event.IsActionPressed("down_ui"))
 		{
 			_nextButton();
@@ -119,7 +123,7 @@ public partial class PantallaPrincipal : Control
 			_botones[_actualIndex].EmitSignal(IconButton.SignalName.ButtonPressed);
 			GetViewport().SetInputAsHandled();
 		}
-    }
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
