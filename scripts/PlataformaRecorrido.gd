@@ -4,6 +4,8 @@ extends AnimatableBody2D
 var recorrido: Path2D
 var velocidad: float = 48.0 # Map pixels/second, before the level's scale.
 var solo_ida: bool = false
+var reloj_sincronizacion: Node2D
+var duracion_ida_sincronizada: float = 0.0
 var _activada: bool = false
 var _reinicio_pendiente: bool = false
 var _avance: float = 0.0
@@ -50,6 +52,15 @@ func _physics_process(delta: float) -> void:
 			var anterior := recorrido.curve.get_point_position(recorrido.curve.point_count - 2)
 			var prolongacion := fin + (fin - anterior).normalized() * (_avance - _longitud)
 			punto = get_parent().to_local(recorrido.to_global(prolongacion))
+		position = _inicio + punto - _origen_recorrido
+		return
+	if reloj_sincronizacion != null and duracion_ida_sincronizada > 0.0:
+		var tiempo := float(reloj_sincronizacion.get("tiempo_sincronizado"))
+		var fase := fposmod(tiempo, 2.0 * duracion_ida_sincronizada)
+		var progreso := fase / duracion_ida_sincronizada
+		if progreso > 1.0:
+			progreso = 2.0 - progreso
+		var punto := _punto_en_mapa(progreso * _longitud)
 		position = _inicio + punto - _origen_recorrido
 		return
 	_avance = fposmod(_avance + velocidad * delta, 2.0 * _longitud)

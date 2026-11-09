@@ -8,6 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://crvof7r3nmu32" path="res://recursos/sprites/jugador/left.png" id="4_jkpmm"]
 [ext_resource type="Texture2D" uid="uid://bks3e2d75rkr1" path="res://recursos/sprites/jugador/tongue.png" id="5_vkjxu"]
 [ext_resource type="Texture2D" uid="uid://dgvm1q1kg1p52" path="res://recursos/sprites/jugador/sprint.png" id="5_xlrr1"]
+[ext_resource type="AudioStream" path="res://audio/sonido_de_salto.wav" id="audio_jump"]
+[ext_resource type="AudioStream" path="res://audio/sonido_game_over.wav" id="audio_game_over"]
+[ext_resource type="AudioStream" path="res://audio/sonido_win.wav" id="audio_win"]
+[ext_resource type="AudioStream" path="res://audio/sonido_afk.wav" id="audio_afk"]
+[ext_resource type="AudioStream" path="res://audio/sonido_caida_vb.wav" id="audio_fall"]
+[ext_resource type="AudioStream" path="res://audio/sonido_check_point.wav" id="audio_checkpoint"]
+[ext_resource type="AudioStream" path="res://audio/sonido_correr_rapido_fondo.wav" id="audio_sprint"]
+[ext_resource type="AudioStream" path="res://audio/sonido_de_choque.wav" id="audio_impact"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8f517"]
 atlas = ExtResource("3_qsk7m")
@@ -451,10 +459,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7uj1w"]
-size = Vector2(90, 344)
+size = Vector2(90, 259)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeas4"]
-size = Vector2(55, 249)
+size = Vector2(55, 228.57143)
 
 [node name="jugador" type="CharacterBody2D" unique_id=674495634 groups=["player"]]
 scale = Vector2(0.7, 0.7)
@@ -475,7 +483,8 @@ animation = &"crouch"
 speed_scale = 2.0
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=1264944243]
-position = Vector2(15, 47)
+position = Vector2(14.999995, 89.49997)
+scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_7uj1w")
 
 [node name="DetectorPeligros" type="Area2D" parent="." unique_id=83040781]
@@ -484,7 +493,32 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorPeligros" unique_id=1710168465]
-position = Vector2(-1, 14.5)
+position = Vector2(-1, 66.14282)
+scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_eeas4")
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_jump")
+
+[node name="SonidoGameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_game_over")
+
+[node name="SonidoWin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_win")
+
+[node name="SonidoAFK" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_afk")
+
+[node name="SonidoCaida" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_fall")
+
+[node name="SonidoCheckpoint" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_checkpoint")
+
+[node name="SonidoSprint" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_sprint")
+
+[node name="SonidoChoque" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_impact")
 
 [connection signal="animation_finished" from="sprite" to="." method="_playerIsIdle"]

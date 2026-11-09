@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bh2udlsjhk4s"]
+
+[ext_resource type="Script" uid="uid://b0sqv0n1tnljs" path="res://escenas/enemigos/GatoBandido.cs" id="1_script"]
+[ext_resource type="SpriteFrames" uid="uid://dpjl55xbgfjew" path="res://recursos/sprites/enemigo_gato/gato_animaciones.tres" id="2_frames"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/bala_gato.tscn" id="3_bullet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(45.65457, 99.77913)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_damage"]
+size = Vector2(47.779503, 120.48395)
+
+[node name="GatoBandido" type="CharacterBody2D" unique_id=1698212021]
+collision_layer = 2
+script = ExtResource("1_script")
+EscenaBala = ExtResource("3_bullet")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=820918966]
+position = Vector2(0, -116)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("2_frames")
+animation = &"caminar"
+autoplay = "caminar"
+
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=190641784]
+position = Vector2(26.5, -87.5)
+scale = Vector2(1.5989637, 1.4131211)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=665935240]
+position = Vector2(0, -54)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=76505272]
+position = Vector2(27.5, -36.500008)
+scale = Vector2(1.6952876, 1.369477)
+shape = SubResource("RectangleShape2D_damage")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=764023187]
+position = Vector2(64, -174)
