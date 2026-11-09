@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="1_vnee3"]
 [ext_resource type="PackedScene" uid="uid://c10dssg7gjao" path="res://mapas/niveles/Cueva/cueva_1.tmx" id="2_ksulb"]
+[ext_resource type="PackedScene" uid="uid://ccop8bpxbrck7" path="res://escenas/SalidaNivel/salida_nivel.tscn" id="2_n2bg7"]
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="3_ksulb"]
 [ext_resource type="PackedScene" uid="uid://c0kmr1jk6hnyi" path="res://escenas/enemigos/aguila.tscn" id="4_u80uk"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="5_q4hn2"]
@@ -13,6 +14,14 @@ position = Vector2(868.00073, 2159)
 
 [node name="Camera2D" type="Camera2D" parent="jugador" unique_id=1951982545]
 zoom = Vector2(0.3, 0.3)
+
+[node name="SpwanPoint" type="Marker2D" parent="." unique_id=2090242289]
+position = Vector2(868.00073, 2159)
+scale = Vector2(0.7, 0.7)
+
+[node name="SalidaNivel" parent="." unique_id=911173833 instance=ExtResource("2_n2bg7")]
+position = Vector2(850.99994, 2150.9998)
+NextScenePath = "res://testing_player.tscn"
 
 [node name="cueva_1" parent="." unique_id=260777084 instance=ExtResource("2_ksulb")]
 position = Vector2(9, 7)

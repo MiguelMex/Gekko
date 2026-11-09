@@ -61,6 +61,9 @@ public partial class Jugador : CharacterBody2D
 
 	public override void _Ready()
 {
+	//Permite al administrador encontrar al Gekko después de cargar el nuevo mapa
+	AddToGroup("jugador");
+	
 	// 1. PRIMERO VERIFICAMOS SI VENIMOS DE CARGAR UNA PARTIDA GUARDADA
 	if (SaveManager.CurrentGameData != null)
 	{
