@@ -9,6 +9,7 @@ public partial class LoadingScreen : Control
 	private ResourceLoader.ThreadLoadStatus loading_status;
 	private Godot.Collections.Array progress = new();
 	private ProgressBar _progressBar;
+	private AnimatedSprite2D _geckoSprite;
 
 	public static string targetLevelPath;
 	public static string sceneToLoadName;
@@ -20,7 +21,14 @@ public partial class LoadingScreen : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_progressBar = GetNode<ProgressBar>("ProgressBar");
+	_progressBar = GetNode<ProgressBar>("ProgressBar");
+	_geckoSprite = GetNode<AnimatedSprite2D>("GeckoBailando");
+	_geckoSprite.Play("default"); // <--- ESTA LÍNEA INICIA LA ANIMACIÓN
+
+	_geckoSprite = GetNode<AnimatedSprite2D>("CactusBailando");
+    _geckoSprite.Play("default"); // <--- ESTA LÍNEA INICIA LA ANIMACIÓN
+
+	
 		if (string.IsNullOrEmpty(targetScenePath))
 		{
 			GD.Print("Escena a cargar no definida");

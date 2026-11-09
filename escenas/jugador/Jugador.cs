@@ -3,6 +3,14 @@ using System;
 
 public partial class Jugador : CharacterBody2D
 {
+    // Variable estática para llevar el registro de muertes durante la partida
+    public static int ContadorMuertesTotales = 0;
+
+    //Variable de control de la velocidad acumulada
+    private Label _labelVelocidad; // NUEVO: Referencia para el texto de velocidad
+
+    // Referencia al Label de la UI (asegúrate de ajustar la ruta si es diferente)
+    private Label _labelMuertes;
 
 	/**
 	[Export] cumple la función de mostrar un valor del script en el motor grafico de GODOT
@@ -91,13 +99,39 @@ public partial class Jugador : CharacterBody2D
 	_sprite = GetNode<AnimatedSprite2D>("sprite");
 	_sprite.Play("idle");
 
-	_wallCheck = GetNode<RayCast2D>("wallcheck");
-	_stepCheck = GetNode<RayCast2D>("stepcheck");
+
+    _wallCheck = GetNode<RayCast2D>("wallcheck");
+    _stepCheck = GetNode<RayCast2D>("stepcheck");
+    
+    // Conectamos la señal que detecta cuando el jugador toca un peligro
+    GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
+
+    // Buscamos el Label en la interfaz usando su ruta dentro del CanvasLayer
+        // (Ajusta la ruta exacta dependiendo de cómo nombraste tus nodos en la escena)
+        _labelMuertes = GetNodeOrNull<Label>("%ContadorMuertes");
+        ActualizarTextoMuertes();
+
+        _labelVelocidad = GetNodeOrNull<Label>("%ContadorVelocidad"); // NUEVO
+
+}   
 	
-	// Conectamos la señal que detecta cuando el jugador toca un peligro
-	GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
-}
-	
+    private void ActualizarTextoMuertes()
+    {
+        if (_labelMuertes != null)
+        {
+            _labelMuertes.Text = $"Muertes: {ContadorMuertesTotales}";
+        }
+    }
+
+    private void ActualizarTextoVelocidad()
+    {
+        if (_labelVelocidad != null)
+        {
+            // Mostramos la velocidad actual redondeada (puedes usar Velocity.X o Velocity.Length())
+            int velocidadActual = Mathf.RoundToInt(Mathf.Abs(Velocity.X));
+            _labelVelocidad.Text = $"Vel: {velocidadActual}";
+        }
+    }
 		private void OnPeligroDetectado(Node2D body)
 	{
 		// Verificamos si el objeto detectado es una capa de tiles
@@ -327,12 +361,16 @@ public partial class Jugador : CharacterBody2D
 			_isSprinting = false;
 		}
 
-		//GD.Print("Velocidad acumulada: "+speedStored);
-		Velocity = velocity;
-		MoveAndSlide();
-		//Detecta si hubo una colisión en este frame
-		_detectHorizontalCollision(direction);
-	}
+
+        //GD.Print("Velocidad acumulada: "+speedStored);
+        Velocity = velocity;
+        MoveAndSlide();
+        //Detecta si hubo una colisión en este frame
+        _detectHorizontalCollision(direction);
+
+        // NUEVO: Actualizar el texto de la velocidad en pantalla cada frame
+        ActualizarTextoVelocidad();
+    }
 
 	//Aplica el knockback de una explosión
 	public void _applyKnockback(Vector2 direction, float force)
@@ -419,9 +457,15 @@ public partial class Jugador : CharacterBody2D
 		// Opcional pero recomendado: Frenar su velocidad para que no siga cayendo con inercia
 		Velocity = Vector2.Zero;
 		
+
         speedStored = 1;
         _abilityState = false;
-		GD.Print("El jugador ha muerto y reaparecido.");
+		// 1. Incrementamos el contador
+        ContadorMuertesTotales++;
+        ActualizarTextoMuertes();
+
+        GD.Print($"El jugador ha muerto. Muertes totales: {ContadorMuertesTotales}");
+
 	}
 	
 	

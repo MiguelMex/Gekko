@@ -1,6 +1,137 @@
 [gd_scene format=3 uid="uid://daaskwd4i2yg7"]
 
 [ext_resource type="Script" uid="uid://cefkju02taesn" path="res://escenas/Uis/loading_screen/LoadingScreen.cs" id="1_2kxj0"]
+[ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="2_ork3f"]
+[ext_resource type="Texture2D" uid="uid://b5sw2p4nmrcsq" path="res://recursos/sprites/pantalla_carga/geckomaracas.png" id="3_gr4gt"]
+[ext_resource type="Texture2D" uid="uid://by8bnm0cr5p0n" path="res://recursos/sprites/pantalla_carga/cactusmaracas1.png" id="4_288qt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5vx5"]
+atlas = ExtResource("3_gr4gt")
+region = Rect2(0, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boh7s"]
+atlas = ExtResource("3_gr4gt")
+region = Rect2(384, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pek2b"]
+atlas = ExtResource("3_gr4gt")
+region = Rect2(768, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3oke"]
+atlas = ExtResource("3_gr4gt")
+region = Rect2(1152, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqqef"]
+atlas = ExtResource("3_gr4gt")
+region = Rect2(0, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjai1"]
+atlas = ExtResource("3_gr4gt")
+region = Rect2(384, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6ntl"]
+atlas = ExtResource("3_gr4gt")
+region = Rect2(768, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b1wc"]
+atlas = ExtResource("3_gr4gt")
+region = Rect2(1152, 432, 384, 432)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v7ihv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5vx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boh7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pek2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3oke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqqef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjai1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6ntl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b1wc")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctdws"]
+atlas = ExtResource("4_288qt")
+region = Rect2(0, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdw6e"]
+atlas = ExtResource("4_288qt")
+region = Rect2(384, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnh75"]
+atlas = ExtResource("4_288qt")
+region = Rect2(768, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7anwr"]
+atlas = ExtResource("4_288qt")
+region = Rect2(1152, 0, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quodn"]
+atlas = ExtResource("4_288qt")
+region = Rect2(0, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w02q"]
+atlas = ExtResource("4_288qt")
+region = Rect2(384, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq4b0"]
+atlas = ExtResource("4_288qt")
+region = Rect2(768, 432, 384, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urdtl"]
+atlas = ExtResource("4_288qt")
+region = Rect2(1152, 432, 384, 432)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1fi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctdws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdw6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnh75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7anwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quodn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w02q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq4b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urdtl")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="LoadingScreen" type="Control" unique_id=2073744070]
 layout_mode = 3
@@ -10,6 +141,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2kxj0")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=293906674]
+layout_mode = 0
+offset_right = 1146.0
+offset_bottom = 638.0
+color = Color(0.14911404, 0.14911404, 0.14911404, 1)
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1668495802]
 layout_mode = 1
@@ -21,3 +158,32 @@ anchor_bottom = 0.5208333
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=539967663]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.98700005
+anchor_bottom = 0.938
+offset_left = 468.0
+offset_top = 253.0
+offset_right = -374.02405
+offset_bottom = -308.82404
+theme_override_fonts/font = ExtResource("2_ork3f")
+theme_override_font_sizes/font_size = 28
+text = "CARGANDO..."
+
+[node name="GeckoBailando" type="AnimatedSprite2D" parent="." unique_id=1044931924]
+unique_name_in_owner = true
+position = Vector2(561, 141)
+scale = Vector2(0.5026042, 0.5)
+sprite_frames = SubResource("SpriteFrames_v7ihv")
+frame = 3
+frame_progress = 0.8410647
+
+[node name="CactusBailando" type="AnimatedSprite2D" parent="." unique_id=198750757]
+unique_name_in_owner = true
+position = Vector2(578.99994, 485)
+scale = Vector2(0.5260417, 0.5260417)
+sprite_frames = SubResource("SpriteFrames_f1fi5")
+frame = 6
+frame_progress = 0.4083329
