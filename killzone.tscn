@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://2abykx03ldts" path="res://scripts/KillZone.cs" id="1_3brf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_22vlk"]
-size = Vector2(1651.75, 66)
+size = Vector2(1469.875, 66)
 
 [node name="KillZone" type="Area2D" unique_id=1668862344]
 script = ExtResource("1_3brf5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=606716087]
-position = Vector2(647, 727)
+position = Vector2(737.9375, 727)
 shape = SubResource("RectangleShape2D_22vlk")

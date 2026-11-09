@@ -19,6 +19,7 @@ run/default_gravity=2000.0
 [autoload]
 
 MenuPausa="*uid://d33rgdupu5qww"
+MenuAjustes="*uid://bwf11neik4430"
 
 [display]
 

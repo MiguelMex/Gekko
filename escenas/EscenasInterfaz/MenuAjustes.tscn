@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://bwf11neik4430"]
+
+[ext_resource type="Script" uid="uid://cj3r8kmhhh7we" path="res://escenas/EscenasInterfaz/MenuAjustes.cs" id="1_nuj5d"]
+[ext_resource type="Texture2D" uid="uid://d4nq5rtk521y3" path="res://recursos/imagenes/geckoprueba.png" id="1_rpvgi"]
+[ext_resource type="Texture2D" uid="uid://bl3ypdgwlvskm" path="res://recursos/imagenes/mostachoprueba.png" id="2_nuj5d"]
+[ext_resource type="Texture2D" uid="uid://cckh66rxifc8s" path="res://recursos/imagenes/sombrero.png" id="3_45hsu"]
+
+[node name="MenuAjustes" type="CanvasLayer" unique_id=493651560]
+process_mode = 3
+layer = 100
+script = ExtResource("1_nuj5d")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1619074899]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.078431375, 0.078431375, 0.078431375, 0.47058824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=25208996]
+offset_left = 572.0
+offset_top = 77.0
+offset_right = 995.0
+offset_bottom = 554.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=962892995]
+layout_mode = 2
+text = "Ajustes
+"
+horizontal_alignment = 1
+
+[node name="PantallaCompletaCheck" type="CheckBox" parent="VBoxContainer" unique_id=1284449308]
+layout_mode = 2
+text = "Pantalla completa"
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1236382540]
+layout_mode = 2
+text = "Controles"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=95378591]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer" unique_id=1446265592]
+layout_mode = 2
+text = "izquierda"
+
+[node name="Boton_left" type="Button" parent="VBoxContainer/GridContainer" unique_id=1916380674]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/GridContainer" unique_id=505087757]
+layout_mode = 2
+text = "Derecha"
+
+[node name="Boton_right" type="Button" parent="VBoxContainer/GridContainer" unique_id=159916971]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer" unique_id=1182838486]
+layout_mode = 2
+text = "Saltar"
+
+[node name="Boton_jump" type="Button" parent="VBoxContainer/GridContainer" unique_id=1653917763]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer/GridContainer" unique_id=254117805]
+layout_mode = 2
+text = "Pausa"
+
+[node name="Boton_pause" type="Button" parent="VBoxContainer/GridContainer" unique_id=896693229]
+layout_mode = 2
+
+[node name="RestablecerButton" type="Button" parent="VBoxContainer" unique_id=1454369695]
+layout_mode = 2
+text = "Restblecer"
+
+[node name="VolverButton" type="Button" parent="VBoxContainer" unique_id=570016720]
+layout_mode = 2
+text = "Volver"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=161536381]
+offset_left = 6.0
+offset_top = 111.0
+offset_right = 372.0
+offset_bottom = 594.0
+texture = ExtResource("1_rpvgi")
+expand_mode = 1
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=84326614]
+offset_left = 33.0
+offset_top = 155.0
+offset_right = 239.0
+offset_bottom = 381.0
+texture = ExtResource("2_nuj5d")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=550633209]
+offset_left = 27.0
+offset_top = 66.0
+offset_right = 268.0
+offset_bottom = 268.0
+texture = ExtResource("3_45hsu")
+expand_mode = 1
+flip_h = true
