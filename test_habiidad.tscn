@@ -3,14 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://dv2mddjms343r" path="res://mapas/niveles/Desierto/Desierto_vacio.tmx" id="1_6qvvw"]
 [ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="2_lwvl1"]
 [ext_resource type="PackedScene" uid="uid://v1u2ty7cko3s" path="res://escenas/obstaculos/bloque_rompible.tscn" id="3_lwvl1"]
+[ext_resource type="PackedScene" uid="uid://bplpi3ra5tmb4" path="res://escenas/obstaculos/arena_movedisa.tscn" id="4_1hst4"]
 
 [node name="Test_habiidad" type="Node2D" unique_id=1849219719]
 
 [node name="Desierto_vacio" parent="." unique_id=706538025 instance=ExtResource("1_6qvvw")]
+position = Vector2(-1, 0)
 scale = Vector2(6, 6)
 
 [node name="jugador" parent="." unique_id=674495634 instance=ExtResource("2_lwvl1")]
-position = Vector2(4265, 207)
+position = Vector2(20893, 1871)
 
 [node name="Camera2D" type="Camera2D" parent="jugador" unique_id=171634746]
 position = Vector2(-8.571428, 69.99999)
@@ -26,3 +28,129 @@ position = Vector2(6848, 238)
 [node name="bloque_rompible3" parent="." unique_id=1410802646 instance=ExtResource("3_lwvl1")]
 position = Vector2(6848, 140)
 "nivelDaño" = 1
+
+[node name="arena_movedisa" parent="." unique_id=1073736896 instance=ExtResource("4_1hst4")]
+position = Vector2(20400, 2064)
+top = true
+
+[node name="arena_movedisa2" parent="." unique_id=311159852 instance=ExtResource("4_1hst4")]
+position = Vector2(20495, 2064)
+top = true
+
+[node name="arena_movedisa3" parent="." unique_id=360948602 instance=ExtResource("4_1hst4")]
+position = Vector2(20400, 2160)
+
+[node name="arena_movedisa4" parent="." unique_id=868499617 instance=ExtResource("4_1hst4")]
+position = Vector2(20495, 2160)
+
+[node name="arena_movedisa5" parent="." unique_id=1112469711 instance=ExtResource("4_1hst4")]
+position = Vector2(20591, 2064)
+top = true
+
+[node name="arena_movedisa6" parent="." unique_id=1874211834 instance=ExtResource("4_1hst4")]
+position = Vector2(20400, 2256)
+
+[node name="arena_movedisa7" parent="." unique_id=813869839 instance=ExtResource("4_1hst4")]
+position = Vector2(20591, 2160)
+
+[node name="arena_movedisa8" parent="." unique_id=1788214443 instance=ExtResource("4_1hst4")]
+position = Vector2(20496, 2256)
+
+[node name="arena_movedisa9" parent="." unique_id=1656947535 instance=ExtResource("4_1hst4")]
+position = Vector2(20592, 2256)
+
+[node name="arena_movedisa10" parent="." unique_id=723922584 instance=ExtResource("4_1hst4")]
+position = Vector2(20400, 2352)
+
+[node name="arena_movedisa11" parent="." unique_id=1464268563 instance=ExtResource("4_1hst4")]
+position = Vector2(20496, 2352)
+
+[node name="arena_movedisa12" parent="." unique_id=351999372 instance=ExtResource("4_1hst4")]
+position = Vector2(20592, 2352)
+
+[node name="arena_movedisa13" parent="." unique_id=220758605 instance=ExtResource("4_1hst4")]
+position = Vector2(20304, 2064)
+
+[node name="arena_movedisa15" parent="." unique_id=305826578 instance=ExtResource("4_1hst4")]
+position = Vector2(20112, 2064)
+
+[node name="arena_movedisa16" parent="." unique_id=1291425579 instance=ExtResource("4_1hst4")]
+position = Vector2(20208, 2064)
+
+[node name="arena_movedisa14" parent="." unique_id=1575859967 instance=ExtResource("4_1hst4")]
+position = Vector2(20304, 2160)
+
+[node name="arena_movedisa17" parent="." unique_id=709274801 instance=ExtResource("4_1hst4")]
+position = Vector2(20112, 2160)
+
+[node name="arena_movedisa18" parent="." unique_id=722018874 instance=ExtResource("4_1hst4")]
+position = Vector2(20208, 2160)
+
+[node name="arena_movedisa19" parent="." unique_id=347660932 instance=ExtResource("4_1hst4")]
+position = Vector2(20304, 2256)
+
+[node name="arena_movedisa20" parent="." unique_id=1628650077 instance=ExtResource("4_1hst4")]
+position = Vector2(20112, 2256)
+
+[node name="arena_movedisa21" parent="." unique_id=950832941 instance=ExtResource("4_1hst4")]
+position = Vector2(20208, 2256)
+
+[node name="arena_movedisa22" parent="." unique_id=1590028635 instance=ExtResource("4_1hst4")]
+position = Vector2(20304, 2352)
+
+[node name="arena_movedisa23" parent="." unique_id=345073684 instance=ExtResource("4_1hst4")]
+position = Vector2(20112, 2352)
+
+[node name="arena_movedisa24" parent="." unique_id=1558671259 instance=ExtResource("4_1hst4")]
+position = Vector2(20208, 2352)
+
+[node name="arena_movedisa37" parent="." unique_id=769181234 instance=ExtResource("4_1hst4")]
+position = Vector2(20687, 2064)
+
+[node name="arena_movedisa38" parent="." unique_id=2000333601 instance=ExtResource("4_1hst4")]
+position = Vector2(20783, 2064)
+
+[node name="arena_movedisa39" parent="." unique_id=185191153 instance=ExtResource("4_1hst4")]
+position = Vector2(20687, 2160)
+
+[node name="arena_movedisa40" parent="." unique_id=2126773488 instance=ExtResource("4_1hst4")]
+position = Vector2(20783, 2160)
+
+[node name="arena_movedisa41" parent="." unique_id=1912574077 instance=ExtResource("4_1hst4")]
+position = Vector2(20687, 2256)
+
+[node name="arena_movedisa42" parent="." unique_id=1809632949 instance=ExtResource("4_1hst4")]
+position = Vector2(20783, 2256)
+
+[node name="arena_movedisa43" parent="." unique_id=1281384276 instance=ExtResource("4_1hst4")]
+position = Vector2(20687, 2352)
+
+[node name="arena_movedisa44" parent="." unique_id=2100156902 instance=ExtResource("4_1hst4")]
+position = Vector2(20783, 2352)
+
+[node name="arena_movedisa45" parent="." unique_id=1413656028 instance=ExtResource("4_1hst4")]
+position = Vector2(20400, 2448)
+
+[node name="arena_movedisa46" parent="." unique_id=1375326613 instance=ExtResource("4_1hst4")]
+position = Vector2(20496, 2448)
+
+[node name="arena_movedisa47" parent="." unique_id=1774155431 instance=ExtResource("4_1hst4")]
+position = Vector2(20592, 2448)
+
+[node name="arena_movedisa48" parent="." unique_id=1647166393 instance=ExtResource("4_1hst4")]
+position = Vector2(20304, 2448)
+
+[node name="arena_movedisa49" parent="." unique_id=1563371537 instance=ExtResource("4_1hst4")]
+position = Vector2(20208, 2448)
+
+[node name="arena_movedisa50" parent="." unique_id=1612866927 instance=ExtResource("4_1hst4")]
+position = Vector2(20687, 2448)
+
+[node name="arena_movedisa51" parent="." unique_id=1795214594 instance=ExtResource("4_1hst4")]
+position = Vector2(20400, 2544)
+
+[node name="arena_movedisa52" parent="." unique_id=379977499 instance=ExtResource("4_1hst4")]
+position = Vector2(20496, 2544)
+
+[node name="arena_movedisa53" parent="." unique_id=876197533 instance=ExtResource("4_1hst4")]
+position = Vector2(20592, 2544)

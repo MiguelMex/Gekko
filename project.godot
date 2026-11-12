@@ -33,6 +33,10 @@ project/assembly_name="Gekko"
 
 enabled=PackedStringArray("res://addons/YATI/plugin.cfg")
 
+[global_group]
+
+plataformas_reiniciables=""
+
 [input]
 
 right={

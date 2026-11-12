@@ -114,7 +114,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="bloque_rompible" type="Node2D" unique_id=1852521771]
+[node name="bloque_rompible" type="Node2D" unique_id=1852521771 groups=["plataformas_reiniciables"]]
 scale = Vector2(6, 6)
 script = ExtResource("1_t7yfb")
 
@@ -124,9 +124,9 @@ script = ExtResource("1_t7yfb")
 position = Vector2(0.083333254, 0.083333254)
 shape = SubResource("RectangleShape2D_7uj1w")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=698594754]
+[node name="collision" type="StaticBody2D" parent="." unique_id=698594754]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=145803230]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision" unique_id=145803230]
 position = Vector2(-0.25000048, 0.25000024)
 shape = SubResource("RectangleShape2D_p66os")
 
