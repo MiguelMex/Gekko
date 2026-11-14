@@ -80,6 +80,11 @@ public partial class Jugador : CharacterBody2D
 	//Si la habiidad esta activada
 	private bool _abilityState = false;
 
+	//Para la arena movedisa
+	private int _arenaOverlapCount = 0;
+	private bool _dragedDown => _arenaOverlapCount > 0;
+	private float _dragForce = 500.0f;
+
 	public override void _Ready()
 	{
 		// Permite al administrador encontrar al Gekko después de cargar el nuevo mapa
@@ -290,7 +295,7 @@ public partial class Jugador : CharacterBody2D
 
 		if (!IsOnFloor())
 		{
-			velocity += GetGravity() * (float)delta;
+			if (!_dragedDown) velocity += GetGravity() * (float)delta;
 			_sprite.Stop();
 			_sprite.Play("fall");
 		}
@@ -304,7 +309,9 @@ public partial class Jugador : CharacterBody2D
 			if (_afkSound.Playing) _afkSound.Stop();
 			_sprite.Play("jump");
 			_jumpSound.Play();
-			velocity.Y = JumpVelocity;
+
+			velocity.Y = _dragedDown ? JumpVelocity / 4 : JumpVelocity;
+
 			_timeIdle = 0;
 			_consecutiveJump++;
 		}
@@ -389,6 +396,19 @@ public partial class Jugador : CharacterBody2D
 		}
 		if (direction != Vector2.Zero && _afkSound.Playing) _afkSound.Stop();
 
+		//Para arenas movedisas
+		if (_dragedDown)
+		{
+			velocity.Y += _dragForce * (float)delta;
+
+			//Para no acelerar infinitamente
+			float maxSinkSpeed = _dragForce * 0.5f;
+			velocity.Y = Math.Min(velocity.Y, maxSinkSpeed);
+
+			//frenar el mocimiento horizontal
+			velocity.X *= 0.01f;
+		}
+
 		//GD.Print("Velocidad acumulada: "+speedStored);
 		Velocity = velocity;
 		MoveAndSlide();
@@ -426,7 +446,8 @@ public partial class Jugador : CharacterBody2D
 		{
 			Velocity = new Vector2(
 				direction.X * force,
-				-force * 0.5f
+
+				-force * 0.1f
 			);
 		}
 
@@ -508,6 +529,23 @@ public partial class Jugador : CharacterBody2D
 		_abilityState = false;
 	}
 
+	//Para las arenas movedisas
+	public void EnArenasMovedisas(float dragForce, bool inside)
+	{
+		if (inside)
+		{
+			_arenaOverlapCount++;
+			_dragForce = dragForce;
+			GD.Print($"Esta en arena, total: ${_arenaOverlapCount}");
+		}
+		else
+		{
+			_arenaOverlapCount = Mathf.Max(0, _arenaOverlapCount - 1);
+			GD.Print($"Sale de la arena, total: ${_arenaOverlapCount}");
+		}
+
+	}
+
 	// NUEVO: Método público para actualizar el checkpoint
 	public void ActualizarCheckpoint(Vector2 nuevaPosicion)
 	{
@@ -519,12 +557,17 @@ public partial class Jugador : CharacterBody2D
 	// NUEVO: Método para "morir" y regresar al último checkpoint
 	public void Morir()
 	{
+		// Se asegura de que la arena no quede con efectos en el jugador
+		_arenaOverlapCount = 0;
+		_dragForce = 0f;
 		Respawn();
 	}
 
 	// La protección temporal solo ignora golpes de enemigos.
 	public void RecibirDanioEnemigo()
 	{
+
+		// Evita muertes repetidas si reaparece junto al águila o a otro peligro.
 		if (_tiempoInvulnerable > 0.0f)
 			return;
 

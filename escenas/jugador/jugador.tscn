@@ -464,6 +464,9 @@ size = Vector2(90, 259)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeas4"]
 size = Vector2(55, 228.57143)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7uj1w"]
+radius = 38.992413
+
 [node name="jugador" type="CharacterBody2D" unique_id=674495634 groups=["player"]]
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_omvyu")
@@ -521,5 +524,10 @@ stream = ExtResource("audio_sprint")
 
 [node name="SonidoChoque" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("audio_impact")
+[node name="head" type="Area2D" parent="." unique_id=1424078757]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head" unique_id=1730742218]
+position = Vector2(27.142859, -37.142857)
+shape = SubResource("CircleShape2D_7uj1w")
 
 [connection signal="animation_finished" from="sprite" to="." method="_playerIsIdle"]

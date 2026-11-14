@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://bplpi3ra5tmb4"]
+
+[ext_resource type="Script" uid="uid://brw4o7u3nb4h8" path="res://escenas/obstaculos/ArenaMovedisa.cs" id="1_lfqkl"]
+[ext_resource type="Texture2D" uid="uid://dqwcurdmkydwa" path="res://mapas/tilesets/desierto.png" id="1_ruxhe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfqkl"]
+atlas = ExtResource("1_ruxhe")
+region = Rect2(0, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hupj"]
+atlas = ExtResource("1_ruxhe")
+region = Rect2(16, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3ow5"]
+atlas = ExtResource("1_ruxhe")
+region = Rect2(32, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35u1b"]
+atlas = ExtResource("1_ruxhe")
+region = Rect2(0, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rkxp"]
+atlas = ExtResource("1_ruxhe")
+region = Rect2(16, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hj76"]
+atlas = ExtResource("1_ruxhe")
+region = Rect2(32, 160, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7uj1w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfqkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hupj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3ow5")
+}],
+"loop": 1,
+"name": &"bottom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35u1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rkxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hj76")
+}],
+"loop": 1,
+"name": &"top",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uj1w"]
+size = Vector2(16, 16)
+
+[node name="arena_movedisa" type="Node2D" unique_id=1073736896]
+texture_filter = 1
+scale = Vector2(6, 6)
+script = ExtResource("1_lfqkl")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1320592301]
+sprite_frames = SubResource("SpriteFrames_7uj1w")
+animation = &"bottom"
+
+[node name="area" type="Area2D" parent="." unique_id=706576754]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area" unique_id=700806582]
+shape = SubResource("RectangleShape2D_7uj1w")
+
+[connection signal="area_entered" from="area" to="." method="_AreaEntered"]
+[connection signal="area_exited" from="area" to="." method="_AreaExited"]
+[connection signal="body_entered" from="area" to="." method="_BodyEntered"]
+[connection signal="body_exited" from="area" to="." method="_BodyExited"]
