@@ -20,11 +20,11 @@ scale = Vector2(6, 6)
 [node name="jugador" parent="." unique_id=674495634 groups=["jugador"] instance=ExtResource("2_3iqgc")]
 position = Vector2(427, 2630)
 
-[node name="wallcheck" type="RayCast2D" parent="jugador" unique_id=1352380865]
+[node name="wallcheck2" type="RayCast2D" parent="jugador" unique_id=1352380865]
 position = Vector2(0, 150)
 target_position = Vector2(135, 0)
 
-[node name="stepcheck" type="RayCast2D" parent="jugador" unique_id=1857426298]
+[node name="stepcheck2" type="RayCast2D" parent="jugador" unique_id=1857426298]
 position = Vector2(0, 110)
 target_position = Vector2(135, 0)
 
