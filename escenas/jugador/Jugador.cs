@@ -66,7 +66,6 @@ public partial class Jugador : CharacterBody2D
 	private AudioStreamPlayer _checkpointSound;
 	private AudioStreamPlayer _sprintSound;
 	private AudioStreamPlayer _impactSound;
-	private bool _wasFalling;
 	private const float ImpactSoundThreshold = 260.0f;
 
 	double _timeIdle;
@@ -285,6 +284,7 @@ public partial class Jugador : CharacterBody2D
 		);
 
 		_ManagePause();
+		bool wasOnFloor = IsOnFloor();
 
 		Vector2 velocity = Velocity;
 
@@ -293,13 +293,10 @@ public partial class Jugador : CharacterBody2D
 			velocity += GetGravity() * (float)delta;
 			_sprite.Stop();
 			_sprite.Play("fall");
-			if (!_wasFalling && velocity.Y > 0) _fallSound.Play();
-			_wasFalling = velocity.Y > 0;
 		}
 		else
 		{
 			_consecutiveJump = 0;
-			_wasFalling = false;
 		}
 		// Manejar el salto.
 		if (Input.IsActionJustPressed("jump") && _consecutiveJump < 2)
@@ -331,6 +328,7 @@ public partial class Jugador : CharacterBody2D
 			_knockbackTime -= (float)delta;
 			Velocity = velocity;
 			MoveAndSlide();
+			PlayLandingSound(wasOnFloor, velocity.Y);
 			DetectHardTerrainImpact(velocity);
 			ActivarPlataformaBajoJugador();
 			return;
@@ -394,6 +392,7 @@ public partial class Jugador : CharacterBody2D
 		//GD.Print("Velocidad acumulada: "+speedStored);
 		Velocity = velocity;
 		MoveAndSlide();
+		PlayLandingSound(wasOnFloor, velocity.Y);
 
 		DetectHardTerrainImpact(velocity);
 		ActivarPlataformaBajoJugador();
@@ -404,6 +403,14 @@ public partial class Jugador : CharacterBody2D
 		// Actualizar el texto de la velocidad en pantalla
 		ActualizarTextoVelocidad();
 	}
+
+	private void PlayLandingSound(bool wasOnFloor, float incomingVerticalSpeed)
+	{
+		// El sonido se reproduce al tocar el piso tras caer, nunca al empezar a descender.
+		if (!wasOnFloor && IsOnFloor() && incomingVerticalSpeed >= 200.0f)
+			_fallSound.Play();
+	}
+
 	// Aplica el knockback de una explosión
 	public void _applyKnockback(Vector2 direction, float force)
 	{
