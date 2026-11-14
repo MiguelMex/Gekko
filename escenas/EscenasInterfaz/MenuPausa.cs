@@ -54,6 +54,9 @@ public partial class MenuPausa : CanvasLayer
 	if (GetTree().CurrentScene.SceneFilePath == "res://escenas/Uis/cargar_partida/load_file.tscn")
 		return;
 
+	if (GetTree().CurrentScene.SceneFilePath == "res://escenas/Uis/creditos/creditos.tscn")
+		return;
+
 	bool nowPaused = !GetTree().Paused;
 	GetTree().Paused = nowPaused;
 	Visible = nowPaused;
