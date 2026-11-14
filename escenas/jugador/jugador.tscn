@@ -508,6 +508,7 @@ stream = ExtResource("audio_win")
 
 [node name="SonidoAFK" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("audio_afk")
+volume_db = -12.0
 
 [node name="SonidoCaida" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("audio_fall")
