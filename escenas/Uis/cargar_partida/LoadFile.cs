@@ -47,7 +47,7 @@ public partial class LoadFile : Control
 		}
 
 		// Redirigimos al nivel de juego usando tu pantalla de carga
-		LoadingScreen.targetScenePath = "res://testing_player.tscn";
+		LoadingScreen.targetScenePath = "res://escenas/niveles/nivelInicio.tscn";
 		GetTree().ChangeSceneToFile("res://escenas/Uis/loading_screen/loading_screen.tscn");
 	}
 

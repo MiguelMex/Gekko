@@ -20,7 +20,7 @@ position = Vector2(868.00073, 2159)
 scale = Vector2(0.7, 0.7)
 
 [node name="SalidaNivel" parent="." unique_id=911173833 instance=ExtResource("2_n2bg7")]
-position = Vector2(850.99994, 2150.9998)
+position = Vector2(882.99994, 6898)
 NextScenePath = "res://testing_player.tscn"
 
 [node name="cueva_1" parent="." unique_id=260777084 instance=ExtResource("2_ksulb")]
