@@ -82,6 +82,9 @@ public partial class PantallaPrincipal : Control
 			case "niveles":
 				_goToScene("res://escenas/Uis/elegir_nivel/elegir_nivel.tscn");
 				break;
+			case "creditos":
+				_goToScene("res://escenas/Uis/creditos/creditos.tscn");
+				break;
 			case "salir":
 				GetTree().Quit();
 				break;

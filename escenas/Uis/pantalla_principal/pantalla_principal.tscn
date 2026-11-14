@@ -99,6 +99,11 @@ layout_mode = 2
 idButon = "ajustes"
 TextButton = "Configuración"
 
+[node name="BtnCreditos" parent="Texture/Container/BtnContainer" instance=ExtResource("2_vvrr3")]
+layout_mode = 2
+idButon = "creditos"
+TextButton = "Créditos"
+
 [node name="BtnSalir" parent="Texture/Container/BtnContainer" unique_id=889143784 instance=ExtResource("2_vvrr3")]
 layout_mode = 2
 idButon = "salir"
