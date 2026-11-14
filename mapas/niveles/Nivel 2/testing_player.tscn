@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://e8huqnohcvt1" path="res://escenas/jugador/jugador.tscn" id="2_3iqgc"]
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="3_e2klb"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="4_7vlsy"]
+[ext_resource type="PackedScene" uid="uid://bh2udlsjhk4s" path="res://escenas/enemigos/gato_bandido.tscn" id="5_3iqgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
 resource_local_to_scene = true
@@ -20,11 +21,11 @@ scale = Vector2(6, 6)
 [node name="jugador" parent="." unique_id=674495634 groups=["jugador"] instance=ExtResource("2_3iqgc")]
 position = Vector2(427, 2630)
 
-[node name="wallcheck" type="RayCast2D" parent="jugador" unique_id=1352380865]
+[node name="wallcheck2" type="RayCast2D" parent="jugador" unique_id=1352380865]
 position = Vector2(0, 150)
 target_position = Vector2(135, 0)
 
-[node name="stepcheck" type="RayCast2D" parent="jugador" unique_id=1857426298]
+[node name="stepcheck2" type="RayCast2D" parent="jugador" unique_id=1857426298]
 position = Vector2(0, 110)
 target_position = Vector2(135, 0)
 
@@ -68,6 +69,9 @@ position = Vector2(27261, 1874)
 
 [node name="Checkpoint6" parent="." unique_id=1835568876 instance=ExtResource("4_7vlsy")]
 position = Vector2(34130, 616)
+
+[node name="GatoBandido" parent="." unique_id=1698212021 instance=ExtResource("5_3iqgc")]
+position = Vector2(2393, 2772)
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]
