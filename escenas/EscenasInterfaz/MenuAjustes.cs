@@ -80,9 +80,19 @@ public partial class MenuAjustes : CanvasLayer
 		ActualizarTextos();
 	}
 
+	// Borra solo las teclas de la acción; conserva los botones y sticks del gamepad.
+	private static void BorrarTeclas(string accion)
+	{
+		foreach (InputEvent e in InputMap.ActionGetEvents(accion))
+		{
+			if (e is InputEventKey)
+				InputMap.ActionEraseEvent(accion, e);
+		}
+	}
+
 	private void AsignarTecla(string accion, Key codigo)
 	{
-		InputMap.ActionEraseEvents(accion);
+		BorrarTeclas(accion);
 		InputMap.ActionAddEvent(accion, new InputEventKey { PhysicalKeycode = codigo });
 		CancelarRemapeo();
 	}
@@ -169,7 +179,7 @@ public partial class MenuAjustes : CanvasLayer
 		{
 			if (!cfg.HasSectionKey("controles", accion)) continue;
 			long codigo = (long)cfg.GetValue("controles", accion);
-			InputMap.ActionEraseEvents(accion);
+			BorrarTeclas(accion);
 			InputMap.ActionAddEvent(accion, new InputEventKey { PhysicalKeycode = (Key)codigo });
 		}
 	}
