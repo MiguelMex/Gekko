@@ -5,6 +5,9 @@ public partial class MenuAjustes : CanvasLayer
 {
 	private const string RutaConfig = "user://ajustes.cfg";
 	private static readonly string[] Acciones = { "left", "right", "jump", "pause" };
+	
+	private static readonly string[] Buses = { "Master", "MusicaFondo", "SFX" };
+	private readonly Dictionary<string, HSlider> _sliders = new();
 
 	private readonly Dictionary<string, Button> _botones = new();
 	private BaseButton _pantallaCompleta;
@@ -19,6 +22,13 @@ public partial class MenuAjustes : CanvasLayer
 
 		_pantallaCompleta = GetNode<BaseButton>("VBoxContainer/PantallaCompletaCheck");
 		_pantallaCompleta.Toggled += OnPantallaCompleta;
+		
+		foreach (string bus in Buses)
+		{
+			var slider = GetNode<HSlider>($"VBoxContainer/GridSonido/Slider_{bus}");
+			_sliders[bus] = slider;
+			slider.ValueChanged += valor => CambiarVolumen(bus, valor);
+		}
 
 		foreach (string accion in Acciones)
 		{
@@ -63,6 +73,18 @@ public partial class MenuAjustes : CanvasLayer
 		DisplayServer.WindowSetMode(activada
 			? DisplayServer.WindowMode.Fullscreen
 			: DisplayServer.WindowMode.Windowed);
+	}
+	
+	
+	//-------------Sonido---------------------
+	
+	private void CambiarVolumen(string bus, double valor)
+	{
+		int idx = AudioServer.GetBusIndex(bus);
+		if (idx < 0) return;   // el bus no existe: revisa los nombres en la pestaña Audio
+
+		AudioServer.SetBusVolumeDb(idx, Mathf.LinearToDb((float)valor));
+		AudioServer.SetBusMute(idx, valor <= 0.001);   // en 0 se silencia del todo
 	}
 
 	// ---------- Remapeo de teclas ----------
@@ -155,6 +177,10 @@ public partial class MenuAjustes : CanvasLayer
 				}
 			}
 		}
+		
+		foreach (string bus in Buses)
+		cfg.SetValue("sonido", bus, _sliders[bus].Value);
+		
 		cfg.Save(RutaConfig);
 	}
 
@@ -162,6 +188,12 @@ public partial class MenuAjustes : CanvasLayer
 	{
 		var cfg = new ConfigFile();
 		if (cfg.Load(RutaConfig) != Error.Ok) return;   // primera vez: no hay archivo
+		
+		foreach (string bus in Buses)
+		{
+			double v = cfg.GetValue("sonido", bus, 1.0).AsDouble();
+			_sliders[bus].Value = v;   // dispara ValueChanged y aplica el volumen
+		}
 
 		_pantallaCompleta.ButtonPressed = (bool)cfg.GetValue("pantalla", "completa", false);
 

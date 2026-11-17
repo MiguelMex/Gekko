@@ -8,14 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://crvof7r3nmu32" path="res://recursos/sprites/jugador/left.png" id="4_jkpmm"]
 [ext_resource type="Texture2D" uid="uid://bks3e2d75rkr1" path="res://recursos/sprites/jugador/tongue.png" id="5_vkjxu"]
 [ext_resource type="Texture2D" uid="uid://dgvm1q1kg1p52" path="res://recursos/sprites/jugador/sprint.png" id="5_xlrr1"]
-[ext_resource type="AudioStream" path="res://audio/sonido_de_salto.wav" id="audio_jump"]
-[ext_resource type="AudioStream" path="res://audio/sonido_game_over.wav" id="audio_game_over"]
-[ext_resource type="AudioStream" path="res://audio/sonido_win.wav" id="audio_win"]
-[ext_resource type="AudioStream" path="res://audio/sonido_afk.wav" id="audio_afk"]
-[ext_resource type="AudioStream" path="res://audio/sonido_caida_vb.wav" id="audio_fall"]
-[ext_resource type="AudioStream" path="res://audio/sonido_check_point.wav" id="audio_checkpoint"]
-[ext_resource type="AudioStream" path="res://audio/sonido_correr_rapido_fondo.wav" id="audio_sprint"]
-[ext_resource type="AudioStream" path="res://audio/sonido_de_choque.wav" id="audio_impact"]
+[ext_resource type="AudioStream" uid="uid://dwha4haspwel0" path="res://audio/sonido_afk.wav" id="audio_afk"]
+[ext_resource type="AudioStream" uid="uid://len3nr3v33ss" path="res://audio/sonido_check_point.wav" id="audio_checkpoint"]
+[ext_resource type="AudioStream" uid="uid://cpilwxkq36uqf" path="res://audio/sonido_caida_vb.wav" id="audio_fall"]
+[ext_resource type="AudioStream" uid="uid://ceu77508gcsus" path="res://audio/sonido_game_over.wav" id="audio_game_over"]
+[ext_resource type="AudioStream" uid="uid://bxxwkhyha2ogb" path="res://audio/sonido_de_choque.wav" id="audio_impact"]
+[ext_resource type="AudioStream" uid="uid://dwgmu8t1h3y0s" path="res://audio/sonido_de_salto.wav" id="audio_jump"]
+[ext_resource type="AudioStream" uid="uid://6mhl6ibuiunu" path="res://audio/sonido_correr_rapido_fondo.wav" id="audio_sprint"]
+[ext_resource type="AudioStream" uid="uid://bjeupw1djxocw" path="res://audio/sonido_win.wav" id="audio_win"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8f517"]
 atlas = ExtResource("3_qsk7m")
@@ -497,29 +497,36 @@ position = Vector2(-1, 66.14282)
 scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_eeas4")
 
-[node name="SonidoSalto" type="AudioStreamPlayer" parent="."]
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="." unique_id=1125159378]
 stream = ExtResource("audio_jump")
+bus = &"SFX"
 
-[node name="SonidoGameOver" type="AudioStreamPlayer" parent="."]
+[node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=1163450111]
 stream = ExtResource("audio_game_over")
+bus = &"SFX"
 
-[node name="SonidoWin" type="AudioStreamPlayer" parent="."]
+[node name="SonidoWin" type="AudioStreamPlayer" parent="." unique_id=443880767]
 stream = ExtResource("audio_win")
+bus = &"SFX"
 
-[node name="SonidoAFK" type="AudioStreamPlayer" parent="."]
+[node name="SonidoAFK" type="AudioStreamPlayer" parent="." unique_id=2089695776]
 stream = ExtResource("audio_afk")
 volume_db = -12.0
+bus = &"SFX"
 
-[node name="SonidoCaida" type="AudioStreamPlayer" parent="."]
+[node name="SonidoCaida" type="AudioStreamPlayer" parent="." unique_id=1709781501]
 stream = ExtResource("audio_fall")
 
-[node name="SonidoCheckpoint" type="AudioStreamPlayer" parent="."]
+[node name="SonidoCheckpoint" type="AudioStreamPlayer" parent="." unique_id=1424566073]
 stream = ExtResource("audio_checkpoint")
+bus = &"SFX"
 
-[node name="SonidoSprint" type="AudioStreamPlayer" parent="."]
+[node name="SonidoSprint" type="AudioStreamPlayer" parent="." unique_id=208663397]
 stream = ExtResource("audio_sprint")
+bus = &"SFX"
 
-[node name="SonidoChoque" type="AudioStreamPlayer" parent="."]
+[node name="SonidoChoque" type="AudioStreamPlayer" parent="." unique_id=1591542786]
 stream = ExtResource("audio_impact")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="sprite" to="." method="_playerIsIdle"]
