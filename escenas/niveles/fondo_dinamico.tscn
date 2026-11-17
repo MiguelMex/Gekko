@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dujatwabqqrb0"]
+
+[ext_resource type="Script" uid="uid://dpemlwjj5b1rl" path="res://scripts/FondoDinamico.cs" id="1_5u0pe"]
+
+[node name="FondoDinamico" type="CanvasLayer" unique_id=1144362950]
+layer = -10
+script = ExtResource("1_5u0pe")
+
+[node name="Fondo_Desierto" type="TextureRect" parent="." unique_id=1135458443]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Fondo_Cueva" type="TextureRect" parent="." unique_id=1872270906]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
