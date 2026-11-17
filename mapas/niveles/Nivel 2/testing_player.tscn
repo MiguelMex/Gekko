@@ -49,8 +49,8 @@ position = Vector2(859, 3087)
 position = Vector2(2835, 3558)
 
 [node name="KillZoneVacío2" parent="." unique_id=815351681 instance=ExtResource("3_e2klb")]
-position = Vector2(18588, 2237)
-scale = Vector2(12.409955, 1.3867831)
+position = Vector2(16736, 2071.9998)
+scale = Vector2(14.246562, 1.9960617)
 
 [node name="Checkpoint" parent="." unique_id=1931067568 instance=ExtResource("4_7vlsy")]
 position = Vector2(-13, 2249)
