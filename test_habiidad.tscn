@@ -12,7 +12,7 @@ position = Vector2(-1, 0)
 scale = Vector2(6, 6)
 
 [node name="jugador" parent="." unique_id=674495634 instance=ExtResource("2_lwvl1")]
-position = Vector2(20893, 1871)
+position = Vector2(4880, 188)
 
 [node name="Camera2D" type="Camera2D" parent="jugador" unique_id=171634746]
 position = Vector2(-8.571428, 69.99999)
@@ -22,7 +22,7 @@ position = Vector2(6848, 332)
 "nivelDaño" = 20
 
 [node name="bloque_rompible2" parent="." unique_id=831153004 instance=ExtResource("3_lwvl1")]
-position = Vector2(6848, 238)
+position = Vector2(4073, 327)
 "nivelDaño" = 2
 
 [node name="bloque_rompible3" parent="." unique_id=1410802646 instance=ExtResource("3_lwvl1")]
