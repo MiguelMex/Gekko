@@ -86,9 +86,9 @@ public partial class TransitionManager : CanvasLayer
 		Jugador jugador = GetTree()
 			.GetFirstNodeInGroup("jugador") as Jugador;
 
-		Marker2D spawnPoint = GetTree()
- 		   .CurrentScene
-		   .FindChild("SpawnPoint", true, false) as Marker2D;
+		Node escena = GetTree().CurrentScene;
+		Marker2D spawnPoint = (escena.FindChild("SpawnPoint", true, false)
+			?? escena.FindChild("SpwanPoint", true, false)) as Marker2D;
 
 		if (jugador != null && spawnPoint != null)
 		{
@@ -96,6 +96,10 @@ public partial class TransitionManager : CanvasLayer
 			jugador.Velocity = Vector2.Zero;
 
 			jugador.ActualizarCheckpoint(spawnPoint.GlobalPosition);
+
+			// Progreso: al entrar a un nivel nuevo queda guardado en ese nivel
+			if (Niveles.IndiceDe(escena.SceneFilePath) >= 0)
+				SaveManager.SaveGame(spawnPoint.GlobalPosition, escena.SceneFilePath, false);
 
 			GD.Print("Gekko apareció en el nuevo mapa.");
 		}

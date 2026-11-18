@@ -16,6 +16,7 @@ offset_bottom = 648.0
 color = Color(0.078431375, 0.078431375, 0.078431375, 0.47058824)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=25208996]
+theme_override_constants/separation = 10
 offset_left = 572.0
 offset_top = 77.0
 offset_right = 995.0
@@ -23,9 +24,9 @@ offset_bottom = 554.0
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=962892995]
 layout_mode = 2
-text = "Ajustes
-"
+text = "Ajustes"
 horizontal_alignment = 1
+theme_override_font_sizes/font_size = 36
 
 [node name="PantallaCompletaCheck" type="CheckBox" parent="VBoxContainer" unique_id=1284449308]
 layout_mode = 2
@@ -34,6 +35,8 @@ text = "Pantalla completa"
 [node name="Label3" type="Label" parent="VBoxContainer" unique_id=753358508]
 layout_mode = 2
 text = "Sonido"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
 
 [node name="GridSonido" type="GridContainer" parent="VBoxContainer" unique_id=702908594]
 layout_mode = 2
@@ -75,6 +78,7 @@ value = 1.0
 layout_mode = 2
 text = "Controles"
 horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=95378591]
 layout_mode = 2
@@ -85,6 +89,7 @@ layout_mode = 2
 text = "izquierda"
 
 [node name="Boton_left" type="Button" parent="VBoxContainer/GridContainer" unique_id=1916380674]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="VBoxContainer/GridContainer" unique_id=505087757]
@@ -92,6 +97,7 @@ layout_mode = 2
 text = "Derecha"
 
 [node name="Boton_right" type="Button" parent="VBoxContainer/GridContainer" unique_id=159916971]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="Label3" type="Label" parent="VBoxContainer/GridContainer" unique_id=1182838486]
@@ -99,6 +105,7 @@ layout_mode = 2
 text = "Saltar"
 
 [node name="Boton_jump" type="Button" parent="VBoxContainer/GridContainer" unique_id=1653917763]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="Label4" type="Label" parent="VBoxContainer/GridContainer" unique_id=254117805]
@@ -106,13 +113,16 @@ layout_mode = 2
 text = "Pausa"
 
 [node name="Boton_pause" type="Button" parent="VBoxContainer/GridContainer" unique_id=896693229]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="RestablecerButton" type="Button" parent="VBoxContainer" unique_id=1454369695]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Restblecer"
+text = "Restablecer"
 
 [node name="VolverButton" type="Button" parent="VBoxContainer" unique_id=570016720]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Volver"
 

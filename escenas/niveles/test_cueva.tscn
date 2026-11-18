@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="3_ksulb"]
 [ext_resource type="PackedScene" uid="uid://c0kmr1jk6hnyi" path="res://escenas/enemigos/aguila.tscn" id="4_u80uk"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="5_q4hn2"]
+[ext_resource type="PackedScene" uid="uid://v1u2ty7cko3s" path="res://escenas/obstaculos/bloque_rompible.tscn" id="bloque_tile"]
 
 [node name="TestCueva" type="Node2D" unique_id=782301856]
 
@@ -15,13 +16,13 @@ position = Vector2(868.00073, 2159)
 [node name="Camera2D" type="Camera2D" parent="jugador" unique_id=1951982545]
 zoom = Vector2(0.3, 0.3)
 
-[node name="SpwanPoint" type="Marker2D" parent="." unique_id=2090242289]
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=2090242289]
 position = Vector2(868.00073, 2159)
 scale = Vector2(0.7, 0.7)
 
 [node name="SalidaNivel" parent="." unique_id=911173833 instance=ExtResource("2_n2bg7")]
 position = Vector2(882.99994, 6898)
-NextScenePath = "res://testing_player.tscn"
+NextScenePath = "res://escenas/Uis/creditos/creditos.tscn"
 
 [node name="cueva_1" parent="." unique_id=260777084 instance=ExtResource("2_ksulb")]
 position = Vector2(9, 7)
@@ -51,3 +52,172 @@ position = Vector2(7254, 3911)
 
 [node name="Checkpoint5" parent="." unique_id=1075083259 instance=ExtResource("5_q4hn2")]
 position = Vector2(3089, 2949)
+
+[node name="bloque_tile_1" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(3129, 919)
+"nivelDaño" = 1
+
+[node name="bloque_tile_2" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(3129, 1015)
+"nivelDaño" = 1
+
+[node name="bloque_tile_3" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(3129, 1111)
+"nivelDaño" = 1
+
+[node name="bloque_tile_4" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(3129, 1207)
+"nivelDaño" = 1
+
+[node name="bloque_tile_5" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(3129, 1303)
+"nivelDaño" = 1
+
+[node name="bloque_tile_6" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(5529, 1879)
+"nivelDaño" = 1
+
+[node name="bloque_tile_7" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(5529, 1975)
+"nivelDaño" = 1
+
+[node name="bloque_tile_8" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(5529, 2071)
+"nivelDaño" = 1
+
+[node name="bloque_tile_9" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(5529, 2167)
+"nivelDaño" = 1
+
+[node name="bloque_tile_10" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(4665, 3127)
+
+[node name="bloque_tile_11" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(5337, 3127)
+"nivelDaño" = 1
+
+[node name="bloque_tile_12" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(4665, 3223)
+
+[node name="bloque_tile_13" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(5337, 3223)
+"nivelDaño" = 1
+
+[node name="bloque_tile_14" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(4665, 3319)
+
+[node name="bloque_tile_15" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(5337, 3319)
+"nivelDaño" = 1
+
+[node name="bloque_tile_16" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(6009, 3319)
+"nivelDaño" = 2
+
+[node name="bloque_tile_17" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(4665, 3415)
+
+[node name="bloque_tile_18" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(5337, 3415)
+"nivelDaño" = 1
+
+[node name="bloque_tile_19" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(6009, 3415)
+"nivelDaño" = 2
+
+[node name="bloque_tile_20" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(6009, 3511)
+"nivelDaño" = 2
+
+[node name="bloque_tile_21" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(6009, 3607)
+"nivelDaño" = 2
+
+[node name="bloque_tile_22" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(1881, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_23" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(1977, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_24" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2073, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_25" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2169, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_26" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2265, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_27" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2361, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_28" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2457, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_29" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2553, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_30" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2649, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_31" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2745, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_32" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2841, 4087)
+"nivelDaño" = 3
+
+[node name="bloque_tile_33" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(1881, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_34" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(1977, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_35" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2073, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_36" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2169, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_37" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2265, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_38" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2361, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_39" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2457, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_40" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2553, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_41" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2649, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_42" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2745, 4759)
+"nivelDaño" = 2
+
+[node name="bloque_tile_43" parent="." instance=ExtResource("bloque_tile")]
+position = Vector2(2841, 4759)
+"nivelDaño" = 2
+

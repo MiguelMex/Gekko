@@ -21,7 +21,7 @@ public partial class ZonaCamara : Area2D
         {
             // 1. DISPARAR EL GUARDADO AUTOMÁTICO
             // Puedes guardar su posición actual o la de esta zona de sección
-            SaveManager.SaveGame(jugador.GlobalPosition, level: 1, hasKey: false);
+            SaveManager.SaveGame(jugador.GlobalPosition, GetTree().CurrentScene.SceneFilePath, hasKey: false);
             GD.Print("¡Autoguardado por sección de mapa realizado!");
 
             // 2. CAMBIAR LOS LÍMITES DE LA CÁMARA

@@ -53,10 +53,10 @@ horizontal_alignment = 1
 layout_mode = 0
 offset_left = 34.000015
 offset_top = 17.0
-offset_right = 834.0
-offset_bottom = 517.0
-scale = Vector2(0.35338977, 0.36532456)
+offset_right = 317.0
+offset_bottom = 200.0
 texture = ExtResource("1_i5kch")
 expand_mode = 1
+stretch_mode = 5
 
 [connection signal="pressed" from="Background" to="." method="_goToLevel"]

@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c0kmr1jk6hnyi" path="res://escenas/enemigos/aguila.tscn" id="3_xjmy0"]
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="4_tf6ek"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="5_eibxt"]
+[ext_resource type="PackedScene" uid="uid://v1u2ty7cko3s" path="res://escenas/obstaculos/bloque_rompible.tscn" id="bloque_tile"]
+[ext_resource type="PackedScene" uid="uid://cx88bbec66q74" path="res://escenas/enemigos/dron.tscn" id="dron_inicio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
 size = Vector2(1151, 70)
@@ -70,6 +72,66 @@ position = Vector2(24286, 4098)
 
 [node name="Checkpoint5" parent="." unique_id=212515931 instance=ExtResource("5_eibxt")]
 position = Vector2(36292, 4506)
+
+[node name="bloque_tile_1" parent="." unique_id=1206625044 instance=ExtResource("bloque_tile")]
+position = Vector2(1785, 2071)
+"nivelDaño" = 3
+
+[node name="bloque_tile_2" parent="." unique_id=726242149 instance=ExtResource("bloque_tile")]
+position = Vector2(1785, 2167)
+"nivelDaño" = 3
+
+[node name="bloque_tile_3" parent="." unique_id=360348163 instance=ExtResource("bloque_tile")]
+position = Vector2(1785, 2263)
+"nivelDaño" = 3
+
+[node name="bloque_tile_4" parent="." unique_id=1216576036 instance=ExtResource("bloque_tile")]
+position = Vector2(1785, 2359)
+"nivelDaño" = 3
+
+[node name="bloque_tile_5" parent="." unique_id=981043963 instance=ExtResource("bloque_tile")]
+position = Vector2(8889, 6391)
+"nivelDaño" = 3
+
+[node name="bloque_tile_6" parent="." unique_id=2117231538 instance=ExtResource("bloque_tile")]
+position = Vector2(8889, 6487)
+"nivelDaño" = 3
+
+[node name="bloque_tile_7" parent="." unique_id=1472192873 instance=ExtResource("bloque_tile")]
+position = Vector2(1785, 2455)
+"nivelDaño" = 3
+
+[node name="bloque_tile_8" parent="." unique_id=1357061569 instance=ExtResource("bloque_tile")]
+position = Vector2(1785, 2551)
+"nivelDaño" = 3
+
+[node name="bloque_tile_9" parent="." unique_id=510713433 instance=ExtResource("bloque_tile")]
+position = Vector2(1785, 2647)
+"nivelDaño" = 3
+
+[node name="bloque_tile_10" parent="." unique_id=1468323793 instance=ExtResource("bloque_tile")]
+position = Vector2(1785, 2743)
+"nivelDaño" = 3
+
+[node name="bloque_tile_11" parent="." unique_id=1042306772 instance=ExtResource("bloque_tile")]
+position = Vector2(8889, 6583)
+"nivelDaño" = 3
+
+[node name="bloque_tile_12" parent="." unique_id=529706742 instance=ExtResource("bloque_tile")]
+position = Vector2(8889, 6679)
+"nivelDaño" = 3
+
+[node name="bloque_tile_13" parent="." unique_id=377814648 instance=ExtResource("bloque_tile")]
+position = Vector2(8889, 6775)
+"nivelDaño" = 3
+
+[node name="bloque_tile_14" parent="." unique_id=1076498175 instance=ExtResource("bloque_tile")]
+position = Vector2(8889, 6871)
+"nivelDaño" = 3
+
+[node name="Dron" parent="." unique_id=886349432 instance=ExtResource("dron_inicio")]
+position = Vector2(16694, 6453.0005)
+scale = Vector2(2.897634, 2.7232912)
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZone2" to="jugador" method="_on_kill_zone_body_entered"]

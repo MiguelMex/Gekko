@@ -5,15 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://lbs7db38176k" path="res://killzone.tscn" id="2_bcnh3"]
 [ext_resource type="PackedScene" uid="uid://c0t08bjfi0ij8" path="res://checkpoint.tscn" id="3_bcnh3"]
 [ext_resource type="PackedScene" uid="uid://c0kmr1jk6hnyi" path="res://escenas/enemigos/aguila.tscn" id="4_aguila"]
-[ext_resource type="FontFile" uid="uid://djpjjposib5jk" path="res://recursos/fonts/PixeloidSans-Bold.ttf" id="6_10416"]
 [ext_resource type="PackedScene" uid="uid://bh2udlsjhk4s" path="res://escenas/enemigos/gato_bandido.tscn" id="7_vib0k"]
 [ext_resource type="PackedScene" uid="uid://cx88bbec66q74" path="res://escenas/enemigos/dron.tscn" id="8_dron"]
 [ext_resource type="PackedScene" uid="uid://ccop8bpxbrck7" path="res://escenas/SalidaNivel/salida_nivel.tscn" id="9_vnh30"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p66os"]
-size = Vector2(1151, 70)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vays5"]
+[ext_resource type="PackedScene" uid="uid://bplpi3ra5tmb4" path="res://escenas/obstaculos/arena_movedisa.tscn" id="11_arena"]
+[ext_resource type="PackedScene" uid="uid://v1u2ty7cko3s" path="res://escenas/obstaculos/bloque_rompible.tscn" id="bloque_tile"]
 
 [node name="testing_player" type="Node2D" unique_id=971696388]
 
@@ -21,17 +17,8 @@ size = Vector2(1151, 70)
 position = Vector2(47, -3)
 scale = Vector2(6, 6)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2010657371]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1003542367]
-position = Vector2(576.5, 615)
-shape = SubResource("RectangleShape2D_p66os")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1064382814]
-texture = SubResource("PlaceholderTexture2D_vays5")
-
 [node name="jugador" parent="." unique_id=674495634 instance=ExtResource("1_kwflf")]
-position = Vector2(30198, 957.00006)
+position = Vector2(397.00003, 2502.0002)
 
 [node name="Camera2D" type="Camera2D" parent="jugador" unique_id=729409668]
 visible = false
@@ -78,29 +65,9 @@ position = Vector2(17890, 1460)
 [node name="Checkpoint5" parent="." unique_id=212515931 instance=ExtResource("3_bcnh3")]
 position = Vector2(36324, 618)
 
-[node name="SpwanPoint" type="Marker2D" parent="." unique_id=38792710]
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=38792710]
 position = Vector2(397.00003, 2502.0002)
 scale = Vector2(0.7, 0.7)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=607302208]
-
-[node name="ContadorMuertes" type="Label" parent="CanvasLayer" unique_id=1549392933]
-unique_name_in_owner = true
-offset_right = 165.0
-offset_bottom = 30.0
-theme_override_fonts/font = ExtResource("6_10416")
-theme_override_font_sizes/font_size = 24
-text = "Muertes: 0"
-
-[node name="ContadorVelocidad" type="Label" parent="CanvasLayer" unique_id=1932865808]
-unique_name_in_owner = true
-offset_left = 1.0
-offset_top = 29.0
-offset_right = 77.0
-offset_bottom = 52.0
-theme_override_fonts/font = ExtResource("6_10416")
-theme_override_font_sizes/font_size = 24
-text = "Velocidad: 0"
 
 [node name="Dron" parent="." unique_id=336282044 instance=ExtResource("8_dron")]
 position = Vector2(9234, 190.00006)
@@ -113,6 +80,264 @@ scale = Vector2(1.1565553, 1.1988273)
 [node name="SalidaNivel" parent="." unique_id=911173833 instance=ExtResource("9_vnh30")]
 position = Vector2(34977, 1422.0002)
 NextScenePath = "res://escenas/niveles/test_cueva.tscn"
+
+[node name="bloque_rompible" parent="." unique_id=587207536 instance=ExtResource("bloque_tile")]
+position = Vector2(6896, 329)
+"nivelDaño" = 20
+
+[node name="bloque_rompible2" parent="." unique_id=1523941060 instance=ExtResource("bloque_tile")]
+position = Vector2(6896, 235)
+"nivelDaño" = 2
+
+[node name="bloque_rompible3" parent="." unique_id=912634631 instance=ExtResource("bloque_tile")]
+position = Vector2(6896, 137)
+"nivelDaño" = 1
+
+[node name="arena_movedisa" parent="." unique_id=83588731 instance=ExtResource("11_arena")]
+position = Vector2(20448, 2061)
+top = true
+
+[node name="arena_movedisa2" parent="." unique_id=349784038 instance=ExtResource("11_arena")]
+position = Vector2(20543, 2061)
+top = true
+
+[node name="arena_movedisa3" parent="." unique_id=1884429354 instance=ExtResource("11_arena")]
+position = Vector2(20448, 2157)
+
+[node name="arena_movedisa4" parent="." unique_id=1878488968 instance=ExtResource("11_arena")]
+position = Vector2(20543, 2157)
+
+[node name="arena_movedisa5" parent="." unique_id=373843052 instance=ExtResource("11_arena")]
+position = Vector2(20639, 2061)
+top = true
+
+[node name="arena_movedisa6" parent="." unique_id=51487139 instance=ExtResource("11_arena")]
+position = Vector2(20448, 2253)
+
+[node name="arena_movedisa7" parent="." unique_id=521158793 instance=ExtResource("11_arena")]
+position = Vector2(20639, 2157)
+
+[node name="arena_movedisa8" parent="." unique_id=443548178 instance=ExtResource("11_arena")]
+position = Vector2(20544, 2253)
+
+[node name="arena_movedisa9" parent="." unique_id=426891149 instance=ExtResource("11_arena")]
+position = Vector2(20640, 2253)
+
+[node name="arena_movedisa10" parent="." unique_id=1997947718 instance=ExtResource("11_arena")]
+position = Vector2(20448, 2349)
+
+[node name="arena_movedisa11" parent="." unique_id=279576803 instance=ExtResource("11_arena")]
+position = Vector2(20544, 2349)
+
+[node name="arena_movedisa12" parent="." unique_id=1542688807 instance=ExtResource("11_arena")]
+position = Vector2(20640, 2349)
+
+[node name="arena_movedisa13" parent="." unique_id=130792229 instance=ExtResource("11_arena")]
+position = Vector2(20352, 2061)
+
+[node name="arena_movedisa15" parent="." unique_id=1332627877 instance=ExtResource("11_arena")]
+position = Vector2(20160, 2061)
+
+[node name="arena_movedisa16" parent="." unique_id=132042840 instance=ExtResource("11_arena")]
+position = Vector2(20256, 2061)
+
+[node name="arena_movedisa14" parent="." unique_id=522977114 instance=ExtResource("11_arena")]
+position = Vector2(20352, 2157)
+
+[node name="arena_movedisa17" parent="." unique_id=166443899 instance=ExtResource("11_arena")]
+position = Vector2(20160, 2157)
+
+[node name="arena_movedisa18" parent="." unique_id=1048521413 instance=ExtResource("11_arena")]
+position = Vector2(20256, 2157)
+
+[node name="arena_movedisa19" parent="." unique_id=1203784191 instance=ExtResource("11_arena")]
+position = Vector2(20352, 2253)
+
+[node name="arena_movedisa20" parent="." unique_id=877101113 instance=ExtResource("11_arena")]
+position = Vector2(20160, 2253)
+
+[node name="arena_movedisa21" parent="." unique_id=1090253706 instance=ExtResource("11_arena")]
+position = Vector2(20256, 2253)
+
+[node name="arena_movedisa22" parent="." unique_id=1496754538 instance=ExtResource("11_arena")]
+position = Vector2(20352, 2349)
+
+[node name="arena_movedisa23" parent="." unique_id=1926786098 instance=ExtResource("11_arena")]
+position = Vector2(20160, 2349)
+
+[node name="arena_movedisa24" parent="." unique_id=559169011 instance=ExtResource("11_arena")]
+position = Vector2(20256, 2349)
+
+[node name="arena_movedisa37" parent="." unique_id=127525737 instance=ExtResource("11_arena")]
+position = Vector2(20735, 2061)
+
+[node name="arena_movedisa38" parent="." unique_id=1183418416 instance=ExtResource("11_arena")]
+position = Vector2(20831, 2061)
+
+[node name="arena_movedisa39" parent="." unique_id=612815991 instance=ExtResource("11_arena")]
+position = Vector2(20735, 2157)
+
+[node name="arena_movedisa40" parent="." unique_id=394385797 instance=ExtResource("11_arena")]
+position = Vector2(20831, 2157)
+
+[node name="arena_movedisa41" parent="." unique_id=401770681 instance=ExtResource("11_arena")]
+position = Vector2(20735, 2253)
+
+[node name="arena_movedisa42" parent="." unique_id=1659869177 instance=ExtResource("11_arena")]
+position = Vector2(20831, 2253)
+
+[node name="arena_movedisa43" parent="." unique_id=1238474195 instance=ExtResource("11_arena")]
+position = Vector2(20735, 2349)
+
+[node name="arena_movedisa44" parent="." unique_id=1501427854 instance=ExtResource("11_arena")]
+position = Vector2(20831, 2349)
+
+[node name="arena_movedisa45" parent="." unique_id=2026502501 instance=ExtResource("11_arena")]
+position = Vector2(20448, 2445)
+
+[node name="arena_movedisa46" parent="." unique_id=706459234 instance=ExtResource("11_arena")]
+position = Vector2(20544, 2445)
+
+[node name="arena_movedisa47" parent="." unique_id=1613747739 instance=ExtResource("11_arena")]
+position = Vector2(20640, 2445)
+
+[node name="arena_movedisa48" parent="." unique_id=1744237479 instance=ExtResource("11_arena")]
+position = Vector2(20352, 2445)
+
+[node name="arena_movedisa49" parent="." unique_id=177205486 instance=ExtResource("11_arena")]
+position = Vector2(20256, 2445)
+
+[node name="arena_movedisa50" parent="." unique_id=1384916424 instance=ExtResource("11_arena")]
+position = Vector2(20735, 2445)
+
+[node name="arena_movedisa51" parent="." unique_id=1262601094 instance=ExtResource("11_arena")]
+position = Vector2(20448, 2541)
+
+[node name="arena_movedisa52" parent="." unique_id=2146904964 instance=ExtResource("11_arena")]
+position = Vector2(20544, 2541)
+
+[node name="arena_movedisa53" parent="." unique_id=1071639532 instance=ExtResource("11_arena")]
+position = Vector2(20640, 2541)
+
+[node name="bloque_tile_1" parent="." unique_id=964000003 instance=ExtResource("bloque_tile")]
+position = Vector2(4703, 45)
+"nivelDaño" = 2
+
+[node name="bloque_tile_2" parent="." unique_id=1770625860 instance=ExtResource("bloque_tile")]
+position = Vector2(4703, 141)
+"nivelDaño" = 2
+
+[node name="bloque_tile_3" parent="." unique_id=1430770391 instance=ExtResource("bloque_tile")]
+position = Vector2(4703, 237)
+"nivelDaño" = 2
+
+[node name="bloque_tile_4" parent="." unique_id=984386578 instance=ExtResource("bloque_tile")]
+position = Vector2(4703, 333)
+"nivelDaño" = 2
+
+[node name="bloque_tile_5" parent="." unique_id=1362075445 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 525)
+"nivelDaño" = 3
+
+[node name="bloque_tile_6" parent="." unique_id=30278174 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 621)
+"nivelDaño" = 3
+
+[node name="bloque_tile_7" parent="." unique_id=1525477513 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 717)
+"nivelDaño" = 3
+
+[node name="bloque_tile_8" parent="." unique_id=1392694303 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 813)
+"nivelDaño" = 3
+
+[node name="bloque_tile_9" parent="." unique_id=282294158 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 909)
+"nivelDaño" = 3
+
+[node name="bloque_tile_10" parent="." unique_id=236727455 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1005)
+"nivelDaño" = 3
+
+[node name="bloque_tile_11" parent="." unique_id=2132008174 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1101)
+"nivelDaño" = 3
+
+[node name="bloque_tile_12" parent="." unique_id=1554609329 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1197)
+"nivelDaño" = 3
+
+[node name="bloque_tile_13" parent="." unique_id=1803888070 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1293)
+"nivelDaño" = 3
+
+[node name="bloque_tile_14" parent="." unique_id=277304105 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1389)
+"nivelDaño" = 3
+
+[node name="bloque_tile_15" parent="." unique_id=1284472476 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1485)
+"nivelDaño" = 3
+
+[node name="bloque_tile_16" parent="." unique_id=1634906035 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 1485)
+"nivelDaño" = 1
+
+[node name="bloque_tile_17" parent="." unique_id=855275782 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1581)
+"nivelDaño" = 3
+
+[node name="bloque_tile_18" parent="." unique_id=551926035 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 1581)
+"nivelDaño" = 1
+
+[node name="bloque_tile_19" parent="." unique_id=1127819537 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1677)
+"nivelDaño" = 3
+
+[node name="bloque_tile_20" parent="." unique_id=769197222 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 1677)
+"nivelDaño" = 1
+
+[node name="bloque_tile_21" parent="." unique_id=1475343602 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1773)
+"nivelDaño" = 3
+
+[node name="bloque_tile_22" parent="." unique_id=503087378 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 1773)
+"nivelDaño" = 1
+
+[node name="bloque_tile_23" parent="." unique_id=148910450 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1869)
+"nivelDaño" = 3
+
+[node name="bloque_tile_24" parent="." unique_id=253622971 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 1869)
+"nivelDaño" = 1
+
+[node name="bloque_tile_25" parent="." unique_id=1150990953 instance=ExtResource("bloque_tile")]
+position = Vector2(17855, 1965)
+"nivelDaño" = 3
+
+[node name="bloque_tile_26" parent="." unique_id=1694497475 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 1965)
+"nivelDaño" = 1
+
+[node name="bloque_tile_27" parent="." unique_id=1216779066 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 2061)
+"nivelDaño" = 1
+
+[node name="bloque_tile_28" parent="." unique_id=102333189 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 2157)
+"nivelDaño" = 1
+
+[node name="bloque_tile_29" parent="." unique_id=872551447 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 2253)
+"nivelDaño" = 1
+
+[node name="bloque_tile_30" parent="." unique_id=335328611 instance=ExtResource("bloque_tile")]
+position = Vector2(27071, 2349)
+"nivelDaño" = 1
 
 [connection signal="body_entered" from="KillZone" to="jugador" method="_on_kill_zone_body_entered"]
 [connection signal="body_entered" from="KillZoneVacío" to="jugador" method="_on_kill_zone_body_entered"]

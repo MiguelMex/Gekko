@@ -25,10 +25,10 @@ public partial class MiniaturaNivel : Control
 		textureRect = GetNode<TextureRect>("Background/Image");
 		textureRect.Texture = texture;
 
-		path = _findLevelScene(levelRoute);
+		path = Niveles.RutaPorCarpeta(levelRoute.TrimEnd('/').GetFile()) ?? _findLevelScene(levelRoute);
 		if (string.IsNullOrEmpty(path))
 		{
-			GD.PushWarning($"No se encontró escena dentro de {path}");
+			GD.PushWarning($"No se encontró escena dentro de {levelRoute}");
 		}
 	}
 

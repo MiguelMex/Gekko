@@ -91,7 +91,12 @@ public partial class Jugador : CharacterBody2D
 		AddToGroup("jugador");
 
 		// 1. Verificamos si venimos de cargar una partida guardada
-		if (SaveManager.CurrentGameData != null)
+		string escenaActual = GetParent()?.SceneFilePath ?? "";
+		var guardado = SaveManager.CurrentGameData;
+		bool guardadoEsDeEsteNivel = guardado != null
+			&& (string.IsNullOrEmpty(guardado.ScenePath) || string.IsNullOrEmpty(escenaActual) || guardado.ScenePath == escenaActual);
+
+		if (guardadoEsDeEsteNivel)
 		{
 			GlobalPosition = new Vector2(
 				SaveManager.CurrentGameData.PlayerPosX,
@@ -133,11 +138,32 @@ public partial class Jugador : CharacterBody2D
 
 		GetNode<Area2D>("DetectorPeligros").BodyEntered += OnPeligroDetectado;
 
-		// Inicializamos los contadores
-		_labelMuertes = GetNodeOrNull<Label>("%ContadorMuertes");
+		// Inicializamos el HUD (muertes y velocidad), presente en todos los niveles
+		CrearHud();
 		ActualizarTextoMuertes();
+		ActualizarTextoVelocidad();
+	}
 
-		_labelVelocidad = GetNodeOrNull<Label>("%ContadorVelocidad");
+	// Crea el HUD como hijo del jugador para que exista en cualquier nivel
+	private void CrearHud()
+	{
+		var capa = new CanvasLayer { Name = "HudJugador", Layer = 10 };
+		var fuente = GD.Load<Font>("res://recursos/fonts/PixeloidSans-Bold.ttf");
+
+		Label CrearLabel(string nombre, float y)
+		{
+			var label = new Label { Name = nombre, Position = new Vector2(12, y) };
+			if (fuente != null) label.AddThemeFontOverride("font", fuente);
+			label.AddThemeFontSizeOverride("font_size", 24);
+			label.AddThemeColorOverride("font_outline_color", Colors.Black);
+			label.AddThemeConstantOverride("outline_size", 6);
+			capa.AddChild(label);
+			return label;
+		}
+
+		_labelMuertes = CrearLabel("ContadorMuertes", 8);
+		_labelVelocidad = CrearLabel("ContadorVelocidad", 40);
+		AddChild(capa);
 	}
 	private void ActualizarTextoMuertes()
 	{
@@ -153,7 +179,7 @@ public partial class Jugador : CharacterBody2D
 		{
 			// Mostramos la velocidad actual redondeada (puedes usar Velocity.X o Velocity.Length())
 			int velocidadActual = Mathf.RoundToInt(Mathf.Abs(Velocity.X));
-			_labelVelocidad.Text = $"Vel: {velocidadActual}";
+			_labelVelocidad.Text = $"Velocidad: {velocidadActual} (x{speedStored:0.0})";
 		}
 	}
 	private void OnPeligroDetectado(Node2D body)

@@ -62,7 +62,7 @@ public partial class Checkpoint : Area2D
 			// Guardar el progreso del jugador.
 			SaveManager.SaveGame(
 				_spawnPoint.GlobalPosition,
-				level: 1,
+				GetTree().CurrentScene.SceneFilePath,
 				hasKey: false
 			);
 

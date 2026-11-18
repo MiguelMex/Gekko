@@ -71,7 +71,8 @@ public partial class PantallaPrincipal : Control
 		switch(id)
 		{
 			case "nueva":
-				_goToScene("res://testing_player.tscn");
+				SaveManager.NuevaPartida();
+				_goToScene(Niveles.RutaInicial);
 				break;
 			case "cargar":
 				_goToScene("res://escenas/Uis/cargar_partida/load_file.tscn");

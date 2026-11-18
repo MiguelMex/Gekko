@@ -21,7 +21,7 @@ public partial class Dron : CharacterBody2D
     [Export] public float VelocidadBase { get; set; } = 300.0f;
     [Export] public float DistanciaParaEmbestir { get; set; } = 270.0f;
     [Export] public float DemoraEmbestida { get; set; } = 0.35f;
-    [Export] public float VelocidadMaximaEmbestida { get; set; } = 900.0f;
+    [Export] public float VelocidadMaximaEmbestida { get; set; } = 750.0f;
     [Export] public float AceleracionEmbestida { get; set; } = 900.0f;
     [Export] public float VelocidadRegreso { get; set; } = 250.0f;
 

@@ -92,11 +92,11 @@ modulate = Color(1, 1, 1, 0.39215687)
 layout_mode = 0
 offset_left = 28.999998
 offset_top = 28.0
-offset_right = 1753.0159
-offset_bottom = 501.0
-scale = Vector2(0.6258643, 1.2470162)
+offset_right = 1108.0
+offset_bottom = 618.0
 texture = ExtResource("1_14vme")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="Background" unique_id=1823107285]
 layout_mode = 1

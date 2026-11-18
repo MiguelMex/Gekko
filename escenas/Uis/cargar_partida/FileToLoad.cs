@@ -20,7 +20,7 @@ public partial class FileToLoad : Button // Cambiamos Control por Button
 		if (label != null && _gameData != null)
 		{
 			// Puedes mostrar el nivel o la información que gustes en el texto del label
-			label.Text = $"Nivel {_gameData.CurrentLevel} - Guardado";
+			label.Text = $"{Niveles.NombreDe(_gameData.ScenePath)} - Guardado";
 		}
 	}
 
@@ -34,9 +34,14 @@ public partial class FileToLoad : Button // Cambiamos Control por Button
 			GD.Print($"Cargando partida guardada... Posición X: {_gameData.PlayerPosX}, Y: {_gameData.PlayerPosY}");
 		}
 
-		// 2. Cargamos la escena de juego usando la pantalla de carga
+		// 2. Cargamos el nivel donde se guardó, usando la pantalla de carga
+		string escena = _gameData?.ScenePath;
+		if (string.IsNullOrEmpty(escena) || !ResourceLoader.Exists(escena))
+			escena = Niveles.RutaInicial;
+
+		LoadingScreen.targetPlayerSpawnPosition = null;
 		LoadingScreen.levelSelected = false;
-		LoadingScreen.targetScenePath = "res://escenas/niveles/nivelInicio.tscn";
+		LoadingScreen.targetScenePath = escena;
 		GetTree().ChangeSceneToFile("res://escenas/Uis/loading_screen/loading_screen.tscn");
 	}
 
